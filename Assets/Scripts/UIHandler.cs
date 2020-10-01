@@ -8,7 +8,7 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField]
     GameObject _Zappar_Camera, _InstantTracker, _Virtual_Camera;
-    Vector3 initialPosition = new Vector3(0, 0, -2.2f);
+    Vector3 initialPosition;
     bool ResetPosition = false;
 
     [SerializeField]
@@ -35,11 +35,21 @@ public class UIHandler : MonoBehaviour
     GameObject _BackPanel_LandScape;
 
     [SerializeField]
+    GameObject _InfoPanel_Portrait, _InfoButton_Portrait, _InfoImage_Portrait;
+    [SerializeField]
+    GameObject _BottomPanel_Portrait;
+    [SerializeField]
+    GameObject _Plus_White_Portrait, _Plus_Gold_Portrait, _CM_White_Portrait, _CM_Gold_Portrait, _Door_White_Portrait, _Door_Gold_Portrait;
+    [SerializeField]
+    GameObject _BackPanel_Portrait;
+
+
+    [SerializeField]
     GameObject _FridgeModel;
     Animator animatorStartFridge;
 
     [SerializeField]
-    GameObject _ProductName;
+    GameObject _ProductName, _ProductName_Portrait;
 
 
     // Start is called before the first frame update
@@ -47,7 +57,7 @@ public class UIHandler : MonoBehaviour
     {
         animatorStartFridge = _FridgeModel.GetComponent<Animator>();
         animatorAITechSequence = _AITech_Sprite.GetComponent<Animator>();
-        // animator3DFlow = _3DFlow_Sprite.GetComponent<Animator>();
+        animator3DFlow = _3DFlow_Sprite.GetComponent<Animator>();
 
         StartCoroutine(StartTransition());
 
@@ -71,11 +81,18 @@ public class UIHandler : MonoBehaviour
         {
             _Panel_LandScape.SetActive(true);
             _Panel_Portrait.SetActive(false);
+
+            _Virtual_Camera.GetComponent<Camera>().fieldOfView = 70f;
+            initialPosition = new Vector3(0, 0, -2.2f);
         }
         else
         {
             _Panel_LandScape.SetActive(false);
             _Panel_Portrait.SetActive(true);
+
+            _Virtual_Camera.GetComponent<Camera>().fieldOfView = 75f;
+            initialPosition = new Vector3(0.25f, 0, -2.2f);
+
         }
 
         if (ResetPosition)
@@ -91,36 +108,74 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator StartTransition()
     {
-        yield return new WaitForSeconds(0.5f);
-
-        animatorStartFridge.Play("StartFridge_Animation");
-
-        yield return new WaitForSeconds(4f);
-
-        _InfoPanel_LandScape.SetActive(true);
-        _InfoImage_LandScape.SetActive(true);
-        _InfoImage_LandScape.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        if(Screen.width > Screen.height || ARView)
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _InfoImage_LandScape.GetComponent<Image>().color = newColor;
-            yield return null;
+            yield return new WaitForSeconds(0.5f);
+
+            animatorStartFridge.Play("StartFridge_Animation");
+
+            yield return new WaitForSeconds(4f);
+
+            _ProductName.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _ProductName.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            _BottomPanel_LandScape.SetActive(true);
+            _InfoPanel_LandScape.SetActive(true);
+            _InfoImage_LandScape.SetActive(true);
+            _InfoImage_LandScape.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _InfoImage_LandScape.GetComponent<Image>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(2f);
+
+            _InfoImage_LandScape.SetActive(false);
+        }
+        else
+        {
+            yield return new WaitForSeconds(0.5f);
+
+            animatorStartFridge.Play("StartFridge_Animation");
+
+            yield return new WaitForSeconds(4f);
+
+            _ProductName_Portrait.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _ProductName_Portrait.GetComponent<Image>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            _BottomPanel_Portrait.SetActive(true);
+            _InfoPanel_Portrait.SetActive(true);
+            _InfoImage_Portrait.SetActive(true);
+            _InfoImage_Portrait.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _InfoImage_Portrait.GetComponent<Image>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(2f);
+
+            _InfoImage_Portrait.SetActive(false);
         }
 
-        yield return new WaitForSeconds(2f);
 
-        _InfoImage_LandScape.SetActive(false);
-        _ProductName.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _ProductName.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(1f);
-
-        _BottomPanel_LandScape.SetActive(true);
     }
 
 
@@ -135,8 +190,11 @@ public class UIHandler : MonoBehaviour
 
         _BackPanel_LandScape.SetActive(false);
         _InfoImage_LandScape.SetActive(false);
-
         _MenuPanel_LandScape.SetActive(false);
+        _BackPanel_Portrait.SetActive(false);
+        _InfoImage_Portrait.SetActive(false);
+        _MenuPanel_Portrait.SetActive(false);
+
         _AITechnology_White_Button_LandScape.SetActive(false);
         _AITechnology_Gold_Button_LandScape.SetActive(false);
         _variableTemperature_White_Button_LandScape.SetActive(false);
@@ -147,6 +205,16 @@ public class UIHandler : MonoBehaviour
         _PortableIce_Gold_Button_LandScape.SetActive(false);
         _MicroBlock_White_Button_LandScape.SetActive(false);
         _MicroBlock_Gold_Button_LandScape.SetActive(false);
+        _AITechnology_White_Button_Portrait.SetActive(false);
+        _AITechnology_Gold_Button_Portrait.SetActive(false);
+        _variableTemperature_White_Button_Portrait.SetActive(false);
+        _variableTemperature_Gold_Button_Portrait.SetActive(false);
+        _3DAir_White_Button_Portrait.SetActive(false);
+        _3DAir_Gold_Button_Portrait.SetActive(false);
+        _PortableIce_White_Button_Portrait.SetActive(false);
+        _PortableIce_Gold_Button_Portrait.SetActive(false);
+        _MicroBlock_White_Button_Portrait.SetActive(false);
+        _MicroBlock_Gold_Button_Portrait.SetActive(false);
 
         _AITech_Sprite.SetActive(false);
         _AICallout_1.SetActive(false);
@@ -162,7 +230,7 @@ public class UIHandler : MonoBehaviour
         PortableIce_1.SetActive(false);
         PortableIce_2.SetActive(false);
         PortableIce_3.SetActive(false);
-        PortableIce_Model.SetActive(false);
+        // PortableIce_Model.SetActive(false);
 
     }
 
@@ -226,23 +294,45 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator InfoButtonTransition()
     {
-        if (InfoClicked)
+        if(Screen.width > Screen.height || ARView)
         {
-            _InfoImage_LandScape.SetActive(true);
-            _InfoImage_LandScape.GetComponent<Image>().color = new Color(1, 1, 1, 1);
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            if (InfoClicked)
             {
-                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-                _InfoImage_LandScape.GetComponent<Image>().color = newColor;
-                yield return null;
+                _InfoImage_LandScape.SetActive(true);
+                _InfoImage_LandScape.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                    _InfoImage_LandScape.GetComponent<Image>().color = newColor;
+                    yield return null;
+                }
             }
-
+            else
+            {
+                _InfoImage_LandScape.SetActive(false);
+            }
+            yield return null;
         }
         else
         {
-            _InfoImage_LandScape.SetActive(false);
+            if (InfoClicked)
+            {
+                _InfoImage_Portrait.SetActive(true);
+                _InfoImage_Portrait.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                    _InfoImage_Portrait.GetComponent<Image>().color = newColor;
+                    yield return null;
+                }
+            }
+            else
+            {
+                _InfoImage_Portrait.SetActive(false);
+            }
+            yield return null;
         }
-        yield return null;
+        
     }
 
     public void OnInfoButtonClicked()
@@ -256,12 +346,31 @@ public class UIHandler : MonoBehaviour
     GameObject _MenuPanel_LandScape, _AITechnology_White_Button_LandScape, _AITechnology_Gold_Button_LandScape, _variableTemperature_White_Button_LandScape, _variableTemperature_Gold_Button_LandScape,
                                      _3DAir_White_Button_LandScape, _3DAir_Gold_Button_LandScape, _PortableIce_White_Button_LandScape, _PortableIce_Gold_Button_LandScape,
                                      _MicroBlock_White_Button_LandScape, _MicroBlock_Gold_Button_LandScape;
+    [SerializeField]
+    GameObject _MenuPanel_Portrait, _AITechnology_White_Button_Portrait, _AITechnology_Gold_Button_Portrait, _variableTemperature_White_Button_Portrait, _variableTemperature_Gold_Button_Portrait,
+                                     _3DAir_White_Button_Portrait, _3DAir_Gold_Button_Portrait, _PortableIce_White_Button_Portrait, _PortableIce_Gold_Button_Portrait,
+                                     _MicroBlock_White_Button_Portrait, _MicroBlock_Gold_Button_Portrait;
+
     public bool plusClicked = false;
 
     IEnumerator PlusButtonTransition()
-    {
+    {   
+
         if (plusClicked)
         {
+
+            if (Screen.width < Screen.height )
+            {
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
+                {
+                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.25f, 0f, -2.2f), t);
+                    yield return null;
+
+                    if (_Virtual_Camera.transform.position == new Vector3(0.25f, 0f, -2.2f))
+                        break;
+                }
+            }
+
             _MenuPanel_LandScape.SetActive(true);
 
             _AITechnology_Gold_Button_LandScape.SetActive(true);
@@ -273,6 +382,19 @@ public class UIHandler : MonoBehaviour
             _PortableIce_Gold_Button_LandScape.SetActive(true);
             yield return new WaitForSeconds(0.1f);
             _MicroBlock_Gold_Button_LandScape.SetActive(true);
+
+            _MenuPanel_Portrait.SetActive(true);
+
+            _AITechnology_Gold_Button_Portrait.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            _variableTemperature_Gold_Button_Portrait.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            _3DAir_Gold_Button_Portrait.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            _PortableIce_Gold_Button_Portrait.SetActive(true);
+            yield return new WaitForSeconds(0.1f);
+            _MicroBlock_Gold_Button_Portrait.SetActive(true);
+
         }
         else
         {
@@ -288,12 +410,37 @@ public class UIHandler : MonoBehaviour
             _PortableIce_Gold_Button_LandScape.SetActive(false);
             _MicroBlock_White_Button_LandScape.SetActive(false);
             _MicroBlock_Gold_Button_LandScape.SetActive(false);
+
+            _MenuPanel_Portrait.SetActive(false);
+
+            _AITechnology_White_Button_Portrait.SetActive(false);
+            _AITechnology_Gold_Button_Portrait.SetActive(false);
+            _variableTemperature_White_Button_Portrait.SetActive(false);
+            _variableTemperature_Gold_Button_Portrait.SetActive(false);
+            _3DAir_White_Button_Portrait.SetActive(false);
+            _3DAir_Gold_Button_Portrait.SetActive(false);
+            _PortableIce_White_Button_Portrait.SetActive(false);
+            _PortableIce_Gold_Button_Portrait.SetActive(false);
+            _MicroBlock_White_Button_Portrait.SetActive(false);
+            _MicroBlock_Gold_Button_Portrait.SetActive(false);
+
+            if (Screen.width < Screen.height)
+            {
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
+                {
+                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.25f, 0f, -2.2f), t);
+                    yield return null;
+
+                    if (_Virtual_Camera.transform.position == new Vector3(0f, 0f, -2.2f))
+                        break;
+                }
+            }
         }
     }
 
     public void OnPlusButtonClicked()
     {
-        // ResetActions();
+        ResetActions();
         plusClicked = !plusClicked;
         if (plusClicked)
         {
@@ -303,6 +450,13 @@ public class UIHandler : MonoBehaviour
             _CM_White_LandScape.SetActive(true);
             _Door_Gold_LandScape.SetActive(false);
             _Door_White_LandScape.SetActive(true);
+
+            _Plus_Gold_Portrait.SetActive(true);
+            _Plus_White_Portrait.SetActive(false);
+            _CM_Gold_Portrait.SetActive(false);
+            _CM_White_Portrait.SetActive(true);
+            _Door_Gold_Portrait.SetActive(false);
+            _Door_White_Portrait.SetActive(true);
         }
         else
         {
@@ -312,6 +466,13 @@ public class UIHandler : MonoBehaviour
             _CM_White_LandScape.SetActive(true);
             _Door_Gold_LandScape.SetActive(false);
             _Door_White_LandScape.SetActive(true);
+
+            _Plus_Gold_Portrait.SetActive(false);
+            _Plus_White_Portrait.SetActive(true);
+            _CM_Gold_Portrait.SetActive(false);
+            _CM_White_Portrait.SetActive(true);
+            _Door_Gold_Portrait.SetActive(false);
+            _Door_White_Portrait.SetActive(true);
         }
         StartCoroutine(PlusButtonTransition());
     }
@@ -339,6 +500,13 @@ public class UIHandler : MonoBehaviour
             _Door_White_LandScape.SetActive(false);
             _CM_Gold_LandScape.SetActive(false);
             _CM_White_LandScape.SetActive(true);
+
+            _Plus_Gold_Portrait.SetActive(false);
+            _Plus_White_Portrait.SetActive(true);
+            _Door_Gold_Portrait.SetActive(true);
+            _Door_White_Portrait.SetActive(false);
+            _CM_Gold_Portrait.SetActive(false);
+            _CM_White_Portrait.SetActive(true);
         }
         else
         {
@@ -350,6 +518,13 @@ public class UIHandler : MonoBehaviour
             _Door_White_LandScape.SetActive(true);
             _CM_Gold_LandScape.SetActive(false);
             _CM_White_LandScape.SetActive(true);
+
+            _Plus_Gold_Portrait.SetActive(false);
+            _Plus_White_Portrait.SetActive(true);
+            _Door_Gold_Portrait.SetActive(false);
+            _Door_White_Portrait.SetActive(true);
+            _CM_Gold_Portrait.SetActive(false);
+            _CM_White_Portrait.SetActive(true);
         }
     }
 
@@ -357,12 +532,24 @@ public class UIHandler : MonoBehaviour
 
     public void BackButtonClicked()
     {
-        _BottomPanel_LandScape.SetActive(true);
-        _MenuPanel_LandScape.SetActive(true);
-        _ProductName.SetActive(true);
-        _InfoPanel_LandScape.SetActive(true);
+        if(Screen.width > Screen.height || ARView)
+        {
+            _BottomPanel_LandScape.SetActive(true);
+            _MenuPanel_LandScape.SetActive(true);
+            _ProductName.SetActive(true);
+            _InfoPanel_LandScape.SetActive(true);
 
-        _BackPanel_LandScape.SetActive(false);
+            _BackPanel_LandScape.SetActive(false);
+        }
+        else
+        {
+            _BottomPanel_Portrait.SetActive(true);
+            _MenuPanel_Portrait.SetActive(true);
+            _InfoPanel_Portrait.SetActive(true);
+
+            _BackPanel_Portrait.SetActive(false);
+        }
+        
         StopAllCoroutines();
         // ResetPosition = true;
         StartCoroutine(BackTransition());
@@ -373,7 +560,7 @@ public class UIHandler : MonoBehaviour
         _AICallout_3.SetActive(false);
 
 
-        // _3DFlow_Sprite.SetActive(false);
+        _3DFlow_Sprite.SetActive(false);
         _3DFlowCallout_1.SetActive(false);
         _3DFlowCallout_2.SetActive(false);
         _3DFlowCallout_3.SetActive(false);
@@ -397,9 +584,14 @@ public class UIHandler : MonoBehaviour
         MicroBlock_4.SetActive(false);
         // MicroBlock_Model.SetActive(false);
         MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
-
-
-
+        _TrayObject_1.SetActive(false);
+        _TrayObject_2.SetActive(false);
+        _TrayObject_3.SetActive(false);
+        _TrayObject_4.SetActive(false);
+        _TrayObject_5.SetActive(false);
+        _TrayObject_6.SetActive(false);
+        _TrayObject_7.SetActive(false);
+        _TrayObject_8.SetActive(false);
 
     }
 
@@ -409,14 +601,45 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator AITechnologyTransition()
     {
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+        if(Screen.width > Screen.height || ARView)
         {
-            _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, 0.36f, -1.38f), t);
-            yield return null;
+            _AICallout_1.transform.localPosition = new Vector3(-1.175f, 0.77f, 1.370314f);
+            _AICallout_1.transform.localScale = new Vector3(0.1969543f, 0.1969543f, 0.1969543f);
+            _AICallout_2.transform.localPosition = new Vector3(-1.025f, 0.549f, 1.370314f);
+            _AICallout_2.transform.localScale = new Vector3(0.2502712f, 0.2502712f, 0.2502712f);
+            _AICallout_3.transform.localPosition = new Vector3(-1.177f, 0.051f, 1.370314f);
+            _AICallout_3.transform.localScale = new Vector3(0.2213244f, 0.2213244f, 0.2213244f);
 
-            if (_Virtual_Camera.transform.position == new Vector3(-0.32f, 0.36f, -1.38f))
-                break;
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, 0.36f, -1.38f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, 0.36f, -1.38f))
+                    break;
+            }
         }
+        else
+        {
+
+            _AICallout_1.transform.localPosition = new Vector3(-1.04f, 0.77f, 1.66f);
+            _AICallout_1.transform.localScale = new Vector3(0.1969543f, 0.1969543f, 0.1969543f);
+            _AICallout_2.transform.localPosition = new Vector3(-0.9f, 0.55f, 1.66f);
+            _AICallout_2.transform.localScale = new Vector3(0.2502712f, 0.2502712f, 0.2502712f);
+            _AICallout_3.transform.localPosition = new Vector3(-1.04f, -0.06f, 1.66f);
+            _AICallout_3.transform.localScale = new Vector3(0.2213244f, 0.2213244f, 0.2213244f);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.55f, -0.06f, -2.42f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.55f, -0.06f, -2.42f))
+                    break;
+            }
+
+        }
+        
 
         _AITech_Sprite.SetActive(true);
         animatorAITechSequence.Play("AITech_Animation");
@@ -451,29 +674,50 @@ public class UIHandler : MonoBehaviour
             yield return null;
         }
 
+        _BackPanel_LandScape.SetActive(true);
+        _BackPanel_Portrait.SetActive(true);
+
     }
 
     public void OnAITechnologyClicked()
     {
         // ResetActions();
+        if(Screen.width > Screen.height || ARView)
+        {
+            _AITechnology_White_Button_LandScape.SetActive(true);
+            _AITechnology_Gold_Button_LandScape.SetActive(false);
+            _variableTemperature_White_Button_LandScape.SetActive(false);
+            _variableTemperature_Gold_Button_LandScape.SetActive(true);
+            _3DAir_White_Button_LandScape.SetActive(false);
+            _3DAir_Gold_Button_LandScape.SetActive(true);
+            _PortableIce_White_Button_LandScape.SetActive(false);
+            _PortableIce_Gold_Button_LandScape.SetActive(true);
+            _MicroBlock_White_Button_LandScape.SetActive(false);
+            _MicroBlock_Gold_Button_LandScape.SetActive(true);
 
-        _AITechnology_White_Button_LandScape.SetActive(true);
-        _AITechnology_Gold_Button_LandScape.SetActive(false);
-        _variableTemperature_White_Button_LandScape.SetActive(false);
-        _variableTemperature_Gold_Button_LandScape.SetActive(true);
-        _3DAir_White_Button_LandScape.SetActive(false);
-        _3DAir_Gold_Button_LandScape.SetActive(true);
-        _PortableIce_White_Button_LandScape.SetActive(false);
-        _PortableIce_Gold_Button_LandScape.SetActive(true);
-        _MicroBlock_White_Button_LandScape.SetActive(false);
-        _MicroBlock_Gold_Button_LandScape.SetActive(true);
+            _BottomPanel_LandScape.SetActive(false);
+            _MenuPanel_LandScape.SetActive(false);
+            _InfoPanel_LandScape.SetActive(false);
+            _ProductName.SetActive(false);
+        }
+        else
+        {
+            _AITechnology_White_Button_Portrait.SetActive(true);
+            _AITechnology_Gold_Button_Portrait.SetActive(false);
+            _variableTemperature_White_Button_Portrait.SetActive(false);
+            _variableTemperature_Gold_Button_Portrait.SetActive(true);
+            _3DAir_White_Button_Portrait.SetActive(false);
+            _3DAir_Gold_Button_Portrait.SetActive(true);
+            _PortableIce_White_Button_Portrait.SetActive(false);
+            _PortableIce_Gold_Button_Portrait.SetActive(true);
+            _MicroBlock_White_Button_Portrait.SetActive(false);
+            _MicroBlock_Gold_Button_Portrait.SetActive(true);
 
-        _BackPanel_LandScape.SetActive(true);
-
-        _BottomPanel_LandScape.SetActive(false);
-        _MenuPanel_LandScape.SetActive(false);
-        _InfoPanel_LandScape.SetActive(false);
-        _ProductName.SetActive(false);
+            _BottomPanel_Portrait.SetActive(false);
+            _MenuPanel_Portrait.SetActive(false);
+            _InfoPanel_Portrait.SetActive(false);
+        }
+        
 
         StartCoroutine(AITechnologyTransition());
     }
@@ -487,7 +731,8 @@ public class UIHandler : MonoBehaviour
     IEnumerator _3DFlowTransition()
     {
         _3DFlow_BowlModel.SetActive(true);
-        // animator3DFlow.Play("_3DFlow_Animation");
+        _3DFlow_Sprite.SetActive(true);
+        animator3DFlow.Play("_3DFlow_Animation");
 
         OnDoorOpenCloseClicked();
 
@@ -527,6 +772,9 @@ public class UIHandler : MonoBehaviour
             _3DFlowCallout_4.GetComponent<SpriteRenderer>().color = newColor;
             yield return null;
         }
+
+        _BackPanel_LandScape.SetActive(true);
+
     }
 
 
@@ -545,8 +793,6 @@ public class UIHandler : MonoBehaviour
         _MicroBlock_White_Button_LandScape.SetActive(false);
         _MicroBlock_Gold_Button_LandScape.SetActive(true);
 
-        _BackPanel_LandScape.SetActive(true);
-
         _BottomPanel_LandScape.SetActive(false);
         _MenuPanel_LandScape.SetActive(false);
         _InfoPanel_LandScape.SetActive(false);
@@ -561,7 +807,7 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField]
     GameObject PortableIce_1, PortableIce_2, PortableIce_3,PortableIce_Model;
-
+    
     IEnumerator PortableIceTransition()
     {
         PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
@@ -596,15 +842,33 @@ public class UIHandler : MonoBehaviour
             yield return null;
         }
 
+        
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
         {
-            PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0f), t);
+            PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.37f), t);
             yield return null;
 
-            if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0f))
+            if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.37f))
                 break;
         }
 
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+        {
+            PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.37f), t);
+            yield return null;
+
+            if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.37f))
+                break;
+        }
+
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+        {
+            PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.0f), t);
+            yield return null;
+
+            if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.0f))
+                break;
+        }
 
         PortableIce_3.SetActive(true);
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -613,12 +877,14 @@ public class UIHandler : MonoBehaviour
             PortableIce_3.GetComponent<SpriteRenderer>().color = newColor;
             yield return null;
         }
+
+        _BackPanel_LandScape.SetActive(true);
     }
 
 
     public void OnPortableIceClicked()
     {
-        // ResetActions();
+        ResetActions();
 
         _AITechnology_White_Button_LandScape.SetActive(false);
         _AITechnology_Gold_Button_LandScape.SetActive(true);
@@ -631,7 +897,6 @@ public class UIHandler : MonoBehaviour
         _MicroBlock_White_Button_LandScape.SetActive(false);
         _MicroBlock_Gold_Button_LandScape.SetActive(true);
 
-        _BackPanel_LandScape.SetActive(true);
 
         _BottomPanel_LandScape.SetActive(false);
         _MenuPanel_LandScape.SetActive(false);
@@ -647,6 +912,8 @@ public class UIHandler : MonoBehaviour
 
     [SerializeField]
     GameObject MicroBlock_1, MicroBlock_2, MicroBlock_3, MicroBlock_4, MicroBlock_Model;
+    [SerializeField]
+    GameObject _TrayObject_1, _TrayObject_2, _TrayObject_3, _TrayObject_4, _TrayObject_5, _TrayObject_6, _TrayObject_7, _TrayObject_8;
 
     IEnumerator MicroBlockTransition()
     {
@@ -700,7 +967,28 @@ public class UIHandler : MonoBehaviour
             yield return null;
         }
 
-        yield return new WaitForSeconds(2f);
+        yield return new WaitForSeconds(1f);
+
+
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_1.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_2.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_3.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_4.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_5.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_6.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_7.SetActive(true);
+        yield return new WaitForSeconds(0.5f);
+        _TrayObject_8.SetActive(true);
+        yield return new WaitForSeconds(1f);
+
+
 
         MicroBlock_3.SetActive(false);
         MicroBlock_4.SetActive(true);
@@ -719,6 +1007,8 @@ public class UIHandler : MonoBehaviour
             if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.2192179f, -0.06651523f))
                 break;
         }
+
+        _BackPanel_LandScape.SetActive(true);
     }
 
 
@@ -737,7 +1027,6 @@ public class UIHandler : MonoBehaviour
         _MicroBlock_White_Button_LandScape.SetActive(true);
         _MicroBlock_Gold_Button_LandScape.SetActive(false);
 
-        _BackPanel_LandScape.SetActive(true);
 
         _BottomPanel_LandScape.SetActive(false);
         _MenuPanel_LandScape.SetActive(false);
