@@ -289,6 +289,12 @@ public class UIHandler : MonoBehaviour
         _Virtual_Button_Icon_LandScape.SetActive(ARView);
         _AR_Button_Icon_Portrait.SetActive(VirtualView);
         _Virtual_Button_Icon_Portrait.SetActive(ARView);
+
+
+        //remove later
+        _BottomPanel_LandScape.SetActive(true);
+        _BottomPanel_Portrait.SetActive(true);
+        //remove later
     }
 
 
@@ -730,50 +736,136 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator _3DFlowTransition()
     {
-        _3DFlow_BowlModel.SetActive(true);
-        _3DFlow_Sprite.SetActive(true);
-        animator3DFlow.Play("_3DFlow_Animation");
-
-        OnDoorOpenCloseClicked();
-
-        yield return new WaitForSeconds(1f);
-
-        _3DFlowCallout_1.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        if(Screen.width > Screen.height || ARView)
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _3DFlowCallout_1.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.631f, 0.282f, 0.318f);
+            _3DFlowCallout_1.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.959f, 0.442f, 0.318f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1807317f, 0.1807317f, 0.1807317f);
+            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.857f, 0.03199999f, 0.318f);
+            _3DFlowCallout_3.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.804f, - 0.097f, 0.318f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.2213244f, 0.2213244f, 0.2213244f);
+
+
+            _3DFlow_BowlModel.SetActive(true);
+            _3DFlow_Sprite.SetActive(true);
+            animator3DFlow.Play("_3DFlow_Animation");
+
+            OnDoorOpenCloseClicked();
+
+            yield return new WaitForSeconds(1f);
+
+            _3DFlowCallout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _3DFlowCallout_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _3DFlowCallout_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(3f);
+
+            _3DFlowCallout_3.SetActive(false);
+            _3DFlowCallout_4.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _BackPanel_LandScape.SetActive(true);
+            _MenuPanel_Portrait.SetActive(false);
+        }
+        else
+        {
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.512f, 0.282f, 1.124f);
+            _3DFlowCallout_1.transform.localScale = new Vector3(0.1722803f, 0.1722803f, 0.1722803f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.749f, 0.379f, 1.124f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1429926f, 0.1429926f, 0.1429926f);
+            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.726f, 0.03199999f, 1.428f);
+            _3DFlowCallout_3.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.6850001f, -0.097f, 1.124f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.1343786f, 0.1343786f, 0.1343786f);
+
+            _MenuPanel_Portrait.SetActive(false);
+
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.4f, 0f, -1.7f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.4f, 0f, -1.7f))
+                    break;
+            }
+
+
+            _3DFlow_BowlModel.SetActive(true);
+            _3DFlow_Sprite.SetActive(true);
+            animator3DFlow.Play("_3DFlow_Animation");
+
+            OnDoorOpenCloseClicked();
+
+            yield return new WaitForSeconds(1f);
+
+            _3DFlowCallout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _3DFlowCallout_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _3DFlowCallout_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(3f);
+
+            _3DFlowCallout_3.SetActive(false);
+            _3DFlowCallout_4.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _3DFlowCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _BackPanel_Portrait.SetActive(true);
+
         }
 
-        _3DFlowCallout_2.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _3DFlowCallout_2.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        _3DFlowCallout_3.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _3DFlowCallout_3.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(3f);
-
-        _3DFlowCallout_3.SetActive(false);
-        _3DFlowCallout_4.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _3DFlowCallout_4.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        _BackPanel_LandScape.SetActive(true);
+        
 
     }
 
