@@ -555,7 +555,8 @@ public class UIHandler : MonoBehaviour
 
             _BackPanel_Portrait.SetActive(false);
         }
-        
+
+
         StopAllCoroutines();
         // ResetPosition = true;
         StartCoroutine(BackTransition());
@@ -792,7 +793,7 @@ public class UIHandler : MonoBehaviour
             }
 
             _BackPanel_LandScape.SetActive(true);
-            _MenuPanel_Portrait.SetActive(false);
+            // _MenuPanel_Portrait.SetActive(false);
         }
         else
         {
@@ -902,75 +903,170 @@ public class UIHandler : MonoBehaviour
     
     IEnumerator PortableIceTransition()
     {
-        PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
-        PortableIce_Model.SetActive(true);
-
-        OnDoorOpenCloseClicked();
-
-        yield return new WaitForSeconds(1f);
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+        if( Screen.width > Screen.height || ARView)
         {
-            _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.55f, -1.21f), t);
-            yield return null;
+            PortableIce_1.transform.localPosition = new Vector3(-0.6100324f, -0.3845918f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.6380324f, -0.3275917f, 0.9473139f);
+            PortableIce_2.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, -0.6375917f, 0.9473139f);
+            PortableIce_3.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
 
-            if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.55f, -1.21f))
-                break;
+
+            PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
+            PortableIce_Model.SetActive(true);
+
+            OnDoorOpenCloseClicked();
+
+            yield return new WaitForSeconds(1f);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.55f, -1.21f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.55f, -1.21f))
+                    break;
+            }
+
+            PortableIce_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                PortableIce_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            PortableIce_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                PortableIce_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.37f), t);
+                yield return null;
+
+                if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.37f))
+                    break;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.37f), t);
+                yield return null;
+
+                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.37f))
+                    break;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.0f), t);
+                yield return null;
+
+                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.0f))
+                    break;
+            }
+
+            PortableIce_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                PortableIce_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _BackPanel_LandScape.SetActive(true);
         }
-
-        PortableIce_1.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        else
         {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            PortableIce_1.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
+            PortableIce_1.transform.localPosition = new Vector3(-0.6100324f, - 0.3845918f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.6380324f, - 0.3275917f,  0.9473139f);
+            PortableIce_2.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, - 0.6375917f, 0.9473139f);
+            PortableIce_3.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
 
-        PortableIce_2.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            PortableIce_2.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
 
+            
+
+
+            PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
+            PortableIce_Model.SetActive(true);
+
+            OnDoorOpenCloseClicked();
+
+            yield return new WaitForSeconds(1f);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.35f, -0.19f, -1.86f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.35f, -0.19f, -1.86f))
+                    break;
+            }
+
+            PortableIce_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                PortableIce_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            PortableIce_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                PortableIce_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.37f), t);
+                yield return null;
+
+                if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.37f))
+                    break;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.37f), t);
+                yield return null;
+
+                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.37f))
+                    break;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.0f), t);
+                yield return null;
+
+                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.0f))
+                    break;
+            }
+
+            PortableIce_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                PortableIce_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _BackPanel_Portrait.SetActive(true);
+        }
         
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
-        {
-            PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.37f), t);
-            yield return null;
-
-            if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.37f))
-                break;
-        }
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
-        {
-            PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.37f), t);
-            yield return null;
-
-            if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.37f))
-                break;
-        }
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
-        {
-            PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.0f), t);
-            yield return null;
-
-            if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.0f))
-                break;
-        }
-
-        PortableIce_3.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            PortableIce_3.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        _BackPanel_LandScape.SetActive(true);
     }
 
 
@@ -1009,98 +1105,220 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator MicroBlockTransition()
     {
-        MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
-        MicroBlock_Model.SetActive(true);
-
-        OnDoorOpenCloseClicked();
-
-        yield return new WaitForSeconds(1f);
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+        _MenuPanel_Portrait.SetActive(false);
+        if(Screen.width > Screen.height || ARView)
         {
-            _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.55f, -1.21f), t);
-            yield return null;
+            MicroBlock_1.transform.localPosition = new Vector3(-0.5910324f, -0.4725918f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.7100324f, -0.3805918f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_3.transform.localPosition = new Vector3(-0.7050324f, -0.5475917f, 0.9093139f);
+            MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.6470324f, -0.6395918f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
 
-            if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.55f, -1.21f))
-                break;
+
+            MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
+            MicroBlock_Model.SetActive(true);
+
+            OnDoorOpenCloseClicked();
+
+            yield return new WaitForSeconds(1f);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.55f, -1.21f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.55f, -1.21f))
+                    break;
+            }
+
+            MicroBlock_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            MicroBlock_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.2192f, 0.222f), t);
+                yield return null;
+
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0f, 0.2192f, 0.222f))
+                    break;
+            }
+
+
+            MicroBlock_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_1.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_2.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_3.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_4.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_5.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_6.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_7.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_8.SetActive(true);
+            yield return new WaitForSeconds(1f);
+
+
+
+            MicroBlock_3.SetActive(false);
+            MicroBlock_4.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_4.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.2192179f, -0.06651523f), t);
+                yield return null;
+
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.2192179f, -0.06651523f))
+                    break;
+            }
+
+            _BackPanel_LandScape.SetActive(true);
+        }
+        else
+        {
+            MicroBlock_1.transform.localPosition = new Vector3(-0.5910324f, - 0.4725918f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.7100324f, - 0.3805918f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_3.transform.localPosition = new Vector3(-0.7050324f, - 0.5475917f, 0.9093139f);
+            MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.6470324f, - 0.6395918f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+
+
+            MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
+            MicroBlock_Model.SetActive(true);
+
+            OnDoorOpenCloseClicked();
+
+            yield return new WaitForSeconds(1f);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.2f, -1.85f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.2f, -1.85f))
+                    break;
+            }
+
+            MicroBlock_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            MicroBlock_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.2192f, 0.222f), t);
+                yield return null;
+
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0f, 0.2192f, 0.222f))
+                    break;
+            }
+
+
+            MicroBlock_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_1.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_2.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_3.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_4.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_5.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_6.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_7.SetActive(true);
+            yield return new WaitForSeconds(0.5f);
+            _TrayObject_8.SetActive(true);
+            yield return new WaitForSeconds(1f);
+
+
+
+            MicroBlock_3.SetActive(false);
+            MicroBlock_4.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                MicroBlock_4.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.2192179f, -0.06651523f), t);
+                yield return null;
+
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.2192179f, -0.06651523f))
+                    break;
+            }
+
+            _BackPanel_Portrait.SetActive(true);
         }
 
-        MicroBlock_1.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            MicroBlock_1.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
 
-        MicroBlock_2.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            MicroBlock_2.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
-        {
-            MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.2192f, 0.222f), t);
-            yield return null;
-
-            if (MicroBlock_Model.transform.localPosition == new Vector3(0f, 0.2192f, 0.222f))
-                break;
-        }
-
-
-        MicroBlock_3.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            MicroBlock_3.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(1f);
-
-
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_1.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_2.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_3.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_4.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_5.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_6.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_7.SetActive(true);
-        yield return new WaitForSeconds(0.5f);
-        _TrayObject_8.SetActive(true);
-        yield return new WaitForSeconds(1f);
-
-
-
-        MicroBlock_3.SetActive(false);
-        MicroBlock_4.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            MicroBlock_4.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
-        {
-            MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.2192179f, -0.06651523f), t);
-            yield return null;
-
-            if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.2192179f, -0.06651523f))
-                break;
-        }
-
-        _BackPanel_LandScape.SetActive(true);
+        
     }
 
 
