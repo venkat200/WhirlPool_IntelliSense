@@ -4010,6 +4010,7 @@ GameObject:
   m_Component:
   - component: {fileID: 633773873}
   - component: {fileID: 633773872}
+  - component: {fileID: 633773874}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -4140,6 +4141,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &633773874
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 633773871}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a691c87728001d0419f4605a8f327a4b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _SceneObject: {fileID: 2051150630}
+  ScaleRange: {x: 0, y: 0}
+  ScrollSensitvity: 120
+  TouchScrollSensitivity: 1.5
+  ScaleRangeSelectionObject: {fileID: 633773871}
 --- !u!1 &639744695
 GameObject:
   m_ObjectHideFlags: 0
@@ -11360,7 +11378,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2051150631}
   - component: {fileID: 2051150632}
-  - component: {fileID: 2051150633}
   m_Layer: 0
   m_Name: SceneObject
   m_TagString: Untagged
@@ -11391,7 +11408,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2051150630}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7c73c1ab94e28d244827af556dca1ed2, type: 3}
   m_Name: 
@@ -11409,23 +11426,6 @@ MonoBehaviour:
   m_minScale: 1
   m_maxScale: 3
   remainingScale: {x: 0, y: 0, z: 0}
---- !u!114 &2051150633
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2051150630}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a691c87728001d0419f4605a8f327a4b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _SceneObject: {fileID: 2051150630}
-  ScaleRange: {x: 0, y: 0}
-  ScrollSensitvity: 3
-  TouchScrollSensitivity: 1.5
-  ScaleRangeSelectionObject: {fileID: 633773871}
 --- !u!1 &2057512436
 GameObject:
   m_ObjectHideFlags: 0

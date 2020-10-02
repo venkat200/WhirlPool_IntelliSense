@@ -81,14 +81,15 @@ public class ZapparInstantTrackingTarget : ZapparTrackingTarget, ZapparCamera.IC
         if (!m_userHasPlaced)
         {
             Z.InstantWorldTrackerAnchorPoseSetFromCameraOffset(m_instantTracker, 0, 0, -5, Z.InstantTrackerTransformOrientation.MINUS_Z_AWAY_FROM_USER);
-        }
-
-        if (Input.touchCount > 0)
-        {
-            m_userHasPlaced = !m_userHasPlaced;
             UpdateTargetPose();
         }
 
+        /*
+        if (Input.touchCount > 0)
+        {
+            m_userHasPlaced = !m_userHasPlaced;
+        }
+        */
         // UpdateTargetPose();
 
         if (Input.touchCount > 0)
@@ -115,7 +116,7 @@ public class ZapparInstantTrackingTarget : ZapparTrackingTarget, ZapparCamera.IC
         {
             pinClick = !pinClick;
             m_userHasPlaced = !m_userHasPlaced;
-            LoadingBar.SetActive(pinClick);
+            LoadingBar.SetActive(!pinClick);
             pinTry = false;
         }
 

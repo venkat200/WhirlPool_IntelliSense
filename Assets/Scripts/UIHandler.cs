@@ -55,7 +55,10 @@ public class UIHandler : MonoBehaviour
     GameObject ObjectRotateGameObject;
     ObjectRotate ObjectRotateScript;
 
-    bool PlusFeatureExplanationHappening;
+    Vector3 defaultScale;
+
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -79,6 +82,7 @@ public class UIHandler : MonoBehaviour
         }
 
         ObjectRotateScript = ObjectRotateGameObject.GetComponent<ObjectRotate>();
+
 
     }
 
@@ -113,7 +117,14 @@ public class UIHandler : MonoBehaviour
             }
         }
 
-        PlusFeatureExplanationHappening = onAITechnologyClickedBool || on3DFlowClickedBool || onPortableIceClickedBool || onMicroBlockClickedBool;
+        if (ARView)
+        {
+            defaultScale = new Vector3(3f, 3f, 3f);
+        }
+        else
+        {
+            defaultScale = new Vector3(1f, 1f, 1f);
+        }
     }
 
     IEnumerator StartTransition()
@@ -181,7 +192,8 @@ public class UIHandler : MonoBehaviour
     public void ResetActions(bool DoorFunction = true)
     {
         animatorStartFridge.Play("Still");
-        
+        _SceneObject.transform.localScale = defaultScale;
+
         if (DoorFunction == true)
         {
             doorOpen = false;
@@ -601,6 +613,7 @@ public class UIHandler : MonoBehaviour
     public void OnDoorOpenCloseClicked(bool check = false)
     {
         // ResetActions(false);
+
         doorOpen = !doorOpen;
         ObjectRotateScript.resetRotation = true;
 
@@ -666,6 +679,7 @@ public class UIHandler : MonoBehaviour
 
     public void BackButtonClicked()
     {
+        _SceneObject.transform.localScale = defaultScale;
         if (Screen.width > Screen.height)
         {
             _BottomPanel_LandScape.SetActive(true);
@@ -834,6 +848,7 @@ public class UIHandler : MonoBehaviour
 
     public void OnAITechnologyClicked()
     {
+        _SceneObject.transform.localScale = defaultScale;
         onAITechnologyClickedBool = !onAITechnologyClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
@@ -877,6 +892,334 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(AITechnologyTransition());
     }
+
+
+
+
+
+
+
+
+
+
+
+    /*
+
+    [SerializeField]
+    GameObject VariableTemperature_Sprite, VariableTemperatureCallout_1, VariableTemperatureCallout_2, VariableTemperatureCallout_3, VariableTemperatureCallout_4, VariableTemperatureModel;
+    Animator animatorVariableTemperature;
+
+    IEnumerator VariableTemperatureTransition()
+    {
+        if (Screen.width > Screen.height || ARView)
+        {
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.576f, 0.433f, 1.125f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1481054f, 0.1481054f, 0.1481054f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.823f, 0.508f, 1.125f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1065419f, 0.1065419f, 0.1065419f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.748f, 0.283f, 1.125f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1330327f, 0.1330327f, 0.1330327f);
+            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.68f, 0.163f, 1.125f);
+            VariableTemperatureCallout_4.transform.localScale = new Vector3(0.1308552f, 0.1308552f, 0.1308552f);
+
+
+            VariableTemperatureModel.SetActive(true);
+            VariableTemperature_Sprite.SetActive(true);
+            animator3DFlow.Play("_3DFlow_Animation");
+
+            OnDoorOpenCloseClicked(true);
+
+            yield return new WaitForSeconds(1f);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.26f, 0.21f, -1.11f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.26f, 0.21f, -1.11f))
+                    break;
+            }
+
+            VariableTemperatureCallout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            VariableTemperatureCallout_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            VariableTemperatureCallout_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(3f);
+
+            VariableTemperatureCallout_3.SetActive(false);
+            VariableTemperatureCallout_4.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-65f, -165f, 0);
+            // _BackPanel_LandScape.SetActive(true);
+            // _MenuPanel_Portrait.SetActive(false);
+        }
+        else
+        {
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.512f, 0.282f, 1.124f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1722803f, 0.1722803f, 0.1722803f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.749f, 0.379f, 1.124f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1429926f, 0.1429926f, 0.1429926f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.726f, 0.03199999f, 1.428f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
+            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.6850001f, -0.097f, 1.124f);
+            VariableTemperatureCallout_4.transform.localScale = new Vector3(0.1343786f, 0.1343786f, 0.1343786f);
+
+            _MenuPanel_Portrait.SetActive(false);
+
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.4f, 0f, -1.7f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.4f, 0f, -1.7f))
+                    break;
+            }
+
+
+            VariableTemperatureModel.SetActive(true);
+            VariableTemperature_Sprite.SetActive(true);
+            animatorVariableTemperature.Play("VariableTemperature_Animation");
+
+            OnDoorOpenCloseClicked(true);
+
+            yield return new WaitForSeconds(1f);
+
+            VariableTemperatureCallout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            VariableTemperatureCallout_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            VariableTemperatureCallout_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(3f);
+
+            VariableTemperatureCallout_3.SetActive(false);
+            VariableTemperatureCallout_4.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            //_BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
+            //_BackPanel_Portrait.SetActive(true);
+
+        }
+
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-50f, -165f, 0);
+        _BackPanel_LandScape.SetActive(true);
+        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
+        _BackPanel_Portrait.SetActive(true);
+
+    }
+
+    bool onVariableTemperatureClickedBool = false;
+
+    public void On3DFlowClicked()
+    {
+        _SceneObject.transform.localScale = defaultScale;
+        onVariableTemperatureClickedBool = !onVariableTemperatureClickedBool;
+        // ResetActions();
+        ObjectRotateScript.resetRotation = true;
+
+        if (Screen.width > Screen.height)
+        {
+            _AITechnology_White_Button_LandScape.SetActive(false);
+            _AITechnology_Gold_Button_LandScape.SetActive(true);
+            _variableTemperature_White_Button_LandScape.SetActive(true);
+            _variableTemperature_Gold_Button_LandScape.SetActive(false);
+            _3DAir_White_Button_LandScape.SetActive(false);
+            _3DAir_Gold_Button_LandScape.SetActive(true);
+            _PortableIce_White_Button_LandScape.SetActive(false);
+            _PortableIce_Gold_Button_LandScape.SetActive(true);
+            _MicroBlock_White_Button_LandScape.SetActive(false);
+            _MicroBlock_Gold_Button_LandScape.SetActive(true);
+
+            _BottomPanel_LandScape.SetActive(false);
+            _MenuPanel_LandScape.SetActive(false);
+            _InfoPanel_LandScape.SetActive(false);
+            _ProductName.SetActive(false);
+        }
+        else
+        {
+            _AITechnology_White_Button_Portrait.SetActive(false);
+            _AITechnology_Gold_Button_Portrait.SetActive(true);
+            _variableTemperature_White_Button_Portrait.SetActive(true);
+            _variableTemperature_Gold_Button_Portrait.SetActive(false);
+            _3DAir_White_Button_Portrait.SetActive(false);
+            _3DAir_Gold_Button_Portrait.SetActive(true);
+            _PortableIce_White_Button_Portrait.SetActive(false);
+            _PortableIce_Gold_Button_Portrait.SetActive(true);
+            _MicroBlock_White_Button_Portrait.SetActive(false);
+            _MicroBlock_Gold_Button_Portrait.SetActive(true);
+
+            _BottomPanel_Portrait.SetActive(false);
+            _MenuPanel_Portrait.SetActive(false);
+            _InfoPanel_Portrait.SetActive(false);
+        }
+
+
+        StartCoroutine(VariableTemperatureTransition());
+    }
+
+    */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -1037,6 +1380,7 @@ public class UIHandler : MonoBehaviour
 
     public void On3DFlowClicked()
     {
+        _SceneObject.transform.localScale = defaultScale;
         on3DFlowClickedBool = !on3DFlowClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
@@ -1267,6 +1611,7 @@ public class UIHandler : MonoBehaviour
 
     public void OnPortableIceClicked()
     {
+        _SceneObject.transform.localScale = defaultScale;
         onPortableIceClickedBool = !onPortableIceClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
@@ -1553,6 +1898,7 @@ public class UIHandler : MonoBehaviour
 
     public void OnMicroBlockClicked()
     {
+        _SceneObject.transform.localScale = defaultScale;
         onMicroBlockClickedBool = !onMicroBlockClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;

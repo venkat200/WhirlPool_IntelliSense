@@ -11,8 +11,10 @@ public class SceneZoom : MonoBehaviour
     // ScaleRange.x defines min scale and ScaleRange.y defines max scale
     public Vector2 ScaleRange;
 
-    public float ScrollSensitvity = 3f;
-    public float TouchScrollSensitivity = 1.5f;
+    public float ScrollSensitvity;
+    public float TouchScrollSensitivity;
+    // public float ScrollSensitvity = 120f;
+    // public float TouchScrollSensitivity = 3f;
 
     [SerializeField]
     GameObject ScaleRangeSelectionObject;
@@ -36,17 +38,19 @@ public class SceneZoom : MonoBehaviour
         if (UIHandlerScript.ARView)
         {
             ScaleRange = new Vector2(2f, 4f);
+            TouchScrollSensitivity = 6;
         }
         else
         {
             ScaleRange = new Vector2(0.75f, 2.5f);
+            TouchScrollSensitivity = 3;
         }
         checkInput();
     }
 
     void checkInput()
     {
-        /*
+        
         if (Input.touchCount > 1)
         {
             if (Input.touches[1].phase == TouchPhase.Began)
@@ -76,7 +80,7 @@ public class SceneZoom : MonoBehaviour
                 { }
             }
         }
-        */
+       
 
         //Zooming Input from our Mouse Scroll Wheel
         if (Input.GetAxis("Mouse ScrollWheel") != 0f)
