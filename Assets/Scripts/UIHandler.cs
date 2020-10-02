@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 public class UIHandler : MonoBehaviour
@@ -57,7 +58,9 @@ public class UIHandler : MonoBehaviour
 
     Vector3 defaultScale;
 
-
+    RaycastHit hit;
+    bool toggle = false;
+    bool toggleSwitchEnabled = false;
 
 
     // Start is called before the first frame update
@@ -67,6 +70,8 @@ public class UIHandler : MonoBehaviour
         animatorAITechSequence = _AITech_Sprite.GetComponent<Animator>();
         animator3DFlow = _3DFlow_Sprite.GetComponent<Animator>();
         animatorMicroBlock = MicroBlock_Sprite.GetComponent<Animator>();
+        animatorVariableTemperature = VariableTemperatureModel.GetComponent<Animator>();
+
 
         StartCoroutine(StartTransition());
 
@@ -125,6 +130,42 @@ public class UIHandler : MonoBehaviour
         {
             defaultScale = new Vector3(1f, 1f, 1f);
         }
+
+        if(toggleSwitchEnabled)
+        {
+            Ray ray = _Virtual_Camera.GetComponent<Camera>().ScreenPointToRay(Input.mousePosition);
+
+            if (Physics.Raycast(ray, out hit))
+            {
+                Transform objectHit = hit.transform;
+                if (hit.transform.gameObject.name == "ToggleSwitch" && Input.GetMouseButton(0))
+                {
+                    toggle = !toggle;
+
+                    if(toggle == false)
+                    {
+                        VariableTemperature_ModelButton.transform.localPosition = new Vector3(VariableTemperature_ModelButton.transform.localPosition.x - 0.03498348f, VariableTemperature_ModelButton.transform.localPosition.y, VariableTemperature_ModelButton.transform.localPosition.z);
+                        VariableTemperature_DairyProduct.SetActive(false);
+                        VariableTemperature_Fruits.SetActive(true);
+
+                        VariableTemperature_Sprite_1.SetActive(false);
+                        VariableTemperature_Sprite_2.SetActive(true);
+                    }
+                    else
+                    {
+                        VariableTemperature_ModelButton.transform.localPosition = new Vector3(VariableTemperature_ModelButton.transform.localPosition.x + 0.03498348f, VariableTemperature_ModelButton.transform.localPosition.y, VariableTemperature_ModelButton.transform.localPosition.z);
+                        VariableTemperature_Fruits.SetActive(false);
+                        VariableTemperature_DairyProduct.SetActive(true);
+
+                        VariableTemperature_Sprite_2.SetActive(false);
+                        VariableTemperature_Sprite_1.SetActive(true);
+
+                    }
+                }
+            }
+        }
+
+        
     }
 
     IEnumerator StartTransition()
@@ -712,6 +753,18 @@ public class UIHandler : MonoBehaviour
         _AICallout_2.SetActive(false);
         _AICallout_3.SetActive(false);
 
+        toggleSwitchEnabled = false;
+        VariableTemperatureCallout_1.SetActive(false);
+        VariableTemperatureCallout_2.SetActive(false);
+        VariableTemperatureCallout_3.SetActive(false);
+        VariableTemperatureCallout_4.SetActive(false);
+        VariableTemperatureModel.SetActive(false);
+        // VariableTemperature_ModelButton.SetActive(false);
+        VariableTemperature_DairyProduct.SetActive(false);
+        VariableTemperature_Fruits.SetActive(false);
+        VariableTemperature_Sprite_1.SetActive(false);
+        VariableTemperature_Sprite_2.SetActive(false);
+        VariableTemperature_Tray.transform.localPosition = new Vector3(0f, 0f, 0f);
 
         _3DFlow_Sprite.SetActive(false);
         _3DFlowCallout_1.SetActive(false);
@@ -895,18 +948,11 @@ public class UIHandler : MonoBehaviour
 
 
 
-
-
-
-
-
-
-
-    /*
     [SerializeField]
-    GameObject VariableTemperatureCallout_1, VariableTemperatureCallout_2, VariableTemperatureCallout_3, VariableTemperatureCallout_4,
-               VariableTemperatureModel, VariableTemperature_ModelButton;
-    
+    GameObject VariableTemperatureCallout_1, VariableTemperatureCallout_2, VariableTemperatureCallout_3, VariableTemperatureCallout_4, VariableTemperature_Tray,
+               VariableTemperatureModel, VariableTemperature_ModelButton, VariableTemperature_DairyProduct, VariableTemperature_Fruits, VariableTemperature_Sprite_1, VariableTemperature_Sprite_2;
+    Animator animatorVariableTemperature;
+
     IEnumerator VariableTemperatureTransition()
     {
         if (Screen.width > Screen.height || ARView)
@@ -964,7 +1010,9 @@ public class UIHandler : MonoBehaviour
             VariableTemperatureCallout_2.SetActive(false);
             VariableTemperatureCallout_3.SetActive(false);
 
-            animatorStartFridge.Play("VariableTemperature_Animation");
+            VariableTemperatureModel.SetActive(true);
+            animatorVariableTemperature.Play("VariableTemperature_Animation");
+            toggleSwitchEnabled = true;
             VariableTemperatureCallout_4.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -973,19 +1021,33 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
+            yield return new WaitForSeconds(1f);
+
+            VariableTemperature_DairyProduct.SetActive(true);
+            VariableTemperature_Sprite_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
+                yield return null;
+
+                if (VariableTemperature_Tray.transform.localPosition == new Vector3(0.0f, 0.0f, 0.25f))
+                    break;
+            }
+
+            
             // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-65f, -165f, 0);
             // _BackPanel_LandScape.SetActive(true);
             // _MenuPanel_Portrait.SetActive(false);
         }
         else
         {
-            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.512f, 0.282f, 1.124f);
-            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1722803f, 0.1722803f, 0.1722803f);
-            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.749f, 0.379f, 1.124f);
-            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1429926f, 0.1429926f, 0.1429926f);
-            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.726f, 0.03199999f, 1.428f);
-            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
-            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.6850001f, -0.097f, 1.124f);
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.578f, 0.126f, 1.124f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1326558f, 0.1326558f, 0.1326558f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.611f, 0.211f, 1.124f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1150388f, 0.1150388f, 0.1150388f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.6f, -0.022f, 1.428f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1631724f, 0.1631724f, 0.1631724f);
+            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.703f, -0.055f, 1.124f);
             VariableTemperatureCallout_4.transform.localScale = new Vector3(0.1343786f, 0.1343786f, 0.1343786f);
 
             _MenuPanel_Portrait.SetActive(false);
@@ -993,10 +1055,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.4f, 0f, -1.7f), t);
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.4f, 0.24f, -1.7f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.4f, 0f, -1.7f))
+                if (_Virtual_Camera.transform.position == new Vector3(-0.4f, 0.24f, -1.7f))
                     break;
             }
 
@@ -1035,7 +1097,9 @@ public class UIHandler : MonoBehaviour
             VariableTemperatureCallout_2.SetActive(false);
             VariableTemperatureCallout_3.SetActive(false);
 
-
+            VariableTemperatureModel.SetActive(true);
+            animatorVariableTemperature.Play("VariableTemperature_Animation");
+            toggleSwitchEnabled = true;
             VariableTemperatureCallout_4.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -1044,14 +1108,26 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
+            yield return new WaitForSeconds(1f);
+
+            VariableTemperature_DairyProduct.SetActive(true);
+            VariableTemperature_Sprite_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
+                yield return null;
+
+                if (VariableTemperature_Tray.transform.localPosition == new Vector3(0.0f, 0.0f, 0.25f))
+                    break;
+            }
+
             //_BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
             //_BackPanel_Portrait.SetActive(true);
-
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-50f, -165f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -165f, 0);
         _BackPanel_LandScape.SetActive(true);
-        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
+        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-35f, -215f, 0);
         _BackPanel_Portrait.SetActive(true);
 
     }
@@ -1104,116 +1180,6 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(VariableTemperatureTransition());
     }
-    */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

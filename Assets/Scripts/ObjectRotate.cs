@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Diagnostics;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -12,8 +13,8 @@ public class ObjectRotate : MonoBehaviour
     public bool resetRotation = false;
 
 
-    float rotationAngle = 45.0f;
-    public bool dimensionClick = false, dimensionsRotate = false;
+    float rotationAngle = -45.0f;
+    public bool dimensionClick = false, dimensionsRotate = false, intermediateRotate = false;
 
     [SerializeField]
     GameObject Arrow_L, Arrow_B, Arrow_H;
@@ -41,6 +42,7 @@ public class ObjectRotate : MonoBehaviour
                 resetRotation = false;
             }
         }
+
 
         if (dimensionClick == true && !(transform.eulerAngles.y % 360 >= 0f && transform.eulerAngles.y % 360 < 180f))
         {
