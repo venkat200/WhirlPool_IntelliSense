@@ -14,7 +14,7 @@ $zappar_support__postset: `
 
     _zappar_initialize = function() {
         var scr = document.createElement("script");
-        scr.src="https://libs.zappar.com/zappar-cv/0.2.7/zappar-cv.js";
+        scr.src="https://libs.zappar.com/zappar-cv/0.2.11/zappar-cv.js";
         scr.addEventListener('load', function() {
             zappar = ZCV.initialize();
             hasInitialized = true;
