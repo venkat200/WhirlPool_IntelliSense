@@ -77,7 +77,7 @@ public class UIHandler : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Screen.width > Screen.height || ARView)
+        if (Screen.width > Screen.height)
         {
             _Panel_LandScape.SetActive(true);
             _Panel_Portrait.SetActive(false);
@@ -277,6 +277,8 @@ public class UIHandler : MonoBehaviour
             _Virtual_Camera.SetActive(VirtualView);
             _Zappar_Camera.SetActive(ARView);
             _InstantTracker.SetActive(ARView);
+
+            BackButtonClicked();
         }
         else
         {
@@ -364,7 +366,6 @@ public class UIHandler : MonoBehaviour
 
         if (plusClicked)
         {
-
             if (Screen.width < Screen.height )
             {
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
@@ -380,25 +381,25 @@ public class UIHandler : MonoBehaviour
             _MenuPanel_LandScape.SetActive(true);
 
             _AITechnology_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _variableTemperature_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _3DAir_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _PortableIce_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _MicroBlock_Gold_Button_LandScape.SetActive(true);
 
             _MenuPanel_Portrait.SetActive(true);
 
             _AITechnology_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _variableTemperature_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _3DAir_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _PortableIce_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.3f);
             _MicroBlock_Gold_Button_Portrait.SetActive(true);
 
         }
@@ -434,7 +435,7 @@ public class UIHandler : MonoBehaviour
             {
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
                 {
-                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.25f, 0f, -2.2f), t);
+                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0f, 0f, -2.2f), t);
                     yield return null;
 
                     if (_Virtual_Camera.transform.position == new Vector3(0f, 0f, -2.2f))
@@ -538,7 +539,7 @@ public class UIHandler : MonoBehaviour
 
     public void BackButtonClicked()
     {
-        if(Screen.width > Screen.height || ARView)
+        if(Screen.width > Screen.height)
         {
             _BottomPanel_LandScape.SetActive(true);
             _MenuPanel_LandScape.SetActive(true);
@@ -611,11 +612,11 @@ public class UIHandler : MonoBehaviour
         if(Screen.width > Screen.height || ARView)
         {
             _AICallout_1.transform.localPosition = new Vector3(-1.175f, 0.77f, 1.370314f);
-            _AICallout_1.transform.localScale = new Vector3(0.1969543f, 0.1969543f, 0.1969543f);
-            _AICallout_2.transform.localPosition = new Vector3(-1.025f, 0.549f, 1.370314f);
-            _AICallout_2.transform.localScale = new Vector3(0.2502712f, 0.2502712f, 0.2502712f);
+            _AICallout_1.transform.localScale = new Vector3(0.1649768f, 0.1649768f, 0.1649768f);
+            _AICallout_2.transform.localPosition = new Vector3(-1.057f, 0.543f, 1.370314f);
+            _AICallout_2.transform.localScale = new Vector3(0.2096372f, 0.2096372f, 0.2096372f);
             _AICallout_3.transform.localPosition = new Vector3(-1.177f, 0.051f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.2213244f, 0.2213244f, 0.2213244f);
+            _AICallout_3.transform.localScale = new Vector3(0.1853902f, 0.1853902f, 0.1853902f);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
@@ -649,6 +650,7 @@ public class UIHandler : MonoBehaviour
         
 
         _AITech_Sprite.SetActive(true);
+        yield return new WaitForSeconds(1f);
         animatorAITechSequence.Play("AITech_Animation");
 
         yield return new WaitForSeconds(1f);
@@ -681,7 +683,9 @@ public class UIHandler : MonoBehaviour
             yield return null;
         }
 
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(205f, -150f, 0f);
         _BackPanel_LandScape.SetActive(true);
+        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(5f, -115f, 0);
         _BackPanel_Portrait.SetActive(true);
 
     }
@@ -689,7 +693,7 @@ public class UIHandler : MonoBehaviour
     public void OnAITechnologyClicked()
     {
         // ResetActions();
-        if(Screen.width > Screen.height || ARView)
+        if(Screen.width > Screen.height)
         {
             _AITechnology_White_Button_LandScape.SetActive(true);
             _AITechnology_Gold_Button_LandScape.SetActive(false);
@@ -739,14 +743,14 @@ public class UIHandler : MonoBehaviour
     {
         if(Screen.width > Screen.height || ARView)
         {
-            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.631f, 0.282f, 0.318f);
-            _3DFlowCallout_1.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
-            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.959f, 0.442f, 0.318f);
-            _3DFlowCallout_2.transform.localScale = new Vector3(0.1807317f, 0.1807317f, 0.1807317f);
-            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.857f, 0.03199999f, 0.318f);
-            _3DFlowCallout_3.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.804f, - 0.097f, 0.318f);
-            _3DFlowCallout_4.transform.localScale = new Vector3(0.2213244f, 0.2213244f, 0.2213244f);
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.576f, 0.433f, 1.125f);
+            _3DFlowCallout_1.transform.localScale = new Vector3(0.1481054f, 0.1481054f, 0.1481054f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.777f, 0.529f, 1.125f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1348632f, 0.1348632f, 0.1348632f);
+            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.728f, 0.283f, 1.125f);
+            _3DFlowCallout_3.transform.localScale = new Vector3(0.1430459f, 0.1430459f, 0.1430459f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.718f, 0.13f, 1.125f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.1308552f, 0.1308552f, 0.1308552f);
 
 
             _3DFlow_BowlModel.SetActive(true);
@@ -756,6 +760,15 @@ public class UIHandler : MonoBehaviour
             OnDoorOpenCloseClicked();
 
             yield return new WaitForSeconds(1f);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.26f, 0.21f, -1.11f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(-0.26f, 0.21f, -1.11f))
+                    break;
+            }
 
             _3DFlowCallout_1.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -792,7 +805,8 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            _BackPanel_LandScape.SetActive(true);
+            // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-65f, -165f, 0);
+            // _BackPanel_LandScape.SetActive(true);
             // _MenuPanel_Portrait.SetActive(false);
         }
         else
@@ -861,12 +875,16 @@ public class UIHandler : MonoBehaviour
                 _3DFlowCallout_4.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
-
-            _BackPanel_Portrait.SetActive(true);
+            
+            //_BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
+            //_BackPanel_Portrait.SetActive(true);
 
         }
 
-        
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-65f, -165f, 0);
+        _BackPanel_LandScape.SetActive(true);
+        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
+        _BackPanel_Portrait.SetActive(true);
 
     }
 
@@ -874,22 +892,42 @@ public class UIHandler : MonoBehaviour
     public void On3DFlowClicked()
     {
         // ResetActions();
+        if (Screen.width > Screen.height)
+        {
+            _AITechnology_White_Button_LandScape.SetActive(false);
+            _AITechnology_Gold_Button_LandScape.SetActive(true);
+            _variableTemperature_White_Button_LandScape.SetActive(false);
+            _variableTemperature_Gold_Button_LandScape.SetActive(true);
+            _3DAir_White_Button_LandScape.SetActive(true);
+            _3DAir_Gold_Button_LandScape.SetActive(false);
+            _PortableIce_White_Button_LandScape.SetActive(false);
+            _PortableIce_Gold_Button_LandScape.SetActive(true);
+            _MicroBlock_White_Button_LandScape.SetActive(false);
+            _MicroBlock_Gold_Button_LandScape.SetActive(true);
 
-        _AITechnology_White_Button_LandScape.SetActive(false);
-        _AITechnology_Gold_Button_LandScape.SetActive(true);
-        _variableTemperature_White_Button_LandScape.SetActive(false);
-        _variableTemperature_Gold_Button_LandScape.SetActive(true);
-        _3DAir_White_Button_LandScape.SetActive(true);
-        _3DAir_Gold_Button_LandScape.SetActive(false);
-        _PortableIce_White_Button_LandScape.SetActive(false);
-        _PortableIce_Gold_Button_LandScape.SetActive(true);
-        _MicroBlock_White_Button_LandScape.SetActive(false);
-        _MicroBlock_Gold_Button_LandScape.SetActive(true);
+            _BottomPanel_LandScape.SetActive(false);
+            _MenuPanel_LandScape.SetActive(false);
+            _InfoPanel_LandScape.SetActive(false);
+            _ProductName.SetActive(false);
+        }
+        else
+        {
+            _AITechnology_White_Button_Portrait.SetActive(false);
+            _AITechnology_Gold_Button_Portrait.SetActive(true);
+            _variableTemperature_White_Button_Portrait.SetActive(false);
+            _variableTemperature_Gold_Button_Portrait.SetActive(true);
+            _3DAir_White_Button_Portrait.SetActive(true);
+            _3DAir_Gold_Button_Portrait.SetActive(false);
+            _PortableIce_White_Button_Portrait.SetActive(false);
+            _PortableIce_Gold_Button_Portrait.SetActive(true);
+            _MicroBlock_White_Button_Portrait.SetActive(false);
+            _MicroBlock_Gold_Button_Portrait.SetActive(true);
 
-        _BottomPanel_LandScape.SetActive(false);
-        _MenuPanel_LandScape.SetActive(false);
-        _InfoPanel_LandScape.SetActive(false);
-        _ProductName.SetActive(false);
+            _BottomPanel_Portrait.SetActive(false);
+            _MenuPanel_Portrait.SetActive(false);
+            _InfoPanel_Portrait.SetActive(false);
+        }
+
 
         StartCoroutine(_3DFlowTransition());
     }
@@ -905,11 +943,11 @@ public class UIHandler : MonoBehaviour
     {
         if( Screen.width > Screen.height || ARView)
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.6100324f, -0.3845918f, 0.9473139f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.56f, -0.452f, 0.9473139f);
             PortableIce_1.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
-            PortableIce_2.transform.localPosition = new Vector3(-0.6380324f, -0.3275917f, 0.9473139f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.648f, -0.399f, 0.9473139f);
             PortableIce_2.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
-            PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, -0.6375917f, 0.9473139f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.674f, -0.706f, 0.9473139f);
             PortableIce_3.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
 
 
@@ -981,11 +1019,12 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            _BackPanel_LandScape.SetActive(true);
+            // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
+            // _BackPanel_LandScape.SetActive(true);
         }
         else
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.6100324f, - 0.3845918f, 0.9473139f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.55f, -0.3845918f, 0.9473139f);
             PortableIce_1.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
             PortableIce_2.transform.localPosition = new Vector3(-0.6380324f, - 0.3275917f,  0.9473139f);
             PortableIce_2.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
@@ -1064,32 +1103,58 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            _BackPanel_Portrait.SetActive(true);
+            // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-25f, -285f, 0);
+            // _BackPanel_Portrait.SetActive(true);
         }
-        
+
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
+        _BackPanel_LandScape.SetActive(true);
+        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-25f, -285f, 0);
+        _BackPanel_Portrait.SetActive(true);
     }
 
 
     public void OnPortableIceClicked()
     {
-        ResetActions();
+        // ResetActions();
 
-        _AITechnology_White_Button_LandScape.SetActive(false);
-        _AITechnology_Gold_Button_LandScape.SetActive(true);
-        _variableTemperature_White_Button_LandScape.SetActive(false);
-        _variableTemperature_Gold_Button_LandScape.SetActive(true);
-        _3DAir_White_Button_LandScape.SetActive(false);
-        _3DAir_Gold_Button_LandScape.SetActive(true);
-        _PortableIce_White_Button_LandScape.SetActive(true);
-        _PortableIce_Gold_Button_LandScape.SetActive(false);
-        _MicroBlock_White_Button_LandScape.SetActive(false);
-        _MicroBlock_Gold_Button_LandScape.SetActive(true);
+        if (Screen.width > Screen.height)
+        {
+            _AITechnology_White_Button_LandScape.SetActive(false);
+            _AITechnology_Gold_Button_LandScape.SetActive(true);
+            _variableTemperature_White_Button_LandScape.SetActive(false);
+            _variableTemperature_Gold_Button_LandScape.SetActive(true);
+            _3DAir_White_Button_LandScape.SetActive(false);
+            _3DAir_Gold_Button_LandScape.SetActive(true);
+            _PortableIce_White_Button_LandScape.SetActive(true);
+            _PortableIce_Gold_Button_LandScape.SetActive(false);
+            _MicroBlock_White_Button_LandScape.SetActive(false);
+            _MicroBlock_Gold_Button_LandScape.SetActive(true);
 
 
-        _BottomPanel_LandScape.SetActive(false);
-        _MenuPanel_LandScape.SetActive(false);
-        _InfoPanel_LandScape.SetActive(false);
-        _ProductName.SetActive(false);
+            _BottomPanel_LandScape.SetActive(false);
+            _MenuPanel_LandScape.SetActive(false);
+            _InfoPanel_LandScape.SetActive(false);
+            _ProductName.SetActive(false);
+        }
+        else
+        {
+            _AITechnology_White_Button_Portrait.SetActive(false);
+            _AITechnology_Gold_Button_Portrait.SetActive(true);
+            _variableTemperature_White_Button_Portrait.SetActive(false);
+            _variableTemperature_Gold_Button_Portrait.SetActive(true);
+            _3DAir_White_Button_Portrait.SetActive(false);
+            _3DAir_Gold_Button_Portrait.SetActive(true);
+            _PortableIce_White_Button_Portrait.SetActive(true);
+            _PortableIce_Gold_Button_Portrait.SetActive(false);
+            _MicroBlock_White_Button_Portrait.SetActive(false);
+            _MicroBlock_Gold_Button_Portrait.SetActive(true);
+
+
+            _BottomPanel_Portrait.SetActive(false);
+            _MenuPanel_Portrait.SetActive(false);
+            _InfoPanel_Portrait.SetActive(false);
+        }
 
         StartCoroutine(PortableIceTransition());
     }
@@ -1108,13 +1173,13 @@ public class UIHandler : MonoBehaviour
         _MenuPanel_Portrait.SetActive(false);
         if(Screen.width > Screen.height || ARView)
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.5910324f, -0.4725918f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.7100324f, -0.3805918f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_3.transform.localPosition = new Vector3(-0.7050324f, -0.5475917f, 0.9093139f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.548f, -0.551f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.1159296f, 0.1159296f, 0.1159296f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.724f, -0.459f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1045713f, 0.1045713f, 0.1045713f);
+            MicroBlock_3.transform.localPosition = new Vector3(-0.699f, -0.6259999f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.6470324f, -0.6395918f, 0.9093139f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.651f, -0.753f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
 
 
@@ -1209,17 +1274,18 @@ public class UIHandler : MonoBehaviour
                     break;
             }
 
-            _BackPanel_LandScape.SetActive(true);
+            // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
+            // _BackPanel_LandScape.SetActive(true);
         }
         else
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.5910324f, - 0.4725918f, 0.9093139f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.531f, -0.5f, 0.9093139f);
             MicroBlock_1.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.7100324f, - 0.3805918f, 0.9093139f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.697f, -0.414f, 0.9093139f);
             MicroBlock_2.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_3.transform.localPosition = new Vector3(-0.7050324f, - 0.5475917f, 0.9093139f);
+            MicroBlock_3.transform.localPosition = new Vector3(-0.678f, -0.575f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.6470324f, - 0.6395918f, 0.9093139f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.607f, -0.778f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
 
 
@@ -1296,7 +1362,7 @@ public class UIHandler : MonoBehaviour
 
 
 
-            MicroBlock_3.SetActive(false);
+            // MicroBlock_3.SetActive(false);
             MicroBlock_4.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -1314,36 +1380,59 @@ public class UIHandler : MonoBehaviour
                     break;
             }
 
-            _BackPanel_Portrait.SetActive(true);
+            // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
+            // _BackPanel_Portrait.SetActive(true);
         }
 
-
-        
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
+        _BackPanel_LandScape.SetActive(true);
+        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
+        _BackPanel_Portrait.SetActive(true);
     }
 
 
     public void OnMicroBlockClicked()
     {
         // ResetActions();
+        if (Screen.width > Screen.height)
+        {
+            _AITechnology_White_Button_LandScape.SetActive(false);
+            _AITechnology_Gold_Button_LandScape.SetActive(true);
+            _variableTemperature_White_Button_LandScape.SetActive(false);
+            _variableTemperature_Gold_Button_LandScape.SetActive(true);
+            _3DAir_White_Button_LandScape.SetActive(false);
+            _3DAir_Gold_Button_LandScape.SetActive(true);
+            _PortableIce_White_Button_LandScape.SetActive(false);
+            _PortableIce_Gold_Button_LandScape.SetActive(true);
+            _MicroBlock_White_Button_LandScape.SetActive(true);
+            _MicroBlock_Gold_Button_LandScape.SetActive(false);
 
-        _AITechnology_White_Button_LandScape.SetActive(false);
-        _AITechnology_Gold_Button_LandScape.SetActive(true);
-        _variableTemperature_White_Button_LandScape.SetActive(false);
-        _variableTemperature_Gold_Button_LandScape.SetActive(true);
-        _3DAir_White_Button_LandScape.SetActive(false);
-        _3DAir_Gold_Button_LandScape.SetActive(true);
-        _PortableIce_White_Button_LandScape.SetActive(false);
-        _PortableIce_Gold_Button_LandScape.SetActive(true);
-        _MicroBlock_White_Button_LandScape.SetActive(true);
-        _MicroBlock_Gold_Button_LandScape.SetActive(false);
 
+            _BottomPanel_LandScape.SetActive(false);
+            _MenuPanel_LandScape.SetActive(false);
+            _InfoPanel_LandScape.SetActive(false);
+            _ProductName.SetActive(false);
+        }
+        else
+        {
+            _AITechnology_White_Button_Portrait.SetActive(false);
+            _AITechnology_Gold_Button_Portrait.SetActive(true);
+            _variableTemperature_White_Button_Portrait.SetActive(false);
+            _variableTemperature_Gold_Button_Portrait.SetActive(true);
+            _3DAir_White_Button_Portrait.SetActive(false);
+            _3DAir_Gold_Button_Portrait.SetActive(true);
+            _PortableIce_White_Button_Portrait.SetActive(false);
+            _PortableIce_Gold_Button_Portrait.SetActive(true);
+            _MicroBlock_White_Button_Portrait.SetActive(true);
+            _MicroBlock_Gold_Button_Portrait.SetActive(false);
 
-        _BottomPanel_LandScape.SetActive(false);
-        _MenuPanel_LandScape.SetActive(false);
-        _InfoPanel_LandScape.SetActive(false);
-        _ProductName.SetActive(false);
+            _BottomPanel_Portrait.SetActive(false);
+            _MenuPanel_Portrait.SetActive(false);
+            _InfoPanel_Portrait.SetActive(false);
+        }
 
         StartCoroutine(MicroBlockTransition());
+        
     }
 
 
