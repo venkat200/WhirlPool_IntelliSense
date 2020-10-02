@@ -38,14 +38,14 @@ public class ZapparInstantTrackingTarget : ZapparTrackingTarget, ZapparCamera.IC
     {
         BackGroundCanvas.SetActive(false);
         LoadingBar.SetActive(true);
-        SceneObject.transform.localScale = new Vector3(3f, 3f, 3f);
+        // SceneObject.transform.localScale = new Vector3(3f, 3f, 3f);
     }
 
     void OnDisable()
     {
         BackGroundCanvas.SetActive(true);
         LoadingBar.SetActive(false);
-        SceneObject.transform.localScale = new Vector3(1f, 1f, 1f);
+        // SceneObject.transform.localScale = new Vector3(1f, 1f, 1f);
     }
 
     public void OnZapparInitialised(IntPtr pipeline) 
@@ -115,7 +115,7 @@ public class ZapparInstantTrackingTarget : ZapparTrackingTarget, ZapparCamera.IC
         {
             pinClick = !pinClick;
             m_userHasPlaced = !m_userHasPlaced;
-            LoadingBar.SetActive(!pinClick);
+            LoadingBar.SetActive(pinClick);
             pinTry = false;
         }
 

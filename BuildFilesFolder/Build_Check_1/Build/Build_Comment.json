@@ -1,0 +1,19 @@
+{
+"companyName": "Avataar",
+"productName": "Whirlpool",
+"productVersion": "1.0",
+"dataUrl": "Build_Comment.data.unityweb",
+"asmCodeUrl": "Build_Comment.asm.code.unityweb",
+"asmMemoryUrl": "Build_Comment.asm.memory.unityweb",
+"asmFrameworkUrl": "Build_Comment.asm.framework.unityweb",
+"asmSymbolsUrl": "Build_Comment.asm.symbols.unityweb",
+"TOTAL_MEMORY": 268435456,
+"graphicsAPI": ["WebGL 1.0"],
+"webglContextAttributes": {"preserveDrawingBuffer": false},
+"splashScreenStyle": "Dark",
+"backgroundColor": "#231F20",
+"cacheControl": {"default": "must-revalidate"},
+"developmentBuild": false,
+"multithreading": false,
+"unityVersion": "2019.4.8f1"
+}

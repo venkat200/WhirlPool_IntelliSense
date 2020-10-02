@@ -51,6 +51,11 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject _ProductName, _ProductName_Portrait;
 
+    [SerializeField]
+    GameObject ObjectRotateGameObject;
+    ObjectRotate ObjectRotateScript;
+
+    bool PlusFeatureExplanationHappening;
 
     // Start is called before the first frame update
     void Start()
@@ -58,6 +63,7 @@ public class UIHandler : MonoBehaviour
         animatorStartFridge = _FridgeModel.GetComponent<Animator>();
         animatorAITechSequence = _AITech_Sprite.GetComponent<Animator>();
         animator3DFlow = _3DFlow_Sprite.GetComponent<Animator>();
+        animatorMicroBlock = MicroBlock_Sprite.GetComponent<Animator>();
 
         StartCoroutine(StartTransition());
 
@@ -71,6 +77,8 @@ public class UIHandler : MonoBehaviour
             _Panel_LandScape.SetActive(false);
             _Panel_Portrait.SetActive(true);
         }
+
+        ObjectRotateScript = ObjectRotateGameObject.GetComponent<ObjectRotate>();
 
     }
 
@@ -104,6 +112,8 @@ public class UIHandler : MonoBehaviour
                 ResetPosition = false;
             }
         }
+
+        PlusFeatureExplanationHappening = onAITechnologyClickedBool || on3DFlowClickedBool || onPortableIceClickedBool || onMicroBlockClickedBool;
     }
 
     IEnumerator StartTransition()
@@ -143,21 +153,10 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            yield return new WaitForSeconds(0.5f);
-
             animatorStartFridge.Play("StartFridge_Animation");
 
             yield return new WaitForSeconds(4f);
 
-            _ProductName_Portrait.SetActive(true);
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-            {
-                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-                _ProductName_Portrait.GetComponent<Image>().color = newColor;
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(1f);
 
             _BottomPanel_Portrait.SetActive(true);
             _InfoPanel_Portrait.SetActive(true);
@@ -182,7 +181,7 @@ public class UIHandler : MonoBehaviour
     public void ResetActions(bool DoorFunction = true)
     {
         animatorStartFridge.Play("Still");
-
+        
         if (DoorFunction == true)
         {
             doorOpen = false;
@@ -194,6 +193,7 @@ public class UIHandler : MonoBehaviour
         _BackPanel_Portrait.SetActive(false);
         _InfoImage_Portrait.SetActive(false);
         _MenuPanel_Portrait.SetActive(false);
+        _ProductName_Portrait.SetActive(false);
 
         _AITechnology_White_Button_LandScape.SetActive(false);
         _AITechnology_Gold_Button_LandScape.SetActive(false);
@@ -236,14 +236,29 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator BackTransition()
     {
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        if (plusClicked)
         {
-            _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, initialPosition, t);
-            yield return null;
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, initialPosition, t);
+                yield return null;
 
-            if (_Virtual_Camera.transform.position == initialPosition)
-                break;
+                if (_Virtual_Camera.transform.position == initialPosition)
+                    break;
+            }
         }
+        else
+        {
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0f, 0f, -2.2f), t);
+                yield return null;
+
+                if (_Virtual_Camera.transform.position == new Vector3(0f, 0f, -2.2f))
+                    break;
+            }
+        }
+        
     }
 
 
@@ -261,6 +276,7 @@ public class UIHandler : MonoBehaviour
     public void OnARButtonClicked()
     {
         // ResetActions();
+        ObjectRotateScript.resetRotation = true;
 
         ARView = !ARView;
         VirtualView = !VirtualView;
@@ -277,7 +293,7 @@ public class UIHandler : MonoBehaviour
             _Virtual_Camera.SetActive(VirtualView);
             _Zappar_Camera.SetActive(ARView);
             _InstantTracker.SetActive(ARView);
-
+            _SceneObject.transform.localScale = new Vector3(1f, 1f, 1f);
             BackButtonClicked();
         }
         else
@@ -285,6 +301,7 @@ public class UIHandler : MonoBehaviour
             _Zappar_Camera.SetActive(ARView);
             _InstantTracker.SetActive(ARView);
             _Virtual_Camera.SetActive(VirtualView);
+            _SceneObject.transform.localScale = new Vector3(3f, 3f, 3f);
         }
 
         _AR_Button_Icon_LandScape.SetActive(VirtualView);
@@ -350,6 +367,8 @@ public class UIHandler : MonoBehaviour
     }
 
 
+
+
     [SerializeField]
     GameObject _MenuPanel_LandScape, _AITechnology_White_Button_LandScape, _AITechnology_Gold_Button_LandScape, _variableTemperature_White_Button_LandScape, _variableTemperature_Gold_Button_LandScape,
                                      _3DAir_White_Button_LandScape, _3DAir_Gold_Button_LandScape, _PortableIce_White_Button_LandScape, _PortableIce_Gold_Button_LandScape,
@@ -376,6 +395,7 @@ public class UIHandler : MonoBehaviour
                     if (_Virtual_Camera.transform.position == new Vector3(0.25f, 0f, -2.2f))
                         break;
                 }
+
             }
 
             _MenuPanel_LandScape.SetActive(true);
@@ -391,6 +411,14 @@ public class UIHandler : MonoBehaviour
             _MicroBlock_Gold_Button_LandScape.SetActive(true);
 
             _MenuPanel_Portrait.SetActive(true);
+
+            _ProductName_Portrait.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _ProductName_Portrait.GetComponent<Image>().color = newColor;
+                yield return null;
+            }
 
             _AITechnology_Gold_Button_Portrait.SetActive(true);
             yield return new WaitForSeconds(0.3f);
@@ -449,6 +477,18 @@ public class UIHandler : MonoBehaviour
     {
         ResetActions();
         plusClicked = !plusClicked;
+        ObjectRotateScript.resetRotation = true;
+
+        if (dimensionClick && plusClicked)
+        {
+            CMButtonClicked();
+            ObjectRotateScript.OnDimensionClicked();
+        }
+        if (doorOpen && plusClicked)
+        {
+            // OnDoorOpenCloseClicked();
+        }
+
         if (plusClicked)
         {
             _Plus_Gold_LandScape.SetActive(true);
@@ -484,62 +524,149 @@ public class UIHandler : MonoBehaviour
         StartCoroutine(PlusButtonTransition());
     }
 
+
+    [SerializeField]
+    GameObject Arrow_L, Arrow_B, Arrow_H;
+
+    bool dimensionClick = false;
+
     public void CMButtonClicked()
     {
+        ResetActions();
+        dimensionClick = !dimensionClick;
+        ObjectRotateScript.resetRotation = true;
+
+        if (dimensionClick)
+        {
+            _Plus_Gold_LandScape.SetActive(false);
+            _Plus_White_LandScape.SetActive(true);
+            _CM_Gold_LandScape.SetActive(true);
+            _CM_White_LandScape.SetActive(false);
+            _Door_Gold_LandScape.SetActive(false);
+            _Door_White_LandScape.SetActive(true);
+
+            _Plus_Gold_Portrait.SetActive(false);
+            _Plus_White_Portrait.SetActive(true);
+            _CM_Gold_Portrait.SetActive(true);
+            _CM_White_Portrait.SetActive(false);
+            _Door_Gold_Portrait.SetActive(false);
+            _Door_White_Portrait.SetActive(true);
+        }
+        else
+        {
+            _Plus_Gold_LandScape.SetActive(false);
+            _Plus_White_LandScape.SetActive(true);
+            _CM_Gold_LandScape.SetActive(false);
+            _CM_White_LandScape.SetActive(true);
+            _Door_Gold_LandScape.SetActive(false);
+            _Door_White_LandScape.SetActive(true);
+
+            _Plus_Gold_Portrait.SetActive(false);
+            _Plus_White_Portrait.SetActive(true);
+            _CM_Gold_Portrait.SetActive(false);
+            _CM_White_Portrait.SetActive(true);
+            _Door_Gold_Portrait.SetActive(false);
+            _Door_White_Portrait.SetActive(true);
+        }
+
+        if (plusClicked && dimensionClick)
+        {
+            OnPlusButtonClicked();
+        }
+        if (doorOpen && dimensionClick)
+        {
+            // OnDoorOpenCloseClicked();
+        }
+
+        if (dimensionClick == true)
+        {
+            ResetActions();
+
+            // Arrow_B.SetActive(true);
+            // Arrow_H.SetActive(true);
+            // Arrow_L.SetActive(true);
+        }
+        else
+        {
+            // Arrow_B.SetActive(false);
+            // Arrow_H.SetActive(false);
+            // Arrow_L.SetActive(false);
+        }
 
     }
 
 
-    bool doorOpen = false;
+    public bool doorOpen = false;
 
-    public void OnDoorOpenCloseClicked()
+    public void OnDoorOpenCloseClicked(bool check = false)
     {
         // ResetActions(false);
         doorOpen = !doorOpen;
+        ObjectRotateScript.resetRotation = true;
+
+
+        if (plusClicked && doorOpen && !check)
+        {
+            OnPlusButtonClicked();
+            doorOpen = true;
+        }
+        if (dimensionClick && doorOpen)
+        {
+            CMButtonClicked();
+            ObjectRotateScript.OnDimensionClicked();
+            doorOpen = true;
+        }
 
         if (doorOpen)
         {
             animatorStartFridge.Play("DoorOpen_Animation");
 
-            _Plus_Gold_LandScape.SetActive(false);
-            _Plus_White_LandScape.SetActive(true);
-            _Door_Gold_LandScape.SetActive(true);
-            _Door_White_LandScape.SetActive(false);
-            _CM_Gold_LandScape.SetActive(false);
-            _CM_White_LandScape.SetActive(true);
+            // Only change the bottom icon color when other bottom icon is clicked 
+            if (!check)
+            {
+                _Plus_Gold_LandScape.SetActive(false);
+                _Plus_White_LandScape.SetActive(true);
+                _Door_Gold_LandScape.SetActive(true);
+                _Door_White_LandScape.SetActive(false);
+                _CM_Gold_LandScape.SetActive(false);
+                _CM_White_LandScape.SetActive(true);
 
-            _Plus_Gold_Portrait.SetActive(false);
-            _Plus_White_Portrait.SetActive(true);
-            _Door_Gold_Portrait.SetActive(true);
-            _Door_White_Portrait.SetActive(false);
-            _CM_Gold_Portrait.SetActive(false);
-            _CM_White_Portrait.SetActive(true);
+                _Plus_Gold_Portrait.SetActive(false);
+                _Plus_White_Portrait.SetActive(true);
+                _Door_Gold_Portrait.SetActive(true);
+                _Door_White_Portrait.SetActive(false);
+                _CM_Gold_Portrait.SetActive(false);
+                _CM_White_Portrait.SetActive(true);
+            }
         }
         else
         {
             animatorStartFridge.Play("DoorClose_Animation");
 
-            _Plus_Gold_LandScape.SetActive(false);
-            _Plus_White_LandScape.SetActive(true);
-            _Door_Gold_LandScape.SetActive(false);
-            _Door_White_LandScape.SetActive(true);
-            _CM_Gold_LandScape.SetActive(false);
-            _CM_White_LandScape.SetActive(true);
+            if (!check)
+            {
+                _Plus_Gold_LandScape.SetActive(false);
+                _Plus_White_LandScape.SetActive(true);
+                _Door_Gold_LandScape.SetActive(false);
+                _Door_White_LandScape.SetActive(true);
+                _CM_Gold_LandScape.SetActive(false);
+                _CM_White_LandScape.SetActive(true);
 
-            _Plus_Gold_Portrait.SetActive(false);
-            _Plus_White_Portrait.SetActive(true);
-            _Door_Gold_Portrait.SetActive(false);
-            _Door_White_Portrait.SetActive(true);
-            _CM_Gold_Portrait.SetActive(false);
-            _CM_White_Portrait.SetActive(true);
+                _Plus_Gold_Portrait.SetActive(false);
+                _Plus_White_Portrait.SetActive(true);
+                _Door_Gold_Portrait.SetActive(false);
+                _Door_White_Portrait.SetActive(true);
+                _CM_Gold_Portrait.SetActive(false);
+                _CM_White_Portrait.SetActive(true);
+            }
+            
         }
     }
 
 
-
     public void BackButtonClicked()
     {
-        if(Screen.width > Screen.height)
+        if (Screen.width > Screen.height)
         {
             _BottomPanel_LandScape.SetActive(true);
             _MenuPanel_LandScape.SetActive(true);
@@ -556,6 +683,10 @@ public class UIHandler : MonoBehaviour
 
             _BackPanel_Portrait.SetActive(false);
         }
+        onAITechnologyClickedBool = false;
+        on3DFlowClickedBool = false;
+        onPortableIceClickedBool = false;
+        onMicroBlockClickedBool = false;
 
 
         StopAllCoroutines();
@@ -577,7 +708,7 @@ public class UIHandler : MonoBehaviour
 
         if (doorOpen)
         {
-            OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked(true);
         }
 
         PortableIce_1.SetActive(false);
@@ -590,6 +721,7 @@ public class UIHandler : MonoBehaviour
         MicroBlock_2.SetActive(false);
         MicroBlock_3.SetActive(false);
         MicroBlock_4.SetActive(false);
+        MicroBlock_Sprite.SetActive(false);
         // MicroBlock_Model.SetActive(false);
         MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
         _TrayObject_1.SetActive(false);
@@ -601,6 +733,7 @@ public class UIHandler : MonoBehaviour
         _TrayObject_7.SetActive(false);
         _TrayObject_8.SetActive(false);
 
+        ObjectRotateScript.resetRotation = true;
     }
 
     [SerializeField]
@@ -650,8 +783,15 @@ public class UIHandler : MonoBehaviour
         
 
         _AITech_Sprite.SetActive(true);
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        {
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+            _AITech_Sprite.GetComponent<SpriteRenderer>().color = newColor;
+            yield return null;
+        }
         yield return new WaitForSeconds(1f);
         animatorAITechSequence.Play("AITech_Animation");
+        
 
         yield return new WaitForSeconds(1f);
 
@@ -683,17 +823,22 @@ public class UIHandler : MonoBehaviour
             yield return null;
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(205f, -150f, 0f);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -175f, 0f);
         _BackPanel_LandScape.SetActive(true);
         _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(5f, -115f, 0);
         _BackPanel_Portrait.SetActive(true);
 
     }
 
+    bool onAITechnologyClickedBool = false;
+
     public void OnAITechnologyClicked()
     {
+        onAITechnologyClickedBool = !onAITechnologyClickedBool;
         // ResetActions();
-        if(Screen.width > Screen.height)
+        ObjectRotateScript.resetRotation = true;
+
+        if (Screen.width > Screen.height)
         {
             _AITechnology_White_Button_LandScape.SetActive(true);
             _AITechnology_Gold_Button_LandScape.SetActive(false);
@@ -745,11 +890,11 @@ public class UIHandler : MonoBehaviour
         {
             _3DFlowCallout_1.transform.localPosition = new Vector3(-0.576f, 0.433f, 1.125f);
             _3DFlowCallout_1.transform.localScale = new Vector3(0.1481054f, 0.1481054f, 0.1481054f);
-            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.777f, 0.529f, 1.125f);
-            _3DFlowCallout_2.transform.localScale = new Vector3(0.1348632f, 0.1348632f, 0.1348632f);
-            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.728f, 0.283f, 1.125f);
-            _3DFlowCallout_3.transform.localScale = new Vector3(0.1430459f, 0.1430459f, 0.1430459f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.718f, 0.13f, 1.125f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.823f, 0.508f, 1.125f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1065419f, 0.1065419f, 0.1065419f);
+            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.748f, 0.283f, 1.125f);
+            _3DFlowCallout_3.transform.localScale = new Vector3(0.1330327f, 0.1330327f, 0.1330327f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.68f, 0.163f, 1.125f);
             _3DFlowCallout_4.transform.localScale = new Vector3(0.1308552f, 0.1308552f, 0.1308552f);
 
 
@@ -757,7 +902,7 @@ public class UIHandler : MonoBehaviour
             _3DFlow_Sprite.SetActive(true);
             animator3DFlow.Play("_3DFlow_Animation");
 
-            OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -837,7 +982,7 @@ public class UIHandler : MonoBehaviour
             _3DFlow_Sprite.SetActive(true);
             animator3DFlow.Play("_3DFlow_Animation");
 
-            OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -881,17 +1026,21 @@ public class UIHandler : MonoBehaviour
 
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-65f, -165f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-50f, -165f, 0);
         _BackPanel_LandScape.SetActive(true);
         _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
         _BackPanel_Portrait.SetActive(true);
 
     }
 
+    bool on3DFlowClickedBool = false;
 
     public void On3DFlowClicked()
     {
+        on3DFlowClickedBool = !on3DFlowClickedBool;
         // ResetActions();
+        ObjectRotateScript.resetRotation = true;
+
         if (Screen.width > Screen.height)
         {
             _AITechnology_White_Button_LandScape.SetActive(false);
@@ -943,18 +1092,18 @@ public class UIHandler : MonoBehaviour
     {
         if( Screen.width > Screen.height || ARView)
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.56f, -0.452f, 0.9473139f);
-            PortableIce_1.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
-            PortableIce_2.transform.localPosition = new Vector3(-0.648f, -0.399f, 0.9473139f);
-            PortableIce_2.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
-            PortableIce_3.transform.localPosition = new Vector3(-0.674f, -0.706f, 0.9473139f);
-            PortableIce_3.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.502f, -0.489f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.100825f, 0.100825f, 0.100825f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.575f, -0.445f, 0.9473139f);
+            PortableIce_2.transform.localScale = new Vector3(0.100825f, 0.100825f, 0.100825f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.587f, -0.726f, 0.9473139f);
+            PortableIce_3.transform.localScale = new Vector3(0.100825f, 0.100825f, 0.100825f);
 
 
             PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
             PortableIce_Model.SetActive(true);
 
-            OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -1038,7 +1187,7 @@ public class UIHandler : MonoBehaviour
             PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
             PortableIce_Model.SetActive(true);
 
-            OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -1114,9 +1263,13 @@ public class UIHandler : MonoBehaviour
     }
 
 
+    bool onPortableIceClickedBool = false;
+
     public void OnPortableIceClicked()
     {
+        onPortableIceClickedBool = !onPortableIceClickedBool;
         // ResetActions();
+        ObjectRotateScript.resetRotation = true;
 
         if (Screen.width > Screen.height)
         {
@@ -1164,29 +1317,30 @@ public class UIHandler : MonoBehaviour
 
 
     [SerializeField]
-    GameObject MicroBlock_1, MicroBlock_2, MicroBlock_3, MicroBlock_4, MicroBlock_Model;
+    GameObject MicroBlock_1, MicroBlock_2, MicroBlock_3, MicroBlock_4, MicroBlock_Model, MicroBlock_Sprite;
     [SerializeField]
     GameObject _TrayObject_1, _TrayObject_2, _TrayObject_3, _TrayObject_4, _TrayObject_5, _TrayObject_6, _TrayObject_7, _TrayObject_8;
+    Animator animatorMicroBlock;
 
     IEnumerator MicroBlockTransition()
     {
         _MenuPanel_Portrait.SetActive(false);
         if(Screen.width > Screen.height || ARView)
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.548f, -0.551f, 0.9093139f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.533f, -0.551f, 0.9093139f);
             MicroBlock_1.transform.localScale = new Vector3(0.1159296f, 0.1159296f, 0.1159296f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.724f, -0.459f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.1045713f, 0.1045713f, 0.1045713f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.724f, -0.475f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.09725131f, 0.09725131f, 0.09725131f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.699f, -0.6259999f, 0.9093139f);
-            MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.651f, -0.753f, 0.9093139f);
-            MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_3.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.636f, -0.728f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
             MicroBlock_Model.SetActive(true);
 
-            OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -1206,6 +1360,9 @@ public class UIHandler : MonoBehaviour
                 MicroBlock_1.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
+
+            MicroBlock_Sprite.SetActive(true);
+            animatorMicroBlock.Play("MicroBlock_Animation");
 
             MicroBlock_2.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -1236,21 +1393,20 @@ public class UIHandler : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
 
-            yield return new WaitForSeconds(0.5f);
             _TrayObject_1.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_2.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_3.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             _TrayObject_4.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_5.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_6.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             _TrayObject_7.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_8.SetActive(true);
             yield return new WaitForSeconds(1f);
 
@@ -1292,7 +1448,7 @@ public class UIHandler : MonoBehaviour
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
             MicroBlock_Model.SetActive(true);
 
-            OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -1321,6 +1477,9 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
+            MicroBlock_Sprite.SetActive(true);
+            animatorMicroBlock.Play("MicroBlock_Animation");
+
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.2192f, 0.222f), t);
@@ -1342,21 +1501,21 @@ public class UIHandler : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
 
-            yield return new WaitForSeconds(0.5f);
+            
             _TrayObject_1.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_2.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_3.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             _TrayObject_4.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_5.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_6.SetActive(true);
             yield return new WaitForSeconds(0.5f);
             _TrayObject_7.SetActive(true);
-            yield return new WaitForSeconds(0.5f);
+            // yield return new WaitForSeconds(0.5f);
             _TrayObject_8.SetActive(true);
             yield return new WaitForSeconds(1f);
 
@@ -1390,10 +1549,14 @@ public class UIHandler : MonoBehaviour
         _BackPanel_Portrait.SetActive(true);
     }
 
+    bool onMicroBlockClickedBool = false;
 
     public void OnMicroBlockClicked()
     {
+        onMicroBlockClickedBool = !onMicroBlockClickedBool;
         // ResetActions();
+        ObjectRotateScript.resetRotation = true;
+
         if (Screen.width > Screen.height)
         {
             _AITechnology_White_Button_LandScape.SetActive(false);

@@ -9,9 +9,16 @@ public class ObjectRotate : MonoBehaviour
 
     float targetAngle = 0.0f;
     public float resetRotationSpeed = 125.0f;
-    bool resetRotation = false;
+    public bool resetRotation = false;
 
-   
+
+    float rotationAngle = 45.0f;
+    public bool dimensionClick = false, dimensionsRotate = false;
+
+    [SerializeField]
+    GameObject Arrow_L, Arrow_B, Arrow_H;
+
+
     // Start is called before the first frame update
     void Start()
     {
@@ -21,6 +28,7 @@ public class ObjectRotate : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+
         if (resetRotation == true)
         {
             float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, targetAngle, resetRotationSpeed * Time.deltaTime);
@@ -32,6 +40,25 @@ public class ObjectRotate : MonoBehaviour
                 transform.eulerAngles = new Vector3(0, targetAngle, 0);
                 resetRotation = false;
             }
+        }
+
+        if (dimensionClick == true && !(transform.eulerAngles.y % 360 >= 0f && transform.eulerAngles.y % 360 < 180f))
+        {
+            Arrow_B.SetActive(true);
+            Arrow_H.SetActive(true);
+            Arrow_L.SetActive(true);
+        }
+        else if (dimensionClick == true && (transform.eulerAngles.y % 360 == 0f ))
+        {
+            Arrow_B.SetActive(false);
+            Arrow_H.SetActive(true);
+            Arrow_L.SetActive(true);
+        }
+        else if(dimensionClick == true)
+        {
+            Arrow_B.SetActive(false);
+            Arrow_H.SetActive(false);
+            Arrow_L.SetActive(false);
         }
     }
 
@@ -47,6 +74,29 @@ public class ObjectRotate : MonoBehaviour
             // transform.RotateAround(Vector3.right, rotationY);
         }
     }
+
+    public void OnDimensionClicked()
+    {
+        dimensionClick = !dimensionClick;
+
+        if (dimensionClick == true)
+        {
+            resetRotation = true;
+            dimensionsRotate = true;
+            Arrow_B.SetActive(true);
+            Arrow_H.SetActive(true);
+            Arrow_L.SetActive(true);
+        }
+        else
+        {
+            Arrow_B.SetActive(false);
+            Arrow_H.SetActive(false);
+            Arrow_L.SetActive(false);
+
+            resetRotation = true;
+        }
+    }
+
 
 }
 
