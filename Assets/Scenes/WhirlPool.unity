@@ -4136,12 +4136,6 @@ MonoBehaviour:
   _AICallout_1: {fileID: 497929656}
   _AICallout_2: {fileID: 1687167977}
   _AICallout_3: {fileID: 1348705398}
-  VariableTemperatureCallout_1: {fileID: 1229480160}
-  VariableTemperatureCallout_2: {fileID: 961262680}
-  VariableTemperatureCallout_3: {fileID: 1192377330}
-  VariableTemperatureCallout_4: {fileID: 2137493389}
-  VariableTemperatureModel: {fileID: 791686144}
-  VariableTemperature_ModelButton: {fileID: 703358789}
   _3DFlow_Sprite: {fileID: 27526124}
   _3DFlowCallout_1: {fileID: 2080690448}
   _3DFlowCallout_2: {fileID: 2049321960}
@@ -4469,12 +4463,6 @@ PrefabInstance:
 --- !u!4 &703358788 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 9cec2c6f7eabad4438d20671ab90c847,
-    type: 3}
-  m_PrefabInstance: {fileID: 703358787}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &703358789 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 9cec2c6f7eabad4438d20671ab90c847,
     type: 3}
   m_PrefabInstance: {fileID: 703358787}
   m_PrefabAsset: {fileID: 0}
@@ -8949,7 +8937,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1449341019}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.31, y: 0.15, z: -1.12}
+  m_LocalPosition: {x: 0, y: 0, z: -2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -12103,7 +12091,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &2137493390
 Transform:
   m_ObjectHideFlags: 0
@@ -12378,7 +12366,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7352004326498952596}
-  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: -0.30253464, y: 0.6406773, z: 0.15145352}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -12408,7 +12396,7 @@ Transform:
   - {fileID: 1484325437}
   m_Father: {fileID: 543450651743677336}
   m_RootOrder: 9
-  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &362504771508130404
 Transform:
   m_ObjectHideFlags: 0
