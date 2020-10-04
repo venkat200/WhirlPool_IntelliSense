@@ -59,7 +59,7 @@ public class UIHandler : MonoBehaviour
     Vector3 defaultScale;
 
     RaycastHit hit;
-    bool toggle = false;
+    bool toggle = true;
     bool toggleSwitchEnabled = false;
 
 
@@ -107,7 +107,7 @@ public class UIHandler : MonoBehaviour
             _Panel_LandScape.SetActive(false);
             _Panel_Portrait.SetActive(true);
 
-            _Virtual_Camera.GetComponent<Camera>().fieldOfView = 75f;
+            _Virtual_Camera.GetComponent<Camera>().fieldOfView = 79f;
             initialPosition = new Vector3(0.25f, 0, -2.2f);
 
         }
@@ -138,7 +138,7 @@ public class UIHandler : MonoBehaviour
             if (Physics.Raycast(ray, out hit))
             {
                 Transform objectHit = hit.transform;
-                if (hit.transform.gameObject.name == "ToggleSwitch" && Input.GetMouseButton(0))
+                if (hit.transform.gameObject.name == "ToggleSwitch" && Input.GetMouseButtonDown(0))
                 {
                     toggle = !toggle;
 
@@ -765,6 +765,10 @@ public class UIHandler : MonoBehaviour
         VariableTemperature_Sprite_1.SetActive(false);
         VariableTemperature_Sprite_2.SetActive(false);
         VariableTemperature_Tray.transform.localPosition = new Vector3(0f, 0f, 0f);
+        toggle = true;
+        VariableTemperature_ModelButton.transform.localPosition = new Vector3(0.01778348f, 1.076237f, -0.3537324f);
+
+
 
         _3DFlow_Sprite.SetActive(false);
         _3DFlowCallout_1.SetActive(false);
@@ -892,7 +896,7 @@ public class UIHandler : MonoBehaviour
 
         _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -165f, 0f);
         _BackPanel_LandScape.SetActive(true);
-        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(5f, -115f, 0);
+        // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(5f, -115f, 0);
         _BackPanel_Portrait.SetActive(true);
 
     }
@@ -1127,7 +1131,7 @@ public class UIHandler : MonoBehaviour
 
         _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -165f, 0);
         _BackPanel_LandScape.SetActive(true);
-        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-35f, -215f, 0);
+        // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-35f, -215f, 0);
         _BackPanel_Portrait.SetActive(true);
 
     }
@@ -1334,7 +1338,7 @@ public class UIHandler : MonoBehaviour
 
         _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-50f, -165f, 0);
         _BackPanel_LandScape.SetActive(true);
-        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
+        // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
         _BackPanel_Portrait.SetActive(true);
 
     }
@@ -1565,7 +1569,7 @@ public class UIHandler : MonoBehaviour
 
         _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
         _BackPanel_LandScape.SetActive(true);
-        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-25f, -285f, 0);
+        // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-25f, -285f, 0);
         _BackPanel_Portrait.SetActive(true);
     }
 
@@ -1853,7 +1857,7 @@ public class UIHandler : MonoBehaviour
 
         _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
         _BackPanel_LandScape.SetActive(true);
-        _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
+        // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
         _BackPanel_Portrait.SetActive(true);
     }
 

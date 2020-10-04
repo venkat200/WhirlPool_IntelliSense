@@ -13,7 +13,7 @@ public class ObjectRotate : MonoBehaviour
     public bool resetRotation = false;
 
 
-    float rotationAngle = -45.0f;
+    float rotationAngle = 310.0f;
     public bool dimensionClick = false, dimensionsRotate = false, intermediateRotate = false;
 
     [SerializeField]
@@ -43,8 +43,20 @@ public class ObjectRotate : MonoBehaviour
             }
         }
 
+        if (dimensionsRotate == true)
+        {
+            float angle = Mathf.MoveTowardsAngle(transform.eulerAngles.y, rotationAngle, resetRotationSpeed * Time.deltaTime);
+            transform.eulerAngles = new Vector3(0, angle, 0);
 
-        if (dimensionClick == true && !(transform.eulerAngles.y % 360 >= 0f && transform.eulerAngles.y % 360 < 180f))
+            if ( Mathf.Abs(transform.eulerAngles.y - rotationAngle) < 1f )
+            {
+                transform.eulerAngles = new Vector3(0, rotationAngle, 0);
+
+                dimensionsRotate = false;
+            }
+        }
+
+        if (dimensionClick == true && !(transform.eulerAngles.y % 360 >= 0f && transform.eulerAngles.y % 360 < 270f))
         {
             Arrow_B.SetActive(true);
             Arrow_H.SetActive(true);
