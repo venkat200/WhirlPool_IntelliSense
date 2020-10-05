@@ -62,6 +62,10 @@ public class UIHandler : MonoBehaviour
     bool toggle = true;
     bool toggleSwitchEnabled = false;
 
+    public bool PlayingFeature;
+    [SerializeField]
+    GameObject _CameraContainer;
+
 
     // Start is called before the first frame update
     void Start()
@@ -101,6 +105,8 @@ public class UIHandler : MonoBehaviour
 
             _Virtual_Camera.GetComponent<Camera>().fieldOfView = 70f;
             initialPosition = new Vector3(0, 0, -2.2f);
+
+            _CameraContainer.transform.localPosition = new Vector3(0f, 0f, 0f);
         }
         else
         {
@@ -110,13 +116,15 @@ public class UIHandler : MonoBehaviour
             _Virtual_Camera.GetComponent<Camera>().fieldOfView = 79f;
             initialPosition = new Vector3(0.25f, 0, -2.2f);
 
+            _CameraContainer.transform.localPosition = new Vector3(0f, 0.2f, 0f);
+
         }
 
         if (ResetPosition)
         {
-            _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, initialPosition, 5 * Time.deltaTime);
+            _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, initialPosition, 5 * Time.deltaTime);
 
-            if (_Virtual_Camera.transform.position == initialPosition)
+            if (_Virtual_Camera.transform.localPosition == initialPosition)
             {
                 ResetPosition = false;
             }
@@ -165,7 +173,7 @@ public class UIHandler : MonoBehaviour
             }
         }
 
-        
+        PlayingFeature = onAITechnologyClickedBool || onVariableTemperatureClickedBool || on3DFlowClickedBool || onPortableIceClickedBool || onMicroBlockClickedBool;
     }
 
     IEnumerator StartTransition()
@@ -293,10 +301,10 @@ public class UIHandler : MonoBehaviour
         {
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, initialPosition, t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, initialPosition, t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == initialPosition)
+                if (_Virtual_Camera.transform.localPosition == initialPosition)
                     break;
             }
         }
@@ -304,10 +312,10 @@ public class UIHandler : MonoBehaviour
         {
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0f, 0f, -2.2f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0f, 0f, -2.2f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(0f, 0f, -2.2f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(0f, 0f, -2.2f))
                     break;
             }
         }
@@ -442,10 +450,10 @@ public class UIHandler : MonoBehaviour
             {
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
                 {
-                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.25f, 0f, -2.2f), t);
+                    _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0.25f, 0f, -2.2f), t);
                     yield return null;
 
-                    if (_Virtual_Camera.transform.position == new Vector3(0.25f, 0f, -2.2f))
+                    if (_Virtual_Camera.transform.localPosition == new Vector3(0.25f, 0f, -2.2f))
                         break;
                 }
 
@@ -516,10 +524,10 @@ public class UIHandler : MonoBehaviour
             {
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
                 {
-                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0f, 0f, -2.2f), t);
+                    _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0f, 0f, -2.2f), t);
                     yield return null;
 
-                    if (_Virtual_Camera.transform.position == new Vector3(0f, 0f, -2.2f))
+                    if (_Virtual_Camera.transform.localPosition == new Vector3(0f, 0f, -2.2f))
                         break;
                 }
             }
@@ -600,6 +608,8 @@ public class UIHandler : MonoBehaviour
 
         if (dimensionClick)
         {
+            _Virtual_Camera.transform.localPosition = new Vector3(0f, 0f, -2.2f);
+
             _Plus_Gold_LandScape.SetActive(false);
             _Plus_White_LandScape.SetActive(true);
             _CM_Gold_LandScape.SetActive(true);
@@ -660,14 +670,14 @@ public class UIHandler : MonoBehaviour
             {
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                 {
-                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.16f, 0.0f, -2.2f), t);
+                    _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0.28f, 0.0f, -2.2f), t);
                     yield return null;
 
-                    if (_Virtual_Camera.transform.position == new Vector3(0.16f, 0.0f, -2.2f))
+                    if (_Virtual_Camera.transform.localPosition == new Vector3(0.28f, 0.0f, -2.2f))
                         break;
                 }
 
-                _Virtual_Camera.GetComponent<Camera>().fieldOfView = 85f;
+                // _Virtual_Camera.GetComponent<Camera>().fieldOfView = 85f;
             }
         }
         else if(open == 0)
@@ -676,14 +686,14 @@ public class UIHandler : MonoBehaviour
             {
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                 {
-                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.0f, 0.0f, -2.2f), t);
+                    _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0.0f, 0.0f, -2.2f), t);
                     yield return null;
 
-                    if (_Virtual_Camera.transform.position == new Vector3(0.0f, 0.0f, -2.2f))
+                    if (_Virtual_Camera.transform.localPosition == new Vector3(0.0f, 0.0f, -2.2f))
                         break;
                 }
 
-                _Virtual_Camera.GetComponent<Camera>().fieldOfView = 79f;
+                // _Virtual_Camera.GetComponent<Camera>().fieldOfView = 79f;
             }
         }
     }
@@ -792,6 +802,7 @@ public class UIHandler : MonoBehaviour
             _BackPanel_Portrait.SetActive(false);
         }
         onAITechnologyClickedBool = false;
+        onVariableTemperatureClickedBool = false;
         on3DFlowClickedBool = false;
         onPortableIceClickedBool = false;
         onMicroBlockClickedBool = false;
@@ -866,7 +877,7 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator AITechnologyTransition()
     {
-        if(Screen.width > Screen.height || ARView)
+        if(Screen.width > Screen.height)
         {
             _AICallout_1.transform.localPosition = new Vector3(-1.175f, 0.77f, 1.370314f);
             _AICallout_1.transform.localScale = new Vector3(0.1649768f, 0.1649768f, 0.1649768f);
@@ -877,10 +888,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, 0.36f, -1.38f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, 0.36f, -1.38f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, 0.36f, -1.38f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, 0.36f, -1.38f))
                     break;
             }
         }
@@ -896,10 +907,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.55f, -0.06f, -2.42f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.55f, -0.06f, -2.42f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.55f, -0.06f, -2.42f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.55f, -0.06f, -2.42f))
                     break;
             }
 
@@ -954,7 +965,7 @@ public class UIHandler : MonoBehaviour
 
     }
 
-    bool onAITechnologyClickedBool = false;
+    public bool onAITechnologyClickedBool = false;
 
     public void OnAITechnologyClicked()
     {
@@ -1020,7 +1031,7 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator VariableTemperatureTransition()
     {
-        if (Screen.width > Screen.height || ARView)
+        if (Screen.width > Screen.height)
         {
             VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.5220324f, 0.1534083f, 0.8533139f);
             VariableTemperatureCallout_1.transform.localScale = new Vector3(0.0961725f, 0.0961725f, 0.0961725f);
@@ -1038,10 +1049,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.31f, 0.15f, -1.12f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.31f, 0.15f, -1.12f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.31f, 0.15f, -1.12f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.31f, 0.15f, -1.12f))
                     break;
             }
 
@@ -1123,10 +1134,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.4f, 0.24f, -1.7f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.4f, 0.24f, -1.7f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.4f, 0.24f, -1.7f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.4f, 0.24f, -1.7f))
                     break;
             }
 
@@ -1204,7 +1215,7 @@ public class UIHandler : MonoBehaviour
 
     }
 
-    bool onVariableTemperatureClickedBool = false;
+    public bool onVariableTemperatureClickedBool = false;
 
     public void OnVariableTemperatureClicked()
     {
@@ -1272,7 +1283,7 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator _3DFlowTransition()
     {
-        if(Screen.width > Screen.height || ARView)
+        if(Screen.width > Screen.height)
         {
             _3DFlowCallout_1.transform.localPosition = new Vector3(-0.576f, 0.433f, 1.125f);
             _3DFlowCallout_1.transform.localScale = new Vector3(0.1481054f, 0.1481054f, 0.1481054f);
@@ -1294,10 +1305,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.26f, 0.21f, -1.11f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.26f, 0.21f, -1.11f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.26f, 0.21f, -1.11f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.26f, 0.21f, -1.11f))
                     break;
             }
 
@@ -1356,10 +1367,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.4f, 0f, -1.7f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.4f, 0f, -1.7f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.4f, 0f, -1.7f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.4f, 0f, -1.7f))
                     break;
             }
 
@@ -1419,7 +1430,7 @@ public class UIHandler : MonoBehaviour
 
     }
 
-    bool on3DFlowClickedBool = false;
+    public bool on3DFlowClickedBool = false;
 
     public void On3DFlowClicked()
     {
@@ -1485,7 +1496,7 @@ public class UIHandler : MonoBehaviour
     
     IEnumerator PortableIceTransition()
     {
-        if( Screen.width > Screen.height || ARView)
+        if( Screen.width > Screen.height)
         {
             PortableIce_1.transform.localPosition = new Vector3(-0.502f, -0.489f, 0.9473139f);
             PortableIce_1.transform.localScale = new Vector3(0.100825f, 0.100825f, 0.100825f);
@@ -1504,10 +1515,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.55f, -1.21f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.55f, -1.21f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.55f, -1.21f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, -0.55f, -1.21f))
                     break;
             }
 
@@ -1588,10 +1599,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.35f, -0.19f, -1.86f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.35f, -0.19f, -1.86f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.35f, -0.19f, -1.86f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.35f, -0.19f, -1.86f))
                     break;
             }
 
@@ -1658,7 +1669,7 @@ public class UIHandler : MonoBehaviour
     }
 
 
-    bool onPortableIceClickedBool = false;
+    public bool onPortableIceClickedBool = false;
 
     public void OnPortableIceClicked()
     {
@@ -1729,7 +1740,7 @@ public class UIHandler : MonoBehaviour
     IEnumerator MicroBlockTransition()
     {
         _MenuPanel_Portrait.SetActive(false);
-        if(Screen.width > Screen.height || ARView)
+        if(Screen.width > Screen.height)
         {
             MicroBlock_1.transform.localPosition = new Vector3(-0.533f, -0.551f, 0.9093139f);
             MicroBlock_1.transform.localScale = new Vector3(0.1159296f, 0.1159296f, 0.1159296f);
@@ -1750,10 +1761,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.55f, -1.21f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.55f, -1.21f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.55f, -1.21f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, -0.55f, -1.21f))
                     break;
             }
 
@@ -1858,10 +1869,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
-                _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(-0.32f, -0.2f, -1.85f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.2f, -1.85f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.position == new Vector3(-0.32f, -0.2f, -1.85f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, -0.2f, -1.85f))
                     break;
             }
 
@@ -1953,7 +1964,7 @@ public class UIHandler : MonoBehaviour
         _BackPanel_Portrait.SetActive(true);
     }
 
-    bool onMicroBlockClickedBool = false;
+    public bool onMicroBlockClickedBool = false;
 
     public void OnMicroBlockClicked()
     {

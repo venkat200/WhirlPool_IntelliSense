@@ -29,9 +29,14 @@ public class ZapparInstantTrackingTarget : ZapparTrackingTarget, ZapparCamera.IC
     bool pinTry = false;
     // Touch Input Check
 
+    [SerializeField]
+    GameObject UIHandlerObject;
+    UIHandler UIHandlerScript;
+
     void Start()
     {
         ZapparCamera.Instance.RegisterCameraListener( this );
+        UIHandlerScript = UIHandlerObject.GetComponent<UIHandler>();
     }
 
     void OnEnable()
@@ -39,6 +44,7 @@ public class ZapparInstantTrackingTarget : ZapparTrackingTarget, ZapparCamera.IC
         BackGroundCanvas.SetActive(false);
         LoadingBar.SetActive(true);
         // SceneObject.transform.localScale = new Vector3(3f, 3f, 3f);
+        UIHandlerScript = UIHandlerObject.GetComponent<UIHandler>();
     }
 
     void OnDisable()
@@ -114,9 +120,14 @@ public class ZapparInstantTrackingTarget : ZapparTrackingTarget, ZapparCamera.IC
         // else if ((Time.time - timeTouchEnded > displayTime) && pinTry==true && (timeTouchEnded - timeTouchBegan < 1f))
         else if (pinTry == true && (timeTouchEnded - timeTouchBegan < 1f) && (Vector2.Distance(startPosition, endPosition) < 4f))
         {
-            pinClick = !pinClick;
-            m_userHasPlaced = !m_userHasPlaced;
-            LoadingBar.SetActive(!pinClick);
+
+            if (!UIHandlerScript.PlayingFeature)
+            {
+                pinClick = !pinClick;
+                m_userHasPlaced = !m_userHasPlaced;
+                LoadingBar.SetActive(!pinClick);
+            }
+            
             pinTry = false;
         }
 
