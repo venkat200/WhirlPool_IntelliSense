@@ -145,20 +145,20 @@ public class UIHandler : MonoBehaviour
                     if(toggle == false)
                     {
                         VariableTemperature_ModelButton.transform.localPosition = new Vector3(VariableTemperature_ModelButton.transform.localPosition.x - 0.03498348f, VariableTemperature_ModelButton.transform.localPosition.y, VariableTemperature_ModelButton.transform.localPosition.z);
-                        VariableTemperature_DairyProduct.SetActive(false);
-                        VariableTemperature_Fruits.SetActive(true);
+                        VariableTemperature_DairyProduct.SetActive(true);
+                        VariableTemperature_Fruits.SetActive(false);
 
-                        VariableTemperature_Sprite_1.SetActive(false);
-                        VariableTemperature_Sprite_2.SetActive(true);
+                        VariableTemperature_Sprite_1.SetActive(true);
+                        VariableTemperature_Sprite_2.SetActive(false);
                     }
                     else
                     {
                         VariableTemperature_ModelButton.transform.localPosition = new Vector3(VariableTemperature_ModelButton.transform.localPosition.x + 0.03498348f, VariableTemperature_ModelButton.transform.localPosition.y, VariableTemperature_ModelButton.transform.localPosition.z);
-                        VariableTemperature_Fruits.SetActive(false);
-                        VariableTemperature_DairyProduct.SetActive(true);
+                        VariableTemperature_Fruits.SetActive(true);
+                        VariableTemperature_DairyProduct.SetActive(false);
 
-                        VariableTemperature_Sprite_2.SetActive(false);
-                        VariableTemperature_Sprite_1.SetActive(true);
+                        VariableTemperature_Sprite_2.SetActive(true);
+                        VariableTemperature_Sprite_1.SetActive(false);
 
                     }
                 }
@@ -589,6 +589,15 @@ public class UIHandler : MonoBehaviour
         dimensionClick = !dimensionClick;
         ObjectRotateScript.resetRotation = true;
 
+        if (plusClicked && dimensionClick)
+        {
+            OnPlusButtonClicked();
+        }
+        if (doorOpen && dimensionClick)
+        {
+            // OnDoorOpenCloseClicked();
+        }
+
         if (dimensionClick)
         {
             _Plus_Gold_LandScape.SetActive(false);
@@ -622,14 +631,7 @@ public class UIHandler : MonoBehaviour
             _Door_White_Portrait.SetActive(true);
         }
 
-        if (plusClicked && dimensionClick)
-        {
-            OnPlusButtonClicked();
-        }
-        if (doorOpen && dimensionClick)
-        {
-            // OnDoorOpenCloseClicked();
-        }
+        
 
         if (dimensionClick == true)
         {
@@ -648,6 +650,43 @@ public class UIHandler : MonoBehaviour
 
     }
 
+
+
+    IEnumerator OpenCloseDoorButtonClickedTransition(int open)
+    {
+        if(open == 1)
+        {
+            if (Screen.width < Screen.height)
+            {
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.16f, 0.0f, -2.2f), t);
+                    yield return null;
+
+                    if (_Virtual_Camera.transform.position == new Vector3(0.16f, 0.0f, -2.2f))
+                        break;
+                }
+
+                _Virtual_Camera.GetComponent<Camera>().fieldOfView = 85f;
+            }
+        }
+        else if(open == 0)
+        {
+            if (Screen.width < Screen.height)
+            {
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    _Virtual_Camera.transform.position = Vector3.MoveTowards(_Virtual_Camera.transform.position, new Vector3(0.0f, 0.0f, -2.2f), t);
+                    yield return null;
+
+                    if (_Virtual_Camera.transform.position == new Vector3(0.0f, 0.0f, -2.2f))
+                        break;
+                }
+
+                _Virtual_Camera.GetComponent<Camera>().fieldOfView = 79f;
+            }
+        }
+    }
 
     public bool doorOpen = false;
 
@@ -691,6 +730,9 @@ public class UIHandler : MonoBehaviour
                 _Door_White_Portrait.SetActive(false);
                 _CM_Gold_Portrait.SetActive(false);
                 _CM_White_Portrait.SetActive(true);
+
+                StartCoroutine(OpenCloseDoorButtonClickedTransition(1));
+                           
             }
         }
         else
@@ -712,15 +754,26 @@ public class UIHandler : MonoBehaviour
                 _Door_White_Portrait.SetActive(true);
                 _CM_Gold_Portrait.SetActive(false);
                 _CM_White_Portrait.SetActive(true);
+
+                StartCoroutine(OpenCloseDoorButtonClickedTransition(0));
+
             }
-            
+
         }
     }
 
 
     public void BackButtonClicked()
     {
-        _SceneObject.transform.localScale = defaultScale;
+        if (ARView)
+        {
+
+        }
+        else
+        {
+            _SceneObject.transform.localScale = defaultScale;
+        }
+
         if (Screen.width > Screen.height)
         {
             _BottomPanel_LandScape.SetActive(true);
@@ -839,7 +892,7 @@ public class UIHandler : MonoBehaviour
             _AICallout_2.transform.localPosition = new Vector3(-0.9f, 0.55f, 1.66f);
             _AICallout_2.transform.localScale = new Vector3(0.2502712f, 0.2502712f, 0.2502712f);
             _AICallout_3.transform.localPosition = new Vector3(-1.04f, -0.06f, 1.66f);
-            _AICallout_3.transform.localScale = new Vector3(0.2213244f, 0.2213244f, 0.2213244f);
+            _AICallout_3.transform.localScale = new Vector3(0.2213244f, 0.2564707f, 0.2213244f);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
@@ -854,14 +907,14 @@ public class UIHandler : MonoBehaviour
         
 
         _AITech_Sprite.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime/3)
         {
             Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
             _AITech_Sprite.GetComponent<SpriteRenderer>().color = newColor;
             yield return null;
         }
         yield return new WaitForSeconds(1f);
-        animatorAITechSequence.Play("AITech_Animation");
+        // animatorAITechSequence.Play("AITech_Animation");
         
 
         yield return new WaitForSeconds(1f);
@@ -905,7 +958,15 @@ public class UIHandler : MonoBehaviour
 
     public void OnAITechnologyClicked()
     {
-        _SceneObject.transform.localScale = defaultScale;
+        if (ARView)
+        {
+
+        }
+        else
+        {
+            _SceneObject.transform.localScale = defaultScale;
+        }
+
         onAITechnologyClickedBool = !onAITechnologyClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
@@ -953,7 +1014,7 @@ public class UIHandler : MonoBehaviour
 
 
     [SerializeField]
-    GameObject VariableTemperatureCallout_1, VariableTemperatureCallout_2, VariableTemperatureCallout_3, VariableTemperatureCallout_4, VariableTemperature_Tray,
+    GameObject VariableTemperatureCallout_1, VariableTemperatureCallout_2, VariableTemperatureCallout_3, VariableTemperatureCallout_4, VariableTemperature_Tray, VariableTemperatureArrow,
                VariableTemperatureModel, VariableTemperature_ModelButton, VariableTemperature_DairyProduct, VariableTemperature_Fruits, VariableTemperature_Sprite_1, VariableTemperature_Sprite_2;
     Animator animatorVariableTemperature;
 
@@ -967,7 +1028,7 @@ public class UIHandler : MonoBehaviour
             VariableTemperatureCallout_2.transform.localScale = new Vector3(0.07806515f, 0.07806515f, 0.07806515f);
             VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.5200324f, 0.09940827f, 0.8533139f);
             VariableTemperatureCallout_3.transform.localScale = new Vector3(0.0961725f, 0.0961725f, 0.0961725f);
-            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.6270324f, 0.1164083f, 0.8533139f);
+            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.689f, 0.078f, 0.924f);
             VariableTemperatureCallout_4.transform.localScale = new Vector3(0.0961725f, 0.0961725f, 0.0961725f);
 
 
@@ -1017,7 +1078,10 @@ public class UIHandler : MonoBehaviour
             VariableTemperatureModel.SetActive(true);
             animatorVariableTemperature.Play("VariableTemperature_Animation");
             toggleSwitchEnabled = true;
+
+            yield return new WaitForSeconds(1.15f);
             VariableTemperatureCallout_4.SetActive(true);
+            VariableTemperatureArrow.transform.localPosition = new Vector3(0.013f, 3.06f, -0.022f);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
@@ -1027,8 +1091,8 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            VariableTemperature_DairyProduct.SetActive(true);
-            VariableTemperature_Sprite_1.SetActive(true);
+            VariableTemperature_Fruits.SetActive(true);
+            VariableTemperature_Sprite_2.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
@@ -1049,10 +1113,10 @@ public class UIHandler : MonoBehaviour
             VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1326558f, 0.1326558f, 0.1326558f);
             VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.611f, 0.211f, 1.124f);
             VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1150388f, 0.1150388f, 0.1150388f);
-            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.6f, -0.022f, 1.428f);
-            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1631724f, 0.1631724f, 0.1631724f);
-            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.703f, -0.055f, 1.124f);
-            VariableTemperatureCallout_4.transform.localScale = new Vector3(0.1343786f, 0.1343786f, 0.1343786f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.582f, 0.027f, 1.124f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1314941f, 0.1314941f, 0.1314941f);
+            VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.684f, -0.003f, 0.929f);
+            VariableTemperatureCallout_4.transform.localScale = new Vector3(0.1125824f, 0.1125824f, 0.1125824f);
 
             _MenuPanel_Portrait.SetActive(false);
 
@@ -1104,7 +1168,11 @@ public class UIHandler : MonoBehaviour
             VariableTemperatureModel.SetActive(true);
             animatorVariableTemperature.Play("VariableTemperature_Animation");
             toggleSwitchEnabled = true;
+
+            yield return new WaitForSeconds(1.15f);
             VariableTemperatureCallout_4.SetActive(true);
+            VariableTemperatureArrow.transform.localPosition = new Vector3(-0.26f, 3.38f, -0.055f);
+
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
@@ -1114,8 +1182,8 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            VariableTemperature_DairyProduct.SetActive(true);
-            VariableTemperature_Sprite_1.SetActive(true);
+            VariableTemperature_Fruits.SetActive(true);
+            VariableTemperature_Sprite_2.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
@@ -1140,7 +1208,15 @@ public class UIHandler : MonoBehaviour
 
     public void OnVariableTemperatureClicked()
     {
-        _SceneObject.transform.localScale = defaultScale;
+        if (ARView)
+        {
+
+        }
+        else
+        {
+            _SceneObject.transform.localScale = defaultScale;
+        }
+
         onVariableTemperatureClickedBool = !onVariableTemperatureClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
@@ -1270,10 +1346,10 @@ public class UIHandler : MonoBehaviour
             _3DFlowCallout_1.transform.localScale = new Vector3(0.1722803f, 0.1722803f, 0.1722803f);
             _3DFlowCallout_2.transform.localPosition = new Vector3(-0.749f, 0.379f, 1.124f);
             _3DFlowCallout_2.transform.localScale = new Vector3(0.1429926f, 0.1429926f, 0.1429926f);
-            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.726f, 0.03199999f, 1.428f);
-            _3DFlowCallout_3.transform.localScale = new Vector3(0.217749f, 0.217749f, 0.217749f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.6850001f, -0.097f, 1.124f);
-            _3DFlowCallout_4.transform.localScale = new Vector3(0.1343786f, 0.1343786f, 0.1343786f);
+            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.711f, 0.096f, 1.124f);
+            _3DFlowCallout_3.transform.localScale = new Vector3(0.1604723f, 0.1604723f, 0.1604723f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.6850001f, -0.04f, 1.124f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.1208964f, 0.1416755f, 0.1208964f);
 
             _MenuPanel_Portrait.SetActive(false);
 
@@ -1347,7 +1423,15 @@ public class UIHandler : MonoBehaviour
 
     public void On3DFlowClicked()
     {
-        _SceneObject.transform.localScale = defaultScale;
+        if (ARView)
+        {
+
+        }
+        else
+        {
+            _SceneObject.transform.localScale = defaultScale;
+        }
+
         on3DFlowClickedBool = !on3DFlowClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
@@ -1578,7 +1662,15 @@ public class UIHandler : MonoBehaviour
 
     public void OnPortableIceClicked()
     {
-        _SceneObject.transform.localScale = defaultScale;
+        if (ARView)
+        {
+
+        }
+        else
+        {
+            _SceneObject.transform.localScale = defaultScale;
+        }
+
         onPortableIceClickedBool = !onPortableIceClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
@@ -1865,7 +1957,15 @@ public class UIHandler : MonoBehaviour
 
     public void OnMicroBlockClicked()
     {
-        _SceneObject.transform.localScale = defaultScale;
+        if (ARView)
+        {
+
+        }
+        else
+        {
+            _SceneObject.transform.localScale = defaultScale;
+        }
+
         onMicroBlockClickedBool = !onMicroBlockClickedBool;
         // ResetActions();
         ObjectRotateScript.resetRotation = true;
