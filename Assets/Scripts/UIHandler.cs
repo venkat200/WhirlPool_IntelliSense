@@ -333,6 +333,36 @@ public class UIHandler : MonoBehaviour
         _FadeInOut.SetActive(false);
     }
 
+    [SerializeField]
+    GameObject ARInstructions_1, ARInstructions_2;
+
+    IEnumerator ARInstructionTransition()
+    {
+        yield return new WaitForSeconds(1f);
+        ARInstructions_1.SetActive(true);
+        ARInstructions_1.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        {
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+            ARInstructions_1.GetComponent<Image>().color = newColor;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(3f);
+        ARInstructions_1.SetActive(false);
+        ARInstructions_2.SetActive(true);
+        ARInstructions_2.GetComponent<Image>().color = new Color(1, 1, 1, 1);
+        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+        {
+            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+            ARInstructions_2.GetComponent<Image>().color = newColor;
+            yield return null;
+        }
+
+        yield return new WaitForSeconds(3f);
+        ARInstructions_2.SetActive(false);
+    }
+
 
     public void OnARButtonClicked()
     {
@@ -354,8 +384,15 @@ public class UIHandler : MonoBehaviour
             _Virtual_Camera.SetActive(VirtualView);
             _Zappar_Camera.SetActive(ARView);
             _InstantTracker.SetActive(ARView);
-            _SceneObject.transform.localScale = new Vector3(1f, 1f, 1f);
             BackButtonClicked();
+            _SceneObject.transform.localScale = new Vector3(1f, 1f, 1f);
+
+            VariableTemperatureModel.GetComponent<BoxCollider>().size = new Vector3(0.25f, 0.16f, 0.04f);
+
+            ARInstructions_1.SetActive(false);
+            ARInstructions_2.SetActive(false);
+            StopCoroutine(ARInstructionTransition());
+
         }
         else
         {
@@ -363,6 +400,13 @@ public class UIHandler : MonoBehaviour
             _InstantTracker.SetActive(ARView);
             _Virtual_Camera.SetActive(VirtualView);
             _SceneObject.transform.localScale = new Vector3(3f, 3f, 3f);
+
+            ARInstructions_1.SetActive(false);
+            ARInstructions_2.SetActive(false);
+
+            VariableTemperatureModel.GetComponent<BoxCollider>().size = new Vector3(0.61f, 0.52f, -0.58f);
+
+            StartCoroutine(ARInstructionTransition());
         }
 
         _AR_Button_Icon_LandScape.SetActive(VirtualView);
