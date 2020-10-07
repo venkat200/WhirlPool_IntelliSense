@@ -37,12 +37,12 @@ public class SceneZoom : MonoBehaviour
     {
         if (UIHandlerScript.ARView)
         {
-            ScaleRange = new Vector2(2f, 4f);
+            ScaleRange = new Vector2(2f, 6f);
             TouchScrollSensitivity = 6;
         }
         else
         {
-            ScaleRange = new Vector2(0.75f, 2.5f);
+            ScaleRange = new Vector2(0.75f, 3.5f);
             TouchScrollSensitivity = 3;
         }
         checkInput();
