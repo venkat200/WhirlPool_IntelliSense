@@ -31,7 +31,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject _BottomPanel_LandScape;
     [SerializeField]
-    GameObject _Plus_White_LandScape, _Plus_Gold_LandScape, _CM_White_LandScape, _CM_Gold_LandScape, _Door_White_LandScape, _Door_Gold_LandScape;
+    GameObject _Plus_White_LandScape, _Plus_Gold_LandScape, _CM_White_LandScape, _CM_Gold_LandScape, _Door_White_LandScape, _Door_Gold_LandScape, _Door_Bottom_White_LandScape, _Door_Bottom_Gold_LandScape;
     [SerializeField]
     GameObject _BackPanel_LandScape;
 
@@ -40,14 +40,14 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject _BottomPanel_Portrait;
     [SerializeField]
-    GameObject _Plus_White_Portrait, _Plus_Gold_Portrait, _CM_White_Portrait, _CM_Gold_Portrait, _Door_White_Portrait, _Door_Gold_Portrait;
+    GameObject _Plus_White_Portrait, _Plus_Gold_Portrait, _CM_White_Portrait, _CM_Gold_Portrait, _Door_White_Portrait, _Door_Gold_Portrait, _Door_Bottom_White_Portrait, _Door_Bottom_Gold_Portrait;
     [SerializeField]
     GameObject _BackPanel_Portrait;
 
 
     [SerializeField]
-    GameObject _FridgeModel;
-    Animator animatorStartFridge;
+    GameObject _FridgeModel, _FridgeDoor;
+    Animator animatorStartFridge, animatorFridgeDoor;
 
     [SerializeField]
     GameObject _ProductName, _ProductName_Portrait;
@@ -71,6 +71,7 @@ public class UIHandler : MonoBehaviour
     void Start()
     {
         animatorStartFridge = _FridgeModel.GetComponent<Animator>();
+        animatorFridgeDoor = _FridgeDoor.GetComponent<Animator>();
         animatorAITechSequence = _AITech_Sprite.GetComponent<Animator>();
         animator3DFlow = _3DFlow_Sprite.GetComponent<Animator>();
         animatorMicroBlock = MicroBlock_Sprite.GetComponent<Animator>();
@@ -241,11 +242,15 @@ public class UIHandler : MonoBehaviour
     public void ResetActions(bool DoorFunction = true)
     {
         animatorStartFridge.Play("Still");
+        animatorFridgeDoor.Play("Still");
         _SceneObject.transform.localScale = defaultScale;
 
         if (DoorFunction == true)
         {
             doorOpen = false;
+
+            doorOpen_Top = false;
+            doorOpen_Bottom = false;
         }
 
         _BackPanel_LandScape.SetActive(false);
@@ -485,7 +490,7 @@ public class UIHandler : MonoBehaviour
 
     public bool plusClicked = false;
 
-    IEnumerator PlusButtonTransition()
+    IEnumerator PlusButtonTransition(bool doorClickResetBool)
     {   
 
         if (plusClicked)
@@ -564,21 +569,25 @@ public class UIHandler : MonoBehaviour
             _MicroBlock_White_Button_Portrait.SetActive(false);
             _MicroBlock_Gold_Button_Portrait.SetActive(false);
 
-            if (Screen.width < Screen.height)
+            if (!doorClickResetBool)
             {
-                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
+                if (Screen.width < Screen.height)
                 {
-                    _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0f, 0f, -2.2f), t);
-                    yield return null;
+                    for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
+                    {
+                        _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0f, 0f, -2.2f), t);
+                        yield return null;
 
-                    if (_Virtual_Camera.transform.localPosition == new Vector3(0f, 0f, -2.2f))
-                        break;
+                        if (_Virtual_Camera.transform.localPosition == new Vector3(0f, 0f, -2.2f))
+                            break;
+                    }
                 }
             }
+            
         }
     }
 
-    public void OnPlusButtonClicked()
+    public void OnPlusButtonClicked(bool doorClickReset = false)
     {
         ResetActions();
         plusClicked = !plusClicked;
@@ -602,6 +611,8 @@ public class UIHandler : MonoBehaviour
             _CM_White_LandScape.SetActive(true);
             _Door_Gold_LandScape.SetActive(false);
             _Door_White_LandScape.SetActive(true);
+            _Door_Bottom_Gold_LandScape.SetActive(false);
+            _Door_Bottom_White_LandScape.SetActive(true);
 
             _Plus_Gold_Portrait.SetActive(true);
             _Plus_White_Portrait.SetActive(false);
@@ -609,6 +620,8 @@ public class UIHandler : MonoBehaviour
             _CM_White_Portrait.SetActive(true);
             _Door_Gold_Portrait.SetActive(false);
             _Door_White_Portrait.SetActive(true);
+            _Door_Bottom_Gold_Portrait.SetActive(false);
+            _Door_Bottom_White_Portrait.SetActive(true);
         }
         else
         {
@@ -618,6 +631,8 @@ public class UIHandler : MonoBehaviour
             _CM_White_LandScape.SetActive(true);
             _Door_Gold_LandScape.SetActive(false);
             _Door_White_LandScape.SetActive(true);
+            _Door_Bottom_Gold_LandScape.SetActive(false);
+            _Door_Bottom_White_LandScape.SetActive(true);
 
             _Plus_Gold_Portrait.SetActive(false);
             _Plus_White_Portrait.SetActive(true);
@@ -625,8 +640,10 @@ public class UIHandler : MonoBehaviour
             _CM_White_Portrait.SetActive(true);
             _Door_Gold_Portrait.SetActive(false);
             _Door_White_Portrait.SetActive(true);
+            _Door_Bottom_Gold_Portrait.SetActive(false);
+            _Door_Bottom_White_Portrait.SetActive(true);
         }
-        StartCoroutine(PlusButtonTransition());
+        StartCoroutine(PlusButtonTransition(doorClickReset));
     }
 
 
@@ -660,6 +677,8 @@ public class UIHandler : MonoBehaviour
             _CM_White_LandScape.SetActive(false);
             _Door_Gold_LandScape.SetActive(false);
             _Door_White_LandScape.SetActive(true);
+            _Door_Bottom_Gold_LandScape.SetActive(false);
+            _Door_Bottom_White_LandScape.SetActive(true);
 
             _Plus_Gold_Portrait.SetActive(false);
             _Plus_White_Portrait.SetActive(true);
@@ -667,6 +686,8 @@ public class UIHandler : MonoBehaviour
             _CM_White_Portrait.SetActive(false);
             _Door_Gold_Portrait.SetActive(false);
             _Door_White_Portrait.SetActive(true);
+            _Door_Bottom_Gold_Portrait.SetActive(false);
+            _Door_Bottom_White_Portrait.SetActive(true);
         }
         else
         {
@@ -676,6 +697,8 @@ public class UIHandler : MonoBehaviour
             _CM_White_LandScape.SetActive(true);
             _Door_Gold_LandScape.SetActive(false);
             _Door_White_LandScape.SetActive(true);
+            _Door_Bottom_Gold_LandScape.SetActive(false);
+            _Door_Bottom_White_LandScape.SetActive(true);
 
             _Plus_Gold_Portrait.SetActive(false);
             _Plus_White_Portrait.SetActive(true);
@@ -683,6 +706,8 @@ public class UIHandler : MonoBehaviour
             _CM_White_Portrait.SetActive(true);
             _Door_Gold_Portrait.SetActive(false);
             _Door_White_Portrait.SetActive(true);
+            _Door_Bottom_Gold_Portrait.SetActive(false);
+            _Door_Bottom_White_Portrait.SetActive(true);
         }
 
         
@@ -754,7 +779,7 @@ public class UIHandler : MonoBehaviour
 
         if (plusClicked && doorOpen && !check)
         {
-            OnPlusButtonClicked();
+            OnPlusButtonClicked(true);
             doorOpen = true;
         }
         if (dimensionClick && doorOpen)
@@ -767,6 +792,7 @@ public class UIHandler : MonoBehaviour
         if (doorOpen)
         {
             animatorStartFridge.Play("DoorOpen_Animation");
+            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
 
             // Only change the bottom icon color when other bottom icon is clicked 
             if (!check)
@@ -775,6 +801,8 @@ public class UIHandler : MonoBehaviour
                 _Plus_White_LandScape.SetActive(true);
                 _Door_Gold_LandScape.SetActive(true);
                 _Door_White_LandScape.SetActive(false);
+                _Door_Bottom_Gold_LandScape.SetActive(true);
+                _Door_Bottom_White_LandScape.SetActive(false);
                 _CM_Gold_LandScape.SetActive(false);
                 _CM_White_LandScape.SetActive(true);
 
@@ -782,6 +810,8 @@ public class UIHandler : MonoBehaviour
                 _Plus_White_Portrait.SetActive(true);
                 _Door_Gold_Portrait.SetActive(true);
                 _Door_White_Portrait.SetActive(false);
+                _Door_Bottom_Gold_Portrait.SetActive(true);
+                _Door_Bottom_White_Portrait.SetActive(false);
                 _CM_Gold_Portrait.SetActive(false);
                 _CM_White_Portrait.SetActive(true);
 
@@ -792,6 +822,7 @@ public class UIHandler : MonoBehaviour
         else
         {
             animatorStartFridge.Play("DoorClose_Animation");
+            animatorFridgeDoor.Play("DoorClose_Lower_Animation");
 
             if (!check)
             {
@@ -799,6 +830,8 @@ public class UIHandler : MonoBehaviour
                 _Plus_White_LandScape.SetActive(true);
                 _Door_Gold_LandScape.SetActive(false);
                 _Door_White_LandScape.SetActive(true);
+                _Door_Bottom_Gold_LandScape.SetActive(false);
+                _Door_Bottom_White_LandScape.SetActive(true);
                 _CM_Gold_LandScape.SetActive(false);
                 _CM_White_LandScape.SetActive(true);
 
@@ -806,6 +839,8 @@ public class UIHandler : MonoBehaviour
                 _Plus_White_Portrait.SetActive(true);
                 _Door_Gold_Portrait.SetActive(false);
                 _Door_White_Portrait.SetActive(true);
+                _Door_Bottom_Gold_Portrait.SetActive(false);
+                _Door_Bottom_White_Portrait.SetActive(true);
                 _CM_Gold_Portrait.SetActive(false);
                 _CM_White_Portrait.SetActive(true);
 
@@ -815,6 +850,229 @@ public class UIHandler : MonoBehaviour
 
         }
     }
+
+
+
+
+
+
+
+    public bool doorOpen_Top = false;
+
+    public void OnDoorOpenCloseClicked_Top(bool check = false)
+    {
+        // ResetActions(false);
+
+        doorOpen_Top = !doorOpen_Top;
+        ObjectRotateScript.resetRotation = true;
+
+
+        if (plusClicked && doorOpen_Top && !check)
+        {
+            OnPlusButtonClicked(true);
+            doorOpen_Top = true;
+        }
+        if (dimensionClick && doorOpen_Top)
+        {
+            CMButtonClicked();
+            ObjectRotateScript.OnDimensionClicked();
+            doorOpen_Top = true;
+        }
+
+        if (doorOpen_Top)
+        {
+            animatorStartFridge.Play("DoorOpen_Animation");
+            // animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+
+            // Only change the bottom icon color when other bottom icon is clicked 
+            if (!check)
+            {
+                _Plus_Gold_LandScape.SetActive(false);
+                _Plus_White_LandScape.SetActive(true);
+                _Door_Gold_LandScape.SetActive(true);
+                _Door_White_LandScape.SetActive(false);
+                // _Door_Bottom_Gold_LandScape.SetActive(false);
+                // _Door_Bottom_White_LandScape.SetActive(true);
+                _CM_Gold_LandScape.SetActive(false);
+                _CM_White_LandScape.SetActive(true);
+
+                _Plus_Gold_Portrait.SetActive(false);
+                _Plus_White_Portrait.SetActive(true);
+                _Door_Gold_Portrait.SetActive(true);
+                _Door_White_Portrait.SetActive(false);
+                // _Door_Bottom_Gold_Portrait.SetActive(false);
+                // _Door_Bottom_White_Portrait.SetActive(true);
+                _CM_Gold_Portrait.SetActive(false);
+                _CM_White_Portrait.SetActive(true);
+
+                StartCoroutine(OpenCloseDoorButtonClickedTransition(1));
+
+            }
+        }
+        else
+        {
+            animatorStartFridge.Play("DoorClose_Animation");
+            // animatorFridgeDoor.Play("DoorClose_Lower_Animation");
+
+            if (!check)
+            {
+                _Plus_Gold_LandScape.SetActive(false);
+                _Plus_White_LandScape.SetActive(true);
+                _Door_Gold_LandScape.SetActive(false);
+                _Door_White_LandScape.SetActive(true);
+                // _Door_Bottom_Gold_LandScape.SetActive(false);
+                // _Door_Bottom_White_LandScape.SetActive(true);
+                _CM_Gold_LandScape.SetActive(false);
+                _CM_White_LandScape.SetActive(true);
+
+                _Plus_Gold_Portrait.SetActive(false);
+                _Plus_White_Portrait.SetActive(true);
+                _Door_Gold_Portrait.SetActive(false);
+                _Door_White_Portrait.SetActive(true);
+                // _Door_Bottom_Gold_Portrait.SetActive(false);
+                // _Door_Bottom_White_Portrait.SetActive(true);
+                _CM_Gold_Portrait.SetActive(false);
+                _CM_White_Portrait.SetActive(true);
+
+                
+                if (!doorOpen_Bottom)
+                {
+                    StartCoroutine(OpenCloseDoorButtonClickedTransition(0));
+                }
+
+            }
+
+        }
+    }
+
+
+
+
+
+    public bool doorOpen_Bottom = false;
+
+    public void OnDoorOpenCloseClicked_Bottom(bool check = false)
+    {
+        // ResetActions(false);
+
+        doorOpen_Bottom = !doorOpen_Bottom;
+        ObjectRotateScript.resetRotation = true;
+
+
+        if (plusClicked && doorOpen_Bottom && !check)
+        {
+            OnPlusButtonClicked(true);
+            doorOpen_Bottom = true;
+        }
+        if (dimensionClick && doorOpen_Bottom)
+        {
+            CMButtonClicked();
+            ObjectRotateScript.OnDimensionClicked();
+            doorOpen_Bottom = true;
+        }
+
+        if (doorOpen_Bottom)
+        {
+            // animatorStartFridge.Play("DoorOpen_Animation");
+            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+
+            // Only change the bottom icon color when other bottom icon is clicked 
+            if (!check)
+            {
+                _Plus_Gold_LandScape.SetActive(false);
+                _Plus_White_LandScape.SetActive(true);
+                // _Door_Gold_LandScape.SetActive(false);
+                // _Door_White_LandScape.SetActive(true);
+                _Door_Bottom_Gold_LandScape.SetActive(true);
+                _Door_Bottom_White_LandScape.SetActive(false);
+                _CM_Gold_LandScape.SetActive(false);
+                _CM_White_LandScape.SetActive(true);
+
+                _Plus_Gold_Portrait.SetActive(false);
+                _Plus_White_Portrait.SetActive(true);
+                // _Door_Gold_Portrait.SetActive(false);
+                // _Door_White_Portrait.SetActive(true);
+                _Door_Bottom_Gold_Portrait.SetActive(true);
+                _Door_Bottom_White_Portrait.SetActive(false);
+                _CM_Gold_Portrait.SetActive(false);
+                _CM_White_Portrait.SetActive(true);
+
+                StartCoroutine(OpenCloseDoorButtonClickedTransition(1));
+
+            }
+        }
+        else
+        {
+            // animatorStartFridge.Play("DoorClose_Animation");
+            animatorFridgeDoor.Play("DoorClose_Lower_Animation");
+
+            if (!check)
+            {
+                _Plus_Gold_LandScape.SetActive(false);
+                _Plus_White_LandScape.SetActive(true);
+                // _Door_Gold_LandScape.SetActive(false);
+                // _Door_White_LandScape.SetActive(true);
+                _Door_Bottom_Gold_LandScape.SetActive(false);
+                _Door_Bottom_White_LandScape.SetActive(true);
+                _CM_Gold_LandScape.SetActive(false);
+                _CM_White_LandScape.SetActive(true);
+
+                _Plus_Gold_Portrait.SetActive(false);
+                _Plus_White_Portrait.SetActive(true);
+                // _Door_Gold_Portrait.SetActive(false);
+                // _Door_White_Portrait.SetActive(true);
+                _Door_Bottom_Gold_Portrait.SetActive(false);
+                _Door_Bottom_White_Portrait.SetActive(true);
+                _CM_Gold_Portrait.SetActive(false);
+                _CM_White_Portrait.SetActive(true);
+
+                
+                if (!doorOpen_Top)
+                {
+                    StartCoroutine(OpenCloseDoorButtonClickedTransition(0));
+                }
+
+            }
+
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     public void BackButtonClicked()
