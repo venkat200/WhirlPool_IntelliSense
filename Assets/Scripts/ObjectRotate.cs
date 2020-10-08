@@ -19,6 +19,7 @@ public class ObjectRotate : MonoBehaviour
     [SerializeField]
     GameObject Arrow_L, Arrow_B, Arrow_H;
 
+    public int AllowRotation = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -79,8 +80,8 @@ public class ObjectRotate : MonoBehaviour
 
     void OnMouseDrag()
     {
-        float rotationX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad;
-        float rotationY = Input.GetAxis("Mouse Y") * rotationSpeed * Mathf.Deg2Rad;
+        float rotationX = Input.GetAxis("Mouse X") * rotationSpeed * Mathf.Deg2Rad * AllowRotation;
+        float rotationY = Input.GetAxis("Mouse Y") * rotationSpeed * Mathf.Deg2Rad * AllowRotation;
 
         if (rotationX > -0.3f && rotationX < 0.3f)
         {

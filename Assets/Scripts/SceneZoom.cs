@@ -16,6 +16,8 @@ public class SceneZoom : MonoBehaviour
     // public float ScrollSensitvity = 120f;
     // public float TouchScrollSensitivity = 3f;
 
+    public int AllowScaling = 1;
+    
     [SerializeField]
     GameObject ScaleRangeSelectionObject;
     UIHandler UIHandlerScript;
@@ -65,14 +67,14 @@ public class SceneZoom : MonoBehaviour
                 if (_diff_move > _diff_Start)
                 {
                     if (_SceneObject.transform.localScale.y < ScaleRange.y)
-                        _SceneObject.transform.localScale += new Vector3(1f, 1f, 1f) * Time.deltaTime * 0.5f * TouchScrollSensitivity;
+                        _SceneObject.transform.localScale += new Vector3(1f, 1f, 1f) * Time.deltaTime * 0.5f * TouchScrollSensitivity * AllowScaling;
 
                     _diff_Start = _diff_move;
                 }
                 else if (_diff_move < _diff_Start)
                 {
                     if (_SceneObject.transform.localScale.y > ScaleRange.x)
-                        _SceneObject.transform.localScale -= new Vector3(1f, 1f, 1f) * Time.deltaTime * 0.5f * TouchScrollSensitivity;
+                        _SceneObject.transform.localScale -= new Vector3(1f, 1f, 1f) * Time.deltaTime * 0.5f * TouchScrollSensitivity * AllowScaling;
 
                     _diff_Start = _diff_move;
                 }
@@ -98,7 +100,7 @@ public class SceneZoom : MonoBehaviour
                 }
                 else
                 {
-                    _SceneObject.transform.localScale += new Vector3(1f, 1f, 1f) * Time.deltaTime * ScrollAmount * 0.5f;
+                    _SceneObject.transform.localScale += new Vector3(1f, 1f, 1f) * Time.deltaTime * ScrollAmount * 0.5f * AllowScaling;
                 }
             }
         }

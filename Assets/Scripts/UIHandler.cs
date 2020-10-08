@@ -56,6 +56,10 @@ public class UIHandler : MonoBehaviour
     GameObject ObjectRotateGameObject;
     ObjectRotate ObjectRotateScript;
 
+    [SerializeField]
+    GameObject SceneZoomGameObject;
+    SceneZoom SceneZoomScript;
+
     Vector3 defaultScale;
 
     RaycastHit hit;
@@ -92,8 +96,7 @@ public class UIHandler : MonoBehaviour
         }
 
         ObjectRotateScript = ObjectRotateGameObject.GetComponent<ObjectRotate>();
-
-
+        SceneZoomScript = SceneZoomGameObject.GetComponent<SceneZoom>();             
     }
 
     // Update is called once per frame
@@ -339,11 +342,12 @@ public class UIHandler : MonoBehaviour
     }
 
     [SerializeField]
-    GameObject ARInstructions_1, ARInstructions_2;
+    GameObject ARInstruction_Panel, ARInstructions_1, ARInstructions_2;
 
     IEnumerator ARInstructionTransition()
     {
         yield return new WaitForSeconds(1f);
+        ARInstruction_Panel.SetActive(true);
         ARInstructions_1.SetActive(true);
         ARInstructions_1.GetComponent<Image>().color = new Color(1, 1, 1, 1);
         for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -366,6 +370,7 @@ public class UIHandler : MonoBehaviour
 
         yield return new WaitForSeconds(3f);
         ARInstructions_2.SetActive(false);
+        ARInstruction_Panel.SetActive(false);
     }
 
 
@@ -394,6 +399,7 @@ public class UIHandler : MonoBehaviour
 
             VariableTemperatureModel.GetComponent<BoxCollider>().size = new Vector3(0.25f, 0.16f, 0.04f);
 
+            ARInstruction_Panel.SetActive(false);
             ARInstructions_1.SetActive(false);
             ARInstructions_2.SetActive(false);
             StopCoroutine(ARInstructionTransition());
@@ -406,6 +412,7 @@ public class UIHandler : MonoBehaviour
             _Virtual_Camera.SetActive(VirtualView);
             _SceneObject.transform.localScale = new Vector3(3f, 3f, 3f);
 
+            ARInstruction_Panel.SetActive(false);
             ARInstructions_1.SetActive(false);
             ARInstructions_2.SetActive(false);
 
@@ -1173,6 +1180,9 @@ public class UIHandler : MonoBehaviour
         _TrayObject_8.SetActive(false);
 
         ObjectRotateScript.resetRotation = true;
+
+        ObjectRotateScript.AllowRotation = 1;
+        SceneZoomScript.AllowScaling = 1;
     }
 
     [SerializeField]
@@ -1181,7 +1191,10 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator AITechnologyTransition()
     {
-        if(Screen.width > Screen.height)
+        ObjectRotateScript.AllowRotation = 0;
+        SceneZoomScript.AllowScaling = 0;
+
+        if (Screen.width > Screen.height)
         {
             _AICallout_1.transform.localPosition = new Vector3(-1.175f, 0.77f, 1.370314f);
             _AICallout_1.transform.localScale = new Vector3(0.1649768f, 0.1649768f, 0.1649768f);
@@ -1335,14 +1348,17 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator VariableTemperatureTransition()
     {
+        ObjectRotateScript.AllowRotation = 0;
+        SceneZoomScript.AllowScaling = 0;
+
         if (Screen.width > Screen.height)
         {
-            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.5220324f, 0.1534083f, 0.8533139f);
-            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.0961725f, 0.0961725f, 0.0961725f);
-            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.5530324f, 0.2044083f, 0.8533139f);
-            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.07806515f, 0.07806515f, 0.07806515f);
-            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.5200324f, 0.09940827f, 0.8533139f);
-            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.0961725f, 0.0961725f, 0.0961725f);
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.517f, 0.157f, 0.8533139f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1191531f, 0.1119544f, 0.1119544f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.613f, 0.215f, 0.853f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.09937441f, 0.09937441f, 0.09937441f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.611f, 0.065f, 0.853f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.08134847f, 0.08134847f, 0.08134847f);
             VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.689f, 0.078f, 0.924f);
             VariableTemperatureCallout_4.transform.localScale = new Vector3(0.0961725f, 0.0961725f, 0.0961725f);
 
@@ -1396,18 +1412,30 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1.15f);
             VariableTemperatureCallout_4.SetActive(true);
-            VariableTemperatureArrow.transform.localPosition = new Vector3(0.013f, 3.06f, -0.022f);
+            VariableTemperatureArrow.SetActive(true);
+            VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            VariableTemperatureArrow.transform.localPosition = new Vector3(0.013f, 3.07f, -0.022f);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
                 VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
 
             yield return new WaitForSeconds(1f);
-
             VariableTemperature_Fruits.SetActive(true);
             VariableTemperature_Sprite_2.SetActive(true);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+            VariableTemperatureArrow.SetActive(false);
+
+            
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
@@ -1418,17 +1446,18 @@ public class UIHandler : MonoBehaviour
             }
 
             
+
             // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-65f, -165f, 0);
             // _BackPanel_LandScape.SetActive(true);
             // _MenuPanel_Portrait.SetActive(false);
         }
         else
         {
-            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.578f, 0.126f, 1.124f);
-            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1326558f, 0.1326558f, 0.1326558f);
-            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.611f, 0.211f, 1.124f);
-            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1150388f, 0.1150388f, 0.1150388f);
-            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.582f, 0.027f, 1.124f);
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.592f, 0.126f, 1.124f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.1616083f, 0.149901f, 0.149901f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.681f, 0.211f, 1.124f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.159278f, 0.159278f, 0.159278f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.672f, -0.009f, 1.124f);
             VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1314941f, 0.1314941f, 0.1314941f);
             VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.684f, -0.003f, 0.929f);
             VariableTemperatureCallout_4.transform.localScale = new Vector3(0.1125824f, 0.1125824f, 0.1125824f);
@@ -1486,19 +1515,31 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1.15f);
             VariableTemperatureCallout_4.SetActive(true);
+            VariableTemperatureArrow.SetActive(true);
+            VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
             VariableTemperatureArrow.transform.localPosition = new Vector3(-0.26f, 3.38f, -0.055f);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
                 VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
 
             yield return new WaitForSeconds(1f);
-
             VariableTemperature_Fruits.SetActive(true);
             VariableTemperature_Sprite_2.SetActive(true);
+
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+            VariableTemperatureArrow.SetActive(false);
+
+            
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
@@ -1507,6 +1548,7 @@ public class UIHandler : MonoBehaviour
                 if (VariableTemperature_Tray.transform.localPosition == new Vector3(0.0f, 0.0f, 0.25f))
                     break;
             }
+            
 
             //_BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
             //_BackPanel_Portrait.SetActive(true);
@@ -1587,15 +1629,18 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator _3DFlowTransition()
     {
-        if(Screen.width > Screen.height)
+        ObjectRotateScript.AllowRotation = 0;
+        SceneZoomScript.AllowScaling = 0;
+
+        if (Screen.width > Screen.height)
         {
-            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.576f, 0.433f, 1.125f);
-            _3DFlowCallout_1.transform.localScale = new Vector3(0.1481054f, 0.1481054f, 0.1481054f);
-            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.823f, 0.508f, 1.125f);
-            _3DFlowCallout_2.transform.localScale = new Vector3(0.1065419f, 0.1065419f, 0.1065419f);
-            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.748f, 0.283f, 1.125f);
-            _3DFlowCallout_3.transform.localScale = new Vector3(0.1330327f, 0.1330327f, 0.1330327f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.68f, 0.163f, 1.125f);
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.576f, 0.396f, 1.125f);
+            _3DFlowCallout_1.transform.localScale = new Vector3(0.1651079f, 0.1481054f, 0.1481054f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.762f, 0.48f, 1.125f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1321398f, 0.1321398f, 0.1321398f);
+            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.775f, 0.283f, 1.125f);
+            _3DFlowCallout_3.transform.localScale = new Vector3(0.1104171f, 0.1104171f, 0.1104171f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.692f, 0.232f, 1.125f);
             _3DFlowCallout_4.transform.localScale = new Vector3(0.1308552f, 0.1308552f, 0.1308552f);
 
 
@@ -1632,6 +1677,7 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
+            /*
             _3DFlowCallout_3.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -1643,6 +1689,8 @@ public class UIHandler : MonoBehaviour
             yield return new WaitForSeconds(3f);
 
             _3DFlowCallout_3.SetActive(false);
+            */
+
             _3DFlowCallout_4.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -1657,14 +1705,14 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.512f, 0.282f, 1.124f);
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.58f, 0.282f, 1.124f);
             _3DFlowCallout_1.transform.localScale = new Vector3(0.1722803f, 0.1722803f, 0.1722803f);
-            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.749f, 0.379f, 1.124f);
-            _3DFlowCallout_2.transform.localScale = new Vector3(0.1429926f, 0.1429926f, 0.1429926f);
-            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.711f, 0.096f, 1.124f);
-            _3DFlowCallout_3.transform.localScale = new Vector3(0.1604723f, 0.1604723f, 0.1604723f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.6850001f, -0.04f, 1.124f);
-            _3DFlowCallout_4.transform.localScale = new Vector3(0.1208964f, 0.1416755f, 0.1208964f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.717f, 0.379f, 1.124f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1756378f, 0.1756378f, 0.1756378f);
+            _3DFlowCallout_3.transform.localPosition = new Vector3(-0.779f, 0.154f, 1.124f);
+            _3DFlowCallout_3.transform.localScale = new Vector3(0.1212172f, 0.1212172f, 0.1212172f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.6850001f, 0.048f, 1.124f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.1479893f, 0.1479893f, 0.1479893f);
 
             _MenuPanel_Portrait.SetActive(false);
 
@@ -1703,6 +1751,7 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
+            /*
             _3DFlowCallout_3.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -1714,6 +1763,7 @@ public class UIHandler : MonoBehaviour
             yield return new WaitForSeconds(3f);
 
             _3DFlowCallout_3.SetActive(false);
+            */
             _3DFlowCallout_4.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -1800,14 +1850,17 @@ public class UIHandler : MonoBehaviour
     
     IEnumerator PortableIceTransition()
     {
-        if( Screen.width > Screen.height)
+        ObjectRotateScript.AllowRotation = 0;
+        SceneZoomScript.AllowScaling = 0;
+
+        if ( Screen.width > Screen.height)
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.502f, -0.489f, 0.9473139f);
-            PortableIce_1.transform.localScale = new Vector3(0.100825f, 0.100825f, 0.100825f);
-            PortableIce_2.transform.localPosition = new Vector3(-0.575f, -0.445f, 0.9473139f);
-            PortableIce_2.transform.localScale = new Vector3(0.100825f, 0.100825f, 0.100825f);
-            PortableIce_3.transform.localPosition = new Vector3(-0.587f, -0.726f, 0.9473139f);
-            PortableIce_3.transform.localScale = new Vector3(0.100825f, 0.100825f, 0.100825f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.544f, -0.489f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.1442664f, 0.1240148f, 0.1240148f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.703f, -0.445f, 0.9473139f);
+            PortableIce_2.transform.localScale = new Vector3(0.1569691f, 0.1569691f, 0.1569691f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.614f, -0.611f, 0.9473139f);
+            PortableIce_3.transform.localScale = new Vector3(0.1127526f, 0.1127526f, 0.1127526f);
 
 
             PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
@@ -1845,19 +1898,19 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.37f), t);
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.295f), t);
                 yield return null;
 
-                if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.37f))
+                if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.295f))
                     break;
             }
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.37f), t);
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.295f), t);
                 yield return null;
 
-                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.37f))
+                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.295f))
                     break;
             }
 
@@ -1883,15 +1936,12 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.55f, -0.3845918f, 0.9473139f);
-            PortableIce_1.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
-            PortableIce_2.transform.localPosition = new Vector3(-0.6380324f, - 0.3275917f,  0.9473139f);
-            PortableIce_2.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
-            PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, - 0.6375917f, 0.9473139f);
-            PortableIce_3.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);
-
-
-            
+            PortableIce_1.transform.localPosition = new Vector3(-0.563f, -0.3845918f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.1625803f, 0.1625803f, 0.1625803f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.754f, -0.3275917f, 0.9473139f);
+            PortableIce_2.transform.localScale = new Vector3(0.1636263f, 0.1636263f, 0.1636263f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, -0.551f, 0.9473139f);
+            PortableIce_3.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);            
 
 
             PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
@@ -1929,19 +1979,19 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.37f), t);
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.295f), t);
                 yield return null;
 
-                if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.37f))
+                if (PortableIce_Model.transform.localPosition == new Vector3(0.0f, 0f, 0.295f))
                     break;
             }
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.37f), t);
+                PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.295f), t);
                 yield return null;
 
-                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.37f))
+                if (PortableIce_Model.transform.localPosition == new Vector3(-0.211f, 0f, 0.295f))
                     break;
             }
 
@@ -1966,7 +2016,7 @@ public class UIHandler : MonoBehaviour
             // _BackPanel_Portrait.SetActive(true);
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-30f, -155f, 0);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-25f, -285f, 0);
         _BackPanel_Portrait.SetActive(true);
@@ -2043,20 +2093,23 @@ public class UIHandler : MonoBehaviour
 
     IEnumerator MicroBlockTransition()
     {
+        ObjectRotateScript.AllowRotation = 0;
+        SceneZoomScript.AllowScaling = 0;
+
         _MenuPanel_Portrait.SetActive(false);
         if(Screen.width > Screen.height)
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.533f, -0.551f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.1159296f, 0.1159296f, 0.1159296f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.724f, -0.475f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.09725131f, 0.09725131f, 0.09725131f);
-            MicroBlock_3.transform.localPosition = new Vector3(-0.699f, -0.6259999f, 0.9093139f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.52f, 0.014f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.1270882f, 0.1159296f, 0.1159296f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.647f, 0.07f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1115047f, 0.1115047f, 0.1115047f);
+            MicroBlock_3.transform.localPosition = new Vector3(-0.699f, -0.06099993f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.636f, -0.728f, 0.9093139f);
-            MicroBlock_4.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.583f, -0.073f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.1136419f, 0.1136419f, 0.1136419f);
 
 
-            MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
+            MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
             MicroBlock_Model.SetActive(true);
 
             OnDoorOpenCloseClicked(true);
@@ -2065,10 +2118,10 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.55f, -1.21f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, 0f, -1.21f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, -0.55f, -1.21f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, 0f, -1.21f))
                     break;
             }
 
@@ -2080,8 +2133,6 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            MicroBlock_Sprite.SetActive(true);
-            animatorMicroBlock.Play("MicroBlock_Animation");
 
             MicroBlock_2.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -2093,14 +2144,14 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.2192f, 0.222f), t);
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.7986788f, 0.222f), t);
                 yield return null;
 
-                if (MicroBlock_Model.transform.localPosition == new Vector3(0f, 0.2192f, 0.222f))
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0f, 0.7986788f, 0.222f))
                     break;
             }
 
-
+            /*
             MicroBlock_3.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -2108,9 +2159,10 @@ public class UIHandler : MonoBehaviour
                 MicroBlock_3.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
+            */
 
             yield return new WaitForSeconds(1f);
-
+            
 
             _TrayObject_1.SetActive(true);
             // yield return new WaitForSeconds(0.5f);
@@ -2130,8 +2182,7 @@ public class UIHandler : MonoBehaviour
             yield return new WaitForSeconds(1f);
 
 
-
-            MicroBlock_3.SetActive(false);
+            // MicroBlock_3.SetActive(false);
             MicroBlock_4.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -2142,36 +2193,41 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.2192179f, -0.06651523f), t);
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.7986788f, -0.144f), t);
                 yield return null;
 
-                if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.2192179f, -0.06651523f))
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.7986788f, -0.144f))
                     break;
             }
+
+            MicroBlock_Sprite.SetActive(true);
+            animatorMicroBlock.Play("MicroBlock_Animation");
+            yield return new WaitForSeconds(3f);
+            MicroBlock_Sprite.SetActive(false);
 
             // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
             // _BackPanel_LandScape.SetActive(true);
         }
         else
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.531f, -0.5f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.697f, -0.414f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_3.transform.localPosition = new Vector3(-0.678f, -0.575f, 0.9093139f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.531f, -0.00999999f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.1300354f, 0.1252388f, 0.1252388f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.629f, 0.058f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1320065f, 0.1320065f, 0.1320065f);
+            MicroBlock_3.transform.localPosition = new Vector3(-0.678f, -0.08499998f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.607f, -0.778f, 0.9093139f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.595f, -0.117f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
 
 
-            MicroBlock_Model.transform.localPosition = new Vector3(0, 0.2192179f, -0.06651523f);
+            MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
             MicroBlock_Model.SetActive(true);
 
             OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.2f, -1.85f), t);
                 yield return null;
@@ -2196,19 +2252,16 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            MicroBlock_Sprite.SetActive(true);
-            animatorMicroBlock.Play("MicroBlock_Animation");
-
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.2192f, 0.222f), t);
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.7986788f, 0.222f), t);
                 yield return null;
 
-                if (MicroBlock_Model.transform.localPosition == new Vector3(0f, 0.2192f, 0.222f))
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0f, 0.7986788f, 0.222f))
                     break;
             }
 
-
+            /*
             MicroBlock_3.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -2216,9 +2269,10 @@ public class UIHandler : MonoBehaviour
                 MicroBlock_3.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
+            */
 
             yield return new WaitForSeconds(1f);
-
+            
 
             
             _TrayObject_1.SetActive(true);
@@ -2251,18 +2305,24 @@ public class UIHandler : MonoBehaviour
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.2192179f, -0.06651523f), t);
+                MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.7986788f, -0.144f), t);
                 yield return null;
 
-                if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.2192179f, -0.06651523f))
+                if (MicroBlock_Model.transform.localPosition == new Vector3(0, 0.7986788f, -0.144f))
                     break;
             }
+
+            MicroBlock_Sprite.SetActive(true);
+            animatorMicroBlock.Play("MicroBlock_Animation");
+            yield return new WaitForSeconds(3f);
+            MicroBlock_Sprite.SetActive(false);
+
 
             // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
             // _BackPanel_Portrait.SetActive(true);
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-20f, -155f, 0);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
         _BackPanel_Portrait.SetActive(true);
