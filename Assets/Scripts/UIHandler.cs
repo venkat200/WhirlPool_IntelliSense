@@ -506,39 +506,41 @@ public class UIHandler : MonoBehaviour
                         break;
                 }
 
+                _MenuPanel_Portrait.SetActive(true);
+
+                _ProductName_Portrait.SetActive(true);
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                    _ProductName_Portrait.GetComponent<Image>().color = newColor;
+                    yield return null;
+                }
+
+                _AITechnology_Gold_Button_Portrait.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _variableTemperature_Gold_Button_Portrait.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _3DAir_Gold_Button_Portrait.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _PortableIce_Gold_Button_Portrait.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _MicroBlock_Gold_Button_Portrait.SetActive(true);
             }
-
-            _MenuPanel_LandScape.SetActive(true);
-
-            _AITechnology_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _variableTemperature_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _3DAir_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _PortableIce_Gold_Button_LandScape.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _MicroBlock_Gold_Button_LandScape.SetActive(true);
-
-            _MenuPanel_Portrait.SetActive(true);
-
-            _ProductName_Portrait.SetActive(true);
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            else
             {
-                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-                _ProductName_Portrait.GetComponent<Image>().color = newColor;
-                yield return null;
-            }
+                _MenuPanel_LandScape.SetActive(true);
 
-            _AITechnology_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _variableTemperature_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _3DAir_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _PortableIce_Gold_Button_Portrait.SetActive(true);
-            yield return new WaitForSeconds(0.3f);
-            _MicroBlock_Gold_Button_Portrait.SetActive(true);
+                _AITechnology_Gold_Button_LandScape.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _variableTemperature_Gold_Button_LandScape.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _3DAir_Gold_Button_LandScape.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _PortableIce_Gold_Button_LandScape.SetActive(true);
+                yield return new WaitForSeconds(0.3f);
+                _MicroBlock_Gold_Button_LandScape.SetActive(true);
+            }
+       
 
         }
         else
