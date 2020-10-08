@@ -76,7 +76,6 @@ public class UIHandler : MonoBehaviour
     {
         animatorStartFridge = _FridgeModel.GetComponent<Animator>();
         animatorFridgeDoor = _FridgeDoor.GetComponent<Animator>();
-        animatorAITechSequence = _AITech_Sprite.GetComponent<Animator>();
         animator3DFlow = _3DFlow_Sprite.GetComponent<Animator>();
         animatorMicroBlock = MicroBlock_Sprite.GetComponent<Animator>();
         animatorVariableTemperature = VariableTemperatureModel.GetComponent<Animator>();
@@ -285,7 +284,7 @@ public class UIHandler : MonoBehaviour
         _MicroBlock_White_Button_Portrait.SetActive(false);
         _MicroBlock_Gold_Button_Portrait.SetActive(false);
 
-        _AITech_Sprite.SetActive(false);
+
         _AICallout_1.SetActive(false);
         _AICallout_2.SetActive(false);
         _AICallout_3.SetActive(false);
@@ -1123,7 +1122,6 @@ public class UIHandler : MonoBehaviour
         // ResetPosition = true;
         StartCoroutine(BackTransition());
 
-        _AITech_Sprite.SetActive(false);
         _AICallout_1.SetActive(false);
         _AICallout_2.SetActive(false);
         _AICallout_3.SetActive(false);
@@ -1186,7 +1184,16 @@ public class UIHandler : MonoBehaviour
     }
 
     [SerializeField]
-    GameObject _AITech_Sprite, _AICallout_1, _AICallout_2, _AICallout_3;
+    GameObject _AICallout_1, _AICallout_2, _AICallout_3;
+    [SerializeField]
+    GameObject AIUsageSensor_Silver_Button, AIUsageSensor_Gold_Button, AIWeatherSensor_Silver_Button, AIWeatherSensor_Gold_Button, AILoadSensor_Silver_Button, AILoadSensor_Gold_Button;
+    [SerializeField]
+    GameObject AIUsageSensor_Callout_1;
+    [SerializeField]
+    GameObject AIWeatherSensor_Callout_1;
+    [SerializeField]
+    GameObject AILoadSensor_Callout_1;
+
     Animator animatorAITechSequence;
 
     IEnumerator AITechnologyTransition()
@@ -1196,89 +1203,26 @@ public class UIHandler : MonoBehaviour
 
         if (Screen.width > Screen.height)
         {
-            _AICallout_1.transform.localPosition = new Vector3(-1.175f, 0.77f, 1.370314f);
-            _AICallout_1.transform.localScale = new Vector3(0.1649768f, 0.1649768f, 0.1649768f);
-            _AICallout_2.transform.localPosition = new Vector3(-1.057f, 0.543f, 1.370314f);
-            _AICallout_2.transform.localScale = new Vector3(0.2096372f, 0.2096372f, 0.2096372f);
-            _AICallout_3.transform.localPosition = new Vector3(-1.177f, 0.051f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.1853902f, 0.1853902f, 0.1853902f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
-            {
-                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, 0.36f, -1.38f), t);
-                yield return null;
 
-                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, 0.36f, -1.38f))
-                    break;
-            }
+
         }
         else
         {
 
-            _AICallout_1.transform.localPosition = new Vector3(-1.04f, 0.77f, 1.66f);
-            _AICallout_1.transform.localScale = new Vector3(0.1969543f, 0.1969543f, 0.1969543f);
-            _AICallout_2.transform.localPosition = new Vector3(-0.9f, 0.55f, 1.66f);
-            _AICallout_2.transform.localScale = new Vector3(0.2502712f, 0.2502712f, 0.2502712f);
-            _AICallout_3.transform.localPosition = new Vector3(-1.04f, -0.06f, 1.66f);
-            _AICallout_3.transform.localScale = new Vector3(0.2213244f, 0.2564707f, 0.2213244f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
-            {
-                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.55f, -0.06f, -2.42f), t);
-                yield return null;
 
-                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.55f, -0.06f, -2.42f))
-                    break;
-            }
+
 
         }
         
-
-        _AITech_Sprite.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime/3)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _AITech_Sprite.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-        yield return new WaitForSeconds(1f);
-        // animatorAITechSequence.Play("AITech_Animation");
-        
-
-        yield return new WaitForSeconds(1f);
-
-        _AICallout_1.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _AICallout_1.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(1f);
-
-        _AICallout_2.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _AICallout_2.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
-
-        yield return new WaitForSeconds(1f);
-
-        _AICallout_3.SetActive(true);
-        for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-        {
-            Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-            _AICallout_3.GetComponent<SpriteRenderer>().color = newColor;
-            yield return null;
-        }
 
         _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -165f, 0f);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(5f, -115f, 0);
         _BackPanel_Portrait.SetActive(true);
+
+        yield return new WaitForSeconds(0f);
 
     }
 
