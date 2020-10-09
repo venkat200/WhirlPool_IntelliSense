@@ -1,0 +1,272 @@
+fileFormatVersion: 2
+guid: 093d5319c88675c44a07b10ebb13e342
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Broccoli_texture
+    second: {fileID: 2100000, guid: 614b60caf396497488ed4acb5d01cfad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: CleanMetal_Bronze_lid_01
+    second: {fileID: 2100000, guid: 742e0f22d3a74384fbb50ee3c1a7a178, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Glass_01
+    second: {fileID: 2100000, guid: 900ebd93c0b9a9441acec96b2e0c7bd7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: InsideProducts_01
+    second: {fileID: 2100000, guid: ef2073e983c2fd440abcfe7a0afc8d94, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: InsideProducts_02
+    second: {fileID: 2100000, guid: 2a5ef1efd88eabb498688c1f397a98a2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: InsideProducts_03
+    second: {fileID: 2100000, guid: ee6fcadb46a54ac4ca91d7b61d5900b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orange_juice_liquid_texture
+    second: {fileID: 2100000, guid: 705e11ed8c89b6c40937a28a9485db37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: White_Metal
+    second: {fileID: 2100000, guid: 8c23d90fe6b91e641b760c5869dfd99e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bottle_cap
+    second: {fileID: 2100000, guid: 0088683c64e30a04b855900a1cd6863d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bottle_liquid
+    second: {fileID: 2100000, guid: a2346a4b182e4894a986d15b25b4c7bc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cabbage
+    second: {fileID: 2100000, guid: db78d61c011b4fd4787ccb22d37f9e40, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: carrot
+    second: {fileID: 2100000, guid: 5398086f1f4cff548996a1a3f04a1937, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: cucumber
+    second: {fileID: 2100000, guid: c9f857752e4e36f4990f77a20c127472, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: door_inside_part_02_textures
+    second: {fileID: 2100000, guid: 3d26e20a9cd430c4aa55ec824c89f891, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: drinkCan_texture
+    second: {fileID: 2100000, guid: 74302feae99d20044a342a66de95e577, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: egg_tray_color
+    second: {fileID: 2100000, guid: e1ba771da7d841045aded11766077cae, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eggs1
+    second: {fileID: 2100000, guid: e610755bde2b88c4b8bf0876975aaea1, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: green_paprika
+    second: {fileID: 2100000, guid: 9fd42ae6f09a3964690b52bcd8b89534, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: grey_brushed_metal1
+    second: {fileID: 2100000, guid: f3497237a46a70e4fb46633b8dde1814, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: juice_bottle_textues
+    second: {fileID: 2100000, guid: 1f7dee709c80f784e9f54223ec34246b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: juice_bttleCaps
+    second: {fileID: 2100000, guid: 2d0f6754f75a92f48b03589d8d60617a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: juice_liquidA_texture
+    second: {fileID: 2100000, guid: a60be7658e957a74f89c5a8f24534183, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: potato_textures
+    second: {fileID: 2100000, guid: c252604a8faa3fe43897f0555091e229, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: red_paprika
+    second: {fileID: 2100000, guid: 4aedbd125460b7b48a39260fa89a6ec0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleA_texture
+    second: {fileID: 2100000, guid: 00ff783760b6ece428509c61b831ab9f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleB_texture
+    second: {fileID: 2100000, guid: 91ea6f47c5c8f714b8d45014716307f5, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleC_texture
+    second: {fileID: 2100000, guid: bd1e0730b2f880c4b89342068ecbfd70, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleD_texture
+    second: {fileID: 2100000, guid: 4673d85207dae284d92d46556d4ff6b6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleE_texture
+    second: {fileID: 2100000, guid: f0a2242b611f09c48af194f7861573f7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleF_texture
+    second: {fileID: 2100000, guid: 65a93bfd929cac6419e7b12cafb8fa5e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleG_texture
+    second: {fileID: 2100000, guid: 654e5c282157c5f448c1e8b353b22449, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleH_texture
+    second: {fileID: 2100000, guid: 43a46ff1d67d6dd4a9e91a976a09e99d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: tomato
+    second: {fileID: 2100000, guid: ffcb04c88f29be24da7666f9a95f5e0b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: waterBottles_glass
+    second: {fileID: 2100000, guid: 0fc32de7e40066e43a023a168d196956, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: yellow_paprika
+    second: {fileID: 2100000, guid: f95bbbd6a9ff873428649c1e62948b2b, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
