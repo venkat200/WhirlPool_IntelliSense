@@ -1170,6 +1170,9 @@ public class UIHandler : MonoBehaviour
         AIUsageSensor_Callout_1.SetActive(false);
         AIWeatherSensor_Callout_1.SetActive(false);
         AILoadSensor_Callout_1.SetActive(false);
+        AIWeatherSensor_Icon_1.SetActive(false);
+        AIWeatherSensor_Icon_2.SetActive(false);
+
 
 
         toggleSwitchEnabled = false;
@@ -1185,7 +1188,7 @@ public class UIHandler : MonoBehaviour
         VariableTemperature_Sprite_2.SetActive(false);
         VariableTemperature_Tray.transform.localPosition = new Vector3(0f, 0f, 0f);
         toggle = true;
-        VariableTemperature_ModelButton.transform.localPosition = new Vector3(0.01778348f, 1.076237f, -0.3537324f);
+        VariableTemperature_ModelButton.transform.localPosition = new Vector3(0.039f, 1.076237f, -0.343f);
 
 
 
@@ -1275,7 +1278,7 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject AIUsageSensor_Callout_1;
     [SerializeField]
-    GameObject AIWeatherSensor_Callout_1;
+    GameObject AIWeatherSensor_Callout_1, AIWeatherSensor_Icon_1, AIWeatherSensor_Icon_2;
     [SerializeField]
     GameObject AILoadSensor_Callout_1;
 
@@ -1287,7 +1290,22 @@ public class UIHandler : MonoBehaviour
         SceneZoomScript.AllowScaling = 0;
 
         if (Screen.width > Screen.height)
-        {
+        {            
+            _AICallout_1.transform.localPosition = new Vector3(-0.981f, 0.697f, 1.370314f);
+            _AICallout_1.transform.localScale = new Vector3(0.1695995f, 0.1695995f, 0.1695995f);
+            _AICallout_2.transform.localPosition = new Vector3(-0.97f, 0.299f, 1.370314f);
+            _AICallout_2.transform.localScale = new Vector3(0.1514963f, 0.1514963f, 0.1514963f);
+            _AICallout_3.transform.localPosition = new Vector3(-0.959f, -0.16f, 1.370314f);
+            _AICallout_3.transform.localScale = new Vector3(0.2060089f, 0.2060089f, 0.2060089f);
+
+            AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.96f, -0.152f, 1.370314f);
+            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AIWeatherSensor_Callout_1.transform.localPosition = new Vector3(-0.96f, -0.169f, 1.370314f);
+            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.96f, -0.163f, 1.370314f);
+            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+
+
             _AICallout_1.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
@@ -1330,7 +1348,7 @@ public class UIHandler : MonoBehaviour
         }
         
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -165f, 0f);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -170f, 0f);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(5f, -115f, 0);
         _BackPanel_Portrait.SetActive(true);
@@ -1409,6 +1427,9 @@ public class UIHandler : MonoBehaviour
         AIUsageSensor_Callout_1.SetActive(false);
         AIWeatherSensor_Callout_1.SetActive(false);
         AILoadSensor_Callout_1.SetActive(false);
+
+        AIWeatherSensor_Icon_1.SetActive(false);
+        AIWeatherSensor_Icon_2.SetActive(false);
 
         animatorFridgeDoor.Play("Still");
         animatorStartFridge.Play("Still");
@@ -1560,6 +1581,42 @@ public class UIHandler : MonoBehaviour
                 AIWeatherSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
+
+            for(int i = 0; i < 2; i++)
+            {
+                AIWeatherSensor_Icon_1.SetActive(true);
+                AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                    AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                    AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+                AIWeatherSensor_Icon_1.SetActive(true);
+                AIWeatherSensor_Icon_2.SetActive(true);
+                AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                    AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                    AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+
+                yield return null;
+            }
+            
 
         }
         else
