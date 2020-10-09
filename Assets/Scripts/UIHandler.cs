@@ -2398,13 +2398,13 @@ public class UIHandler : MonoBehaviour
 
         if (Screen.width > Screen.height)
         {
-            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.551f, 0.396f, 1.125f);
-            _3DFlowCallout_1.transform.localScale = new Vector3(0.09558643f, 0.08574311f, 0.08574311f);
-            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.647f, 0.472f, 1.125f);
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.509f, 0.396f, 1.125f);
+            _3DFlowCallout_1.transform.localScale = new Vector3(0.07936163f, 0.07936163f, 0.07936163f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.566f, 0.472f, 1.125f);
             _3DFlowCallout_2.transform.localScale = new Vector3(0.1189258f, 0.1189258f, 0.1189258f);
             _3DFlowCallout_3.transform.localPosition = new Vector3(-0.775f, 0.283f, 1.125f);
             _3DFlowCallout_3.transform.localScale = new Vector3(0.1104171f, 0.1104171f, 0.1104171f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.6620001f, 0.171f, 1.125f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.581f, 0.171f, 1.125f);
             _3DFlowCallout_4.transform.localScale = new Vector3(0.1061287f, 0.1061287f, 0.1061287f);
 
             _3DFlow_BowlModel.SetActive(true);
@@ -2468,7 +2468,7 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.55f, 0.282f, 1.124f);
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.515f, 0.282f, 1.124f);
             _3DFlowCallout_1.transform.localScale = new Vector3(0.09489027f, 0.09489027f, 0.09489027f);
             _3DFlowCallout_2.transform.localPosition = new Vector3(-0.616f, 0.353f, 1.124f);
             _3DFlowCallout_2.transform.localScale = new Vector3(0.1241742f, 0.1241742f, 0.1241742f);
@@ -2540,7 +2540,7 @@ public class UIHandler : MonoBehaviour
 
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-80f, -105f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-50f, -105f, 0);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
         _BackPanel_Portrait.SetActive(true);
@@ -2646,11 +2646,11 @@ public class UIHandler : MonoBehaviour
 
         if ( Screen.width > Screen.height)
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.544f, -0.489f, 0.9473139f);
-            PortableIce_1.transform.localScale = new Vector3(0.09450199f, 0.08123614f, 0.08123614f);
-            PortableIce_2.transform.localPosition = new Vector3(-0.626f, -0.445f, 0.9473139f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.516f, -0.489f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.0822935f, 0.0822935f, 0.0822935f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.601f, -0.445f, 0.9473139f);
             PortableIce_2.transform.localScale = new Vector3(0.1323297f, 0.1323297f, 0.1323297f);
-            PortableIce_3.transform.localPosition = new Vector3(-0.623f, -0.715f, 0.9473139f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.598f, -0.715f, 0.9473139f);
             PortableIce_3.transform.localScale = new Vector3(0.1127526f, 0.1127526f, 0.1127526f);
 
 
@@ -2738,8 +2738,8 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.563f, -0.3845918f, 0.9473139f);
-            PortableIce_1.transform.localScale = new Vector3(0.1005834f, 0.1005834f, 0.1005834f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.548f, -0.3845918f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.09052505f, 0.09052505f, 0.09052505f);
             PortableIce_2.transform.localPosition = new Vector3(-0.643f, -0.336f, 0.9473139f);
             PortableIce_2.transform.localScale = new Vector3(0.1636263f, 0.1636263f, 0.1636263f);
             PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, -0.635f, 0.9473139f);
@@ -2938,13 +2938,13 @@ public class UIHandler : MonoBehaviour
         _MenuPanel_Portrait.SetActive(false);
         if(Screen.width > Screen.height)
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.539f, 0.014f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.08243407f, 0.08243407f, 0.08243407f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.583f, 0.07f, 0.9093139f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.486f, 0.014f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.068079f, 0.068079f, 0.068079f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.555f, 0.07f, 0.9093139f);
             MicroBlock_2.transform.localScale = new Vector3(0.1014693f, 0.1014693f, 0.1014693f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.699f, -0.06099993f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.593f, -0.195f, 0.9093139f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.5649999f, -0.195f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.09745589f, 0.09745589f, 0.09745589f);
 
 
@@ -3049,8 +3049,8 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.531f, -0.00999999f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.08680774f, 0.08680774f, 0.08680774f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.514f, -0.00999999f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.07756271f, 0.07756271f, 0.07756271f);
             MicroBlock_2.transform.localPosition = new Vector3(-0.585f, 0.048f, 0.9093139f);
             MicroBlock_2.transform.localScale = new Vector3(0.1174858f, 0.1174858f, 0.1174858f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.678f, -0.08499998f, 0.9093139f);
@@ -3161,7 +3161,7 @@ public class UIHandler : MonoBehaviour
             // _BackPanel_Portrait.SetActive(true);
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-60f, -130f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-50f, -130f, 0);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
         _BackPanel_Portrait.SetActive(true);
