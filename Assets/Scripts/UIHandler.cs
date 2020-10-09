@@ -1159,7 +1159,7 @@ public class UIHandler : MonoBehaviour
         _AICallout_2.SetActive(false);
         _AICallout_3.SetActive(false);
 
-
+        
         AIFeaturePanel.SetActive(false);
         AIUsageSensor_Silver_Button.SetActive(false);
         AIUsageSensor_Gold_Button.SetActive(false);
@@ -1167,6 +1167,14 @@ public class UIHandler : MonoBehaviour
         AIWeatherSensor_Gold_Button.SetActive(false);
         AILoadSensor_Silver_Button.SetActive(false);
         AILoadSensor_Gold_Button.SetActive(false);
+        AIFeaturePanel_Portrait.SetActive(false);
+        AIUsageSensor_Silver_Button_Portrait.SetActive(false);
+        AIUsageSensor_Gold_Button_Portrait.SetActive(false);
+        AIWeatherSensor_Silver_Button_Portrait.SetActive(false);
+        AIWeatherSensor_Gold_Button_Portrait.SetActive(false);
+        AILoadSensor_Silver_Button_Portrait.SetActive(false);
+        AILoadSensor_Gold_Button_Portrait.SetActive(false);
+
         AIUsageSensor_Callout_1.SetActive(false);
         AIWeatherSensor_Callout_1.SetActive(false);
         AILoadSensor_Callout_1.SetActive(false);
@@ -1215,7 +1223,7 @@ public class UIHandler : MonoBehaviour
         PortableIce_1.SetActive(false);
         PortableIce_2.SetActive(false);
         PortableIce_3.SetActive(false);
-        PortableIce_Model.SetActive(false);
+        // PortableIce_Model.SetActive(false);
         PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
         InsideObject_4.transform.localPosition = new Vector3(-0.1516571f, -0.5090525f, 0.09480139f);
         InsideObject_5.transform.localPosition = new Vector3(-0.04314014f, -0.506731f, -0.01076187f);
@@ -1276,6 +1284,8 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject AIFeaturePanel, AIUsageSensor_Silver_Button, AIUsageSensor_Gold_Button, AIWeatherSensor_Silver_Button, AIWeatherSensor_Gold_Button, AILoadSensor_Silver_Button, AILoadSensor_Gold_Button;
     [SerializeField]
+    GameObject AIFeaturePanel_Portrait, AIUsageSensor_Silver_Button_Portrait, AIUsageSensor_Gold_Button_Portrait, AIWeatherSensor_Silver_Button_Portrait, AIWeatherSensor_Gold_Button_Portrait, AILoadSensor_Silver_Button_Portrait, AILoadSensor_Gold_Button_Portrait;
+    [SerializeField]
     GameObject AIUsageSensor_Callout_1;
     [SerializeField]
     GameObject AIWeatherSensor_Callout_1, AIWeatherSensor_Icon_1, AIWeatherSensor_Icon_2;
@@ -1305,6 +1315,10 @@ public class UIHandler : MonoBehaviour
             AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.96f, -0.163f, 1.370314f);
             AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
 
+            AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
+            AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
+            AIWeatherSensor_Icon_2.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
+            AIWeatherSensor_Icon_2.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
 
             _AICallout_1.SetActive(true);
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -1340,10 +1354,65 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
+            _AICallout_1.transform.localPosition = new Vector3(-0.84f, 0.697f, 1.370314f);
+            _AICallout_1.transform.localScale = new Vector3(0.1944628f, 0.1944628f, 0.1944628f);
+            _AICallout_2.transform.localPosition = new Vector3(-0.84f, 0.299f, 1.370314f);
+            _AICallout_2.transform.localScale = new Vector3(0.1514963f, 0.1514963f, 0.1514963f);
+            _AICallout_3.transform.localPosition = new Vector3(-0.84f, -0.16f, 1.370314f);
+            _AICallout_3.transform.localScale = new Vector3(0.2060089f, 0.2060089f, 0.2060089f);
 
+            AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.152f, 1.370314f);
+            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AIWeatherSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.169f, 1.370314f);
+            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.163f, 1.370314f);
+            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
 
+            AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
+            AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
+            AIWeatherSensor_Icon_2.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
+            AIWeatherSensor_Icon_2.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
 
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            {
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.34f, 0f, -2.2f), t);
+                yield return null;
 
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.34f, 0f, -2.2f))
+                    break;
+            }
+
+            _AICallout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _AICallout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _AICallout_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _AICallout_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            _AICallout_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _AICallout_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            AIFeaturePanel_Portrait.SetActive(true);
+            AIUsageSensor_Silver_Button_Portrait.SetActive(false);
+            AIUsageSensor_Gold_Button_Portrait.SetActive(true);
+            AIWeatherSensor_Silver_Button_Portrait.SetActive(false);
+            AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
+            AILoadSensor_Silver_Button_Portrait.SetActive(false);
+            AILoadSensor_Gold_Button_Portrait.SetActive(true);
 
         }
         
@@ -1504,29 +1573,56 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+            OnDoorOpenCloseClicked_Bottom(true);
             yield return new WaitForSeconds(0.5f);
-            animatorStartFridge.Play("DoorOpen_Animation");
+            OnDoorOpenCloseClicked_Top(true);
             yield return new WaitForSeconds(0.5f);
-            animatorFridgeDoor.Play("DoorClose_Lower_Animation");
+            OnDoorOpenCloseClicked_Bottom(true);
             yield return new WaitForSeconds(0.5f);
-            animatorStartFridge.Play("DoorClose_Animation");
+            OnDoorOpenCloseClicked_Top(true);
 
             yield return new WaitForSeconds(1f);
 
-            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+            OnDoorOpenCloseClicked_Bottom(true);
             yield return new WaitForSeconds(0.5f);
-            animatorStartFridge.Play("DoorOpen_Animation");
+            OnDoorOpenCloseClicked_Top(true);
             yield return new WaitForSeconds(0.5f);
-            animatorFridgeDoor.Play("DoorClose_Lower_Animation");
+            OnDoorOpenCloseClicked_Bottom(true);
             yield return new WaitForSeconds(0.5f);
-            animatorStartFridge.Play("DoorClose_Animation");
+            OnDoorOpenCloseClicked_Top(true);
 
             yield return new WaitForSeconds(1f);
         }
         else
         {
-            
+            _AICallout_3.SetActive(false);
+            AIUsageSensor_Callout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                AIUsageSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            OnDoorOpenCloseClicked_Bottom(true);
+            yield return new WaitForSeconds(0.5f);
+            OnDoorOpenCloseClicked_Top(true);
+            yield return new WaitForSeconds(0.5f);
+            OnDoorOpenCloseClicked_Bottom(true);
+            yield return new WaitForSeconds(0.5f);
+            OnDoorOpenCloseClicked_Top(true);
+
+            yield return new WaitForSeconds(1f);
+
+            OnDoorOpenCloseClicked_Bottom(true);
+            yield return new WaitForSeconds(0.5f);
+            OnDoorOpenCloseClicked_Top(true);
+            yield return new WaitForSeconds(0.5f);
+            OnDoorOpenCloseClicked_Bottom(true);
+            yield return new WaitForSeconds(0.5f);
+            OnDoorOpenCloseClicked_Top(true);
+
+            yield return new WaitForSeconds(1f);
         }
     }
 
@@ -1552,6 +1648,14 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button.SetActive(true);
             AILoadSensor_Silver_Button.SetActive(false);
             AILoadSensor_Gold_Button.SetActive(true);
+
+            AIUsageSensor_Silver_Button_Portrait.SetActive(true);
+            AIUsageSensor_Gold_Button_Portrait.SetActive(false);
+            AIWeatherSensor_Silver_Button_Portrait.SetActive(false);
+            AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
+            AILoadSensor_Silver_Button_Portrait.SetActive(false);
+            AILoadSensor_Gold_Button_Portrait.SetActive(true);
+
             StartCoroutine(UsageSensorButtonTransition());
         }
         else
@@ -1562,6 +1666,13 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button.SetActive(true);
             AILoadSensor_Silver_Button.SetActive(false);
             AILoadSensor_Gold_Button.SetActive(true);
+
+            AIUsageSensor_Silver_Button_Portrait.SetActive(false);
+            AIUsageSensor_Gold_Button_Portrait.SetActive(true);
+            AIWeatherSensor_Silver_Button_Portrait.SetActive(false);
+            AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
+            AILoadSensor_Silver_Button_Portrait.SetActive(false);
+            AILoadSensor_Gold_Button_Portrait.SetActive(true);
         }
     }
 
@@ -1621,7 +1732,49 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
+            _AICallout_3.SetActive(false);
+            AIWeatherSensor_Callout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                AIWeatherSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
 
+            for (int i = 0; i < 2; i++)
+            {
+                AIWeatherSensor_Icon_1.SetActive(true);
+                AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                    AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                    AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+                AIWeatherSensor_Icon_1.SetActive(true);
+                AIWeatherSensor_Icon_2.SetActive(true);
+                AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                    AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                {
+                    Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                    AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = newColor;
+                    yield return null;
+                }
+
+                yield return null;
+            }
         }
 
         yield return new WaitForSeconds(1f);
@@ -1649,6 +1802,15 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button.SetActive(false);
             AILoadSensor_Silver_Button.SetActive(false);
             AILoadSensor_Gold_Button.SetActive(true);
+
+
+            AIUsageSensor_Silver_Button_Portrait.SetActive(false);
+            AIUsageSensor_Gold_Button_Portrait.SetActive(true);
+            AIWeatherSensor_Silver_Button_Portrait.SetActive(true);
+            AIWeatherSensor_Gold_Button_Portrait.SetActive(false);
+            AILoadSensor_Silver_Button_Portrait.SetActive(false);
+            AILoadSensor_Gold_Button_Portrait.SetActive(true);
+
             StartCoroutine(WeatherSensorButtonTransition());
         }
         else
@@ -1659,6 +1821,13 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button.SetActive(true);
             AILoadSensor_Silver_Button.SetActive(false);
             AILoadSensor_Gold_Button.SetActive(true);
+
+            AIUsageSensor_Silver_Button_Portrait.SetActive(false);
+            AIUsageSensor_Gold_Button_Portrait.SetActive(true);
+            AIWeatherSensor_Silver_Button_Portrait.SetActive(false);
+            AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
+            AILoadSensor_Silver_Button_Portrait.SetActive(false);
+            AILoadSensor_Gold_Button_Portrait.SetActive(true);
         }
     }
 
@@ -1681,8 +1850,7 @@ public class UIHandler : MonoBehaviour
             }
 
 
-            animatorStartFridge.Play("DoorOpen_Animation");
-            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+            OnDoorOpenCloseClicked(true);
 
             yield return new WaitForSeconds(1.5f);
 
@@ -1719,7 +1887,50 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            
+            _AICallout_3.SetActive(false);
+            AILoadSensor_Callout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                AILoadSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+
+            OnDoorOpenCloseClicked(true);
+
+            yield return new WaitForSeconds(1.5f);
+
+            InsideDoorObject_Top.SetActive(true);
+            InsideDoorObject_Bottom.SetActive(true);
+            InsideObject_1.SetActive(true);
+            InsideObject_2.SetActive(true);
+            InsideObject_3.SetActive(true);
+            InsideObject_4.SetActive(true);
+            InsideObject_5.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_6.SetActive(true);
+            InsideObject_7.SetActive(true);
+            InsideObject_8.SetActive(true);
+            InsideObject_9.SetActive(true);
+            InsideObject_10.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_11.SetActive(true);
+            InsideObject_12.SetActive(true);
+            InsideObject_13.SetActive(true);
+            InsideObject_14.SetActive(true);
+            InsideObject_15.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_16.SetActive(true);
+            InsideObject_17.SetActive(true);
+            InsideObject_18.SetActive(true);
+            InsideObject_19.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_20.SetActive(true);
+            InsideObject_21.SetActive(true);
+            InsideObject_22.SetActive(true);
+            InsideObject_23.SetActive(true);
+            yield return new WaitForSeconds(1f);
         }
 
         yield return new WaitForSeconds(1f);
@@ -1747,6 +1958,14 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button.SetActive(true);
             AILoadSensor_Silver_Button.SetActive(true);
             AILoadSensor_Gold_Button.SetActive(false);
+
+            AIUsageSensor_Silver_Button_Portrait.SetActive(false);
+            AIUsageSensor_Gold_Button_Portrait.SetActive(true);
+            AIWeatherSensor_Silver_Button_Portrait.SetActive(false);
+            AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
+            AILoadSensor_Silver_Button_Portrait.SetActive(true);
+            AILoadSensor_Gold_Button_Portrait.SetActive(false);
+
             StartCoroutine(LoadSensorButtonTransition());
         }
         else
@@ -1757,6 +1976,13 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button.SetActive(true);
             AILoadSensor_Silver_Button.SetActive(false);
             AILoadSensor_Gold_Button.SetActive(true);
+
+            AIUsageSensor_Silver_Button_Portrait.SetActive(false);
+            AIUsageSensor_Gold_Button_Portrait.SetActive(true);
+            AIWeatherSensor_Silver_Button_Portrait.SetActive(false);
+            AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
+            AILoadSensor_Silver_Button_Portrait.SetActive(false);
+            AILoadSensor_Gold_Button_Portrait.SetActive(true);
         }
     }
 
