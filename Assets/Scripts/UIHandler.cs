@@ -2102,8 +2102,8 @@ public class UIHandler : MonoBehaviour
 
         if (Screen.width > Screen.height)
         {
-            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.534f, 0.198f, 0.8533139f);
-            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.08260308f, 0.07761258f, 0.07761258f);
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.499f, 0.205f, 0.8533139f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.07164655f, 0.07164655f, 0.07164655f);
             VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.584f, 0.251f, 0.853f);
             VariableTemperatureCallout_2.transform.localScale = new Vector3(0.08446825f, 0.08446825f, 0.08446825f);
             VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.593f, 0.028f, 0.853f);
