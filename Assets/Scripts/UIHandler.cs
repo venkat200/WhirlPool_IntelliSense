@@ -53,6 +53,13 @@ public class UIHandler : MonoBehaviour
     GameObject _ProductName, _ProductName_Portrait;
 
     [SerializeField]
+    GameObject InsideObject_1, InsideObject_2, InsideObject_3, InsideObject_4, InsideObject_5, InsideObject_6, InsideObject_7, InsideObject_8,
+               InsideObject_9, InsideObject_10, InsideObject_11, InsideObject_12, InsideObject_13, InsideObject_14, InsideObject_15, InsideObject_16,
+               InsideObject_17, InsideObject_18, InsideObject_19, InsideObject_20, InsideObject_21, InsideObject_22, InsideObject_23;
+    [SerializeField]
+    GameObject InsideDoorObject_Top, InsideDoorObject_Bottom;
+
+    [SerializeField]
     GameObject ObjectRotateGameObject;
     ObjectRotate ObjectRotateScript;
 
@@ -285,20 +292,46 @@ public class UIHandler : MonoBehaviour
         _MicroBlock_Gold_Button_Portrait.SetActive(false);
 
 
-        _AICallout_1.SetActive(false);
-        _AICallout_2.SetActive(false);
-        _AICallout_3.SetActive(false);
+        // _AICallout_1.SetActive(false);
+        // _AICallout_2.SetActive(false);
+        // _AICallout_3.SetActive(false);
 
-        _3DFlow_Sprite.SetActive(false);
-        _3DFlowCallout_1.SetActive(false);
-        _3DFlowCallout_2.SetActive(false);
-        _3DFlowCallout_3.SetActive(false);
-        _3DFlowCallout_4.SetActive(false);
+        // _3DFlow_Sprite.SetActive(false);
+        // _3DFlowCallout_1.SetActive(false);
+        // _3DFlowCallout_2.SetActive(false);
+        // _3DFlowCallout_3.SetActive(false);
+        // _3DFlowCallout_4.SetActive(false);
 
-        PortableIce_1.SetActive(false);
-        PortableIce_2.SetActive(false);
-        PortableIce_3.SetActive(false);
+        // PortableIce_1.SetActive(false);
+        // PortableIce_2.SetActive(false);
+        // PortableIce_3.SetActive(false);
         // PortableIce_Model.SetActive(false);
+
+        InsideObject_1.SetActive(false);
+        InsideObject_2.SetActive(false);
+        InsideObject_3.SetActive(false);
+        InsideObject_4.SetActive(false);
+        InsideObject_5.SetActive(false);
+        InsideObject_6.SetActive(false);
+        InsideObject_7.SetActive(false);
+        InsideObject_8.SetActive(false);
+        InsideObject_9.SetActive(false);
+        InsideObject_10.SetActive(false);
+        InsideObject_11.SetActive(false);
+        InsideObject_12.SetActive(false);
+        InsideObject_13.SetActive(false);
+        InsideObject_14.SetActive(false);
+        InsideObject_15.SetActive(false);
+        InsideObject_16.SetActive(false);
+        InsideObject_17.SetActive(false);
+        InsideObject_18.SetActive(false);
+        InsideObject_19.SetActive(false);
+        InsideObject_20.SetActive(false);
+        InsideObject_21.SetActive(false);
+        InsideObject_22.SetActive(false);
+        InsideObject_23.SetActive(false);
+        InsideDoorObject_Top.SetActive(false);
+        InsideDoorObject_Bottom.SetActive(false);
 
     }
 
@@ -1126,6 +1159,19 @@ public class UIHandler : MonoBehaviour
         _AICallout_2.SetActive(false);
         _AICallout_3.SetActive(false);
 
+
+        AIFeaturePanel.SetActive(false);
+        AIUsageSensor_Silver_Button.SetActive(false);
+        AIUsageSensor_Gold_Button.SetActive(false);
+        AIWeatherSensor_Silver_Button.SetActive(false);
+        AIWeatherSensor_Gold_Button.SetActive(false);
+        AILoadSensor_Silver_Button.SetActive(false);
+        AILoadSensor_Gold_Button.SetActive(false);
+        AIUsageSensor_Callout_1.SetActive(false);
+        AIWeatherSensor_Callout_1.SetActive(false);
+        AILoadSensor_Callout_1.SetActive(false);
+
+
         toggleSwitchEnabled = false;
         VariableTemperatureCallout_1.SetActive(false);
         VariableTemperatureCallout_2.SetActive(false);
@@ -1154,6 +1200,14 @@ public class UIHandler : MonoBehaviour
         {
             OnDoorOpenCloseClicked(true);
         }
+        if (doorOpen_Top)
+        {
+            OnDoorOpenCloseClicked_Top(true);
+        }
+        if (doorOpen_Bottom)
+        {
+            OnDoorOpenCloseClicked_Bottom(true);
+        }
 
         PortableIce_1.SetActive(false);
         PortableIce_2.SetActive(false);
@@ -1181,12 +1235,39 @@ public class UIHandler : MonoBehaviour
 
         ObjectRotateScript.AllowRotation = 1;
         SceneZoomScript.AllowScaling = 1;
+
+
+        InsideObject_1.SetActive(false);
+        InsideObject_2.SetActive(false);
+        InsideObject_3.SetActive(false);
+        InsideObject_4.SetActive(false);
+        InsideObject_5.SetActive(false);
+        InsideObject_6.SetActive(false);
+        InsideObject_7.SetActive(false);
+        InsideObject_8.SetActive(false);
+        InsideObject_9.SetActive(false);
+        InsideObject_10.SetActive(false);
+        InsideObject_11.SetActive(false);
+        InsideObject_12.SetActive(false);
+        InsideObject_13.SetActive(false);
+        InsideObject_14.SetActive(false);
+        InsideObject_15.SetActive(false);
+        InsideObject_16.SetActive(false);
+        InsideObject_17.SetActive(false);
+        InsideObject_18.SetActive(false);
+        InsideObject_19.SetActive(false);
+        InsideObject_20.SetActive(false);
+        InsideObject_21.SetActive(false);
+        InsideObject_22.SetActive(false);
+        InsideObject_23.SetActive(false);
+        InsideDoorObject_Top.SetActive(false);
+        InsideDoorObject_Bottom.SetActive(false);
     }
 
     [SerializeField]
     GameObject _AICallout_1, _AICallout_2, _AICallout_3;
     [SerializeField]
-    GameObject AIUsageSensor_Silver_Button, AIUsageSensor_Gold_Button, AIWeatherSensor_Silver_Button, AIWeatherSensor_Gold_Button, AILoadSensor_Silver_Button, AILoadSensor_Gold_Button;
+    GameObject AIFeaturePanel, AIUsageSensor_Silver_Button, AIUsageSensor_Gold_Button, AIWeatherSensor_Silver_Button, AIWeatherSensor_Gold_Button, AILoadSensor_Silver_Button, AILoadSensor_Gold_Button;
     [SerializeField]
     GameObject AIUsageSensor_Callout_1;
     [SerializeField]
@@ -1203,9 +1284,37 @@ public class UIHandler : MonoBehaviour
 
         if (Screen.width > Screen.height)
         {
+            _AICallout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _AICallout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
 
+            _AICallout_2.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _AICallout_2.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
 
+            _AICallout_3.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                _AICallout_3.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
 
+            AIFeaturePanel.SetActive(true);
+            AIUsageSensor_Silver_Button.SetActive(false);
+            AIUsageSensor_Gold_Button.SetActive(true);
+            AIWeatherSensor_Silver_Button.SetActive(false);
+            AIWeatherSensor_Gold_Button.SetActive(true);
+            AILoadSensor_Silver_Button.SetActive(false);
+            AILoadSensor_Gold_Button.SetActive(true);
         }
         else
         {
@@ -1282,6 +1391,377 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(AITechnologyTransition());
     }
+
+
+
+
+
+
+
+
+    public void ResetAIAction()
+    {
+        _AICallout_3.SetActive(true);
+        AIUsageSensor_Callout_1.SetActive(false);
+        AIWeatherSensor_Callout_1.SetActive(false);
+        AILoadSensor_Callout_1.SetActive(false);
+
+        animatorFridgeDoor.Play("Still");
+        animatorStartFridge.Play("Still");
+
+        InsideObject_1.SetActive(false);
+        InsideObject_2.SetActive(false);
+        InsideObject_3.SetActive(false);
+        InsideObject_4.SetActive(false);
+        InsideObject_5.SetActive(false);
+        InsideObject_6.SetActive(false);
+        InsideObject_7.SetActive(false);
+        InsideObject_8.SetActive(false);
+        InsideObject_9.SetActive(false);
+        InsideObject_10.SetActive(false);
+        InsideObject_11.SetActive(false);
+        InsideObject_12.SetActive(false);
+        InsideObject_13.SetActive(false);
+        InsideObject_14.SetActive(false);
+        InsideObject_15.SetActive(false);
+        InsideObject_16.SetActive(false);
+        InsideObject_17.SetActive(false);
+        InsideObject_18.SetActive(false);
+        InsideObject_19.SetActive(false);
+        InsideObject_20.SetActive(false);
+        InsideObject_21.SetActive(false);
+        InsideObject_22.SetActive(false);
+        InsideObject_23.SetActive(false);
+        InsideDoorObject_Top.SetActive(false);
+        InsideDoorObject_Bottom.SetActive(false);
+    }
+
+
+
+    public bool usageSensorClicked = false;
+
+    IEnumerator UsageSensorButtonTransition()
+    {
+        InsideObject_1.SetActive(true);
+        InsideObject_2.SetActive(true);
+        InsideObject_3.SetActive(true);
+        InsideObject_4.SetActive(true);
+        InsideObject_5.SetActive(true);
+        InsideObject_6.SetActive(true);
+        InsideObject_7.SetActive(true);
+        InsideObject_8.SetActive(true);
+        InsideObject_9.SetActive(true);
+        InsideObject_10.SetActive(true);
+        InsideObject_11.SetActive(true);
+        InsideObject_12.SetActive(true);
+        InsideObject_13.SetActive(true);
+        InsideObject_14.SetActive(true);
+        InsideObject_15.SetActive(true);
+        InsideObject_16.SetActive(true);
+        InsideObject_17.SetActive(true);
+        InsideObject_18.SetActive(true);
+        InsideObject_19.SetActive(true);
+        InsideObject_20.SetActive(true);
+        InsideObject_21.SetActive(true);
+        InsideObject_22.SetActive(true);
+        InsideObject_23.SetActive(true);
+        InsideDoorObject_Top.SetActive(true);
+        InsideDoorObject_Bottom.SetActive(true);
+
+        if (Screen.width > Screen.height)
+        {
+            _AICallout_3.SetActive(false);
+            AIUsageSensor_Callout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                AIUsageSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+            yield return new WaitForSeconds(0.5f);
+            animatorStartFridge.Play("DoorOpen_Animation");
+            yield return new WaitForSeconds(0.5f);
+            animatorFridgeDoor.Play("DoorClose_Lower_Animation");
+            yield return new WaitForSeconds(0.5f);
+            animatorStartFridge.Play("DoorClose_Animation");
+
+            yield return new WaitForSeconds(1f);
+
+            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+            yield return new WaitForSeconds(0.5f);
+            animatorStartFridge.Play("DoorOpen_Animation");
+            yield return new WaitForSeconds(0.5f);
+            animatorFridgeDoor.Play("DoorClose_Lower_Animation");
+            yield return new WaitForSeconds(0.5f);
+            animatorStartFridge.Play("DoorClose_Animation");
+
+            yield return new WaitForSeconds(1f);
+        }
+        else
+        {
+            
+        }
+    }
+
+    public void OnUsageSensorButtonClicked()
+    {
+        ResetAIAction();
+        usageSensorClicked = !usageSensorClicked;
+
+        if (weatherSensorClicked && usageSensorClicked)
+        {
+            OnWeatherSensorButtonClicked();
+        }
+        if (loadSensorClicked && usageSensorClicked)
+        {
+            OnLoadSensorButtonClicked();
+        }
+
+        if (usageSensorClicked)
+        {
+            AIUsageSensor_Silver_Button.SetActive(true);
+            AIUsageSensor_Gold_Button.SetActive(false);
+            AIWeatherSensor_Silver_Button.SetActive(false);
+            AIWeatherSensor_Gold_Button.SetActive(true);
+            AILoadSensor_Silver_Button.SetActive(false);
+            AILoadSensor_Gold_Button.SetActive(true);
+            StartCoroutine(UsageSensorButtonTransition());
+        }
+        else
+        {
+            AIUsageSensor_Silver_Button.SetActive(false);
+            AIUsageSensor_Gold_Button.SetActive(true);
+            AIWeatherSensor_Silver_Button.SetActive(false);
+            AIWeatherSensor_Gold_Button.SetActive(true);
+            AILoadSensor_Silver_Button.SetActive(false);
+            AILoadSensor_Gold_Button.SetActive(true);
+        }
+    }
+
+
+
+    public bool weatherSensorClicked = false;
+
+    IEnumerator WeatherSensorButtonTransition()
+    {
+        if (Screen.width > Screen.height)
+        {
+            _AICallout_3.SetActive(false);
+            AIWeatherSensor_Callout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                AIWeatherSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+        }
+        else
+        {
+
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void OnWeatherSensorButtonClicked()
+    {
+        ResetAIAction();
+        weatherSensorClicked = !weatherSensorClicked;
+
+        if (usageSensorClicked && weatherSensorClicked)
+        {
+            OnUsageSensorButtonClicked();
+        }
+        if (loadSensorClicked && weatherSensorClicked)
+        {
+            OnLoadSensorButtonClicked();
+        }
+
+        if (weatherSensorClicked)
+        {
+            AIUsageSensor_Silver_Button.SetActive(false);
+            AIUsageSensor_Gold_Button.SetActive(true);
+            AIWeatherSensor_Silver_Button.SetActive(true);
+            AIWeatherSensor_Gold_Button.SetActive(false);
+            AILoadSensor_Silver_Button.SetActive(false);
+            AILoadSensor_Gold_Button.SetActive(true);
+            StartCoroutine(WeatherSensorButtonTransition());
+        }
+        else
+        {
+            AIUsageSensor_Silver_Button.SetActive(false);
+            AIUsageSensor_Gold_Button.SetActive(true);
+            AIWeatherSensor_Silver_Button.SetActive(false);
+            AIWeatherSensor_Gold_Button.SetActive(true);
+            AILoadSensor_Silver_Button.SetActive(false);
+            AILoadSensor_Gold_Button.SetActive(true);
+        }
+    }
+
+
+
+
+    public bool loadSensorClicked = false;
+
+    IEnumerator LoadSensorButtonTransition()
+    {
+        if (Screen.width > Screen.height)
+        {
+            _AICallout_3.SetActive(false);
+            AILoadSensor_Callout_1.SetActive(true);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                AILoadSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+
+            animatorStartFridge.Play("DoorOpen_Animation");
+            animatorFridgeDoor.Play("DoorOpen_Lower_Animation");
+
+            yield return new WaitForSeconds(1.5f);
+
+            InsideDoorObject_Top.SetActive(true);
+            InsideDoorObject_Bottom.SetActive(true);
+            InsideObject_1.SetActive(true);
+            InsideObject_2.SetActive(true);
+            InsideObject_3.SetActive(true);
+            InsideObject_4.SetActive(true);
+            InsideObject_5.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_6.SetActive(true);
+            InsideObject_7.SetActive(true);
+            InsideObject_8.SetActive(true);
+            InsideObject_9.SetActive(true);
+            InsideObject_10.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_11.SetActive(true);
+            InsideObject_12.SetActive(true);
+            InsideObject_13.SetActive(true);
+            InsideObject_14.SetActive(true);
+            InsideObject_15.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_16.SetActive(true);
+            InsideObject_17.SetActive(true);
+            InsideObject_18.SetActive(true);
+            InsideObject_19.SetActive(true);
+            yield return new WaitForSeconds(1f);
+            InsideObject_20.SetActive(true);
+            InsideObject_21.SetActive(true);
+            InsideObject_22.SetActive(true);
+            InsideObject_23.SetActive(true);
+            yield return new WaitForSeconds(1f);
+        }
+        else
+        {
+            
+        }
+
+        yield return new WaitForSeconds(1f);
+    }
+
+    public void OnLoadSensorButtonClicked()
+    {
+        ResetAIAction();
+        loadSensorClicked = !loadSensorClicked;
+
+        if (usageSensorClicked && loadSensorClicked)
+        {
+            OnUsageSensorButtonClicked();
+        }
+        if (weatherSensorClicked && loadSensorClicked)
+        {
+            OnWeatherSensorButtonClicked();
+        }
+
+        if (loadSensorClicked)
+        {
+            AIUsageSensor_Silver_Button.SetActive(false);
+            AIUsageSensor_Gold_Button.SetActive(true);
+            AIWeatherSensor_Silver_Button.SetActive(false);
+            AIWeatherSensor_Gold_Button.SetActive(true);
+            AILoadSensor_Silver_Button.SetActive(true);
+            AILoadSensor_Gold_Button.SetActive(false);
+            StartCoroutine(LoadSensorButtonTransition());
+        }
+        else
+        {
+            AIUsageSensor_Silver_Button.SetActive(false);
+            AIUsageSensor_Gold_Button.SetActive(true);
+            AIWeatherSensor_Silver_Button.SetActive(false);
+            AIWeatherSensor_Gold_Button.SetActive(true);
+            AILoadSensor_Silver_Button.SetActive(false);
+            AILoadSensor_Gold_Button.SetActive(true);
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
