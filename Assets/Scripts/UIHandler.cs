@@ -307,31 +307,31 @@ public class UIHandler : MonoBehaviour
         // PortableIce_3.SetActive(false);
         // PortableIce_Model.SetActive(false);
 
-        InsideObject_1.SetActive(false);
-        InsideObject_2.SetActive(false);
-        InsideObject_3.SetActive(false);
-        InsideObject_4.SetActive(false);
-        InsideObject_5.SetActive(false);
-        InsideObject_6.SetActive(false);
-        InsideObject_7.SetActive(false);
-        InsideObject_8.SetActive(false);
-        InsideObject_9.SetActive(false);
-        InsideObject_10.SetActive(false);
-        InsideObject_11.SetActive(false);
-        InsideObject_12.SetActive(false);
-        InsideObject_13.SetActive(false);
-        InsideObject_14.SetActive(false);
-        InsideObject_15.SetActive(false);
-        InsideObject_16.SetActive(false);
-        InsideObject_17.SetActive(false);
-        InsideObject_18.SetActive(false);
-        InsideObject_19.SetActive(false);
-        InsideObject_20.SetActive(false);
-        InsideObject_21.SetActive(false);
-        InsideObject_22.SetActive(false);
-        InsideObject_23.SetActive(false);
-        InsideDoorObject_Top.SetActive(false);
-        InsideDoorObject_Bottom.SetActive(false);
+        InsideObject_1.SetActive(true);
+        InsideObject_2.SetActive(true);
+        InsideObject_3.SetActive(true);
+        InsideObject_4.SetActive(true);
+        InsideObject_5.SetActive(true);
+        InsideObject_6.SetActive(true);
+        InsideObject_7.SetActive(true);
+        InsideObject_8.SetActive(true);
+        InsideObject_9.SetActive(true);
+        InsideObject_10.SetActive(true);
+        InsideObject_11.SetActive(true);
+        InsideObject_12.SetActive(true);
+        InsideObject_13.SetActive(true);
+        InsideObject_14.SetActive(true);
+        InsideObject_15.SetActive(true);
+        InsideObject_16.SetActive(true);
+        InsideObject_17.SetActive(true);
+        InsideObject_18.SetActive(true);
+        InsideObject_19.SetActive(true);
+        InsideObject_20.SetActive(true);
+        InsideObject_21.SetActive(true);
+        InsideObject_22.SetActive(true);
+        InsideObject_23.SetActive(true);
+        InsideDoorObject_Top.SetActive(true);
+        InsideDoorObject_Bottom.SetActive(true);
 
     }
 
@@ -2643,20 +2643,20 @@ public class UIHandler : MonoBehaviour
         _MenuPanel_Portrait.SetActive(false);
         if(Screen.width > Screen.height)
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.52f, 0.014f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.1270882f, 0.1159296f, 0.1159296f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.647f, 0.07f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.1115047f, 0.1115047f, 0.1115047f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.539f, 0.014f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.08243407f, 0.08243407f, 0.08243407f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.583f, 0.07f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1014693f, 0.1014693f, 0.1014693f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.699f, -0.06099993f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.583f, -0.073f, 0.9093139f);
-            MicroBlock_4.transform.localScale = new Vector3(0.1136419f, 0.1136419f, 0.1136419f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.593f, -0.195f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.09745589f, 0.09745589f, 0.09745589f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
             MicroBlock_Model.SetActive(true);
 
-            OnDoorOpenCloseClicked(true);
+            OnDoorOpenCloseClicked_Top(true);
 
             yield return new WaitForSeconds(1f);
 
@@ -2755,28 +2755,28 @@ public class UIHandler : MonoBehaviour
         else
         {
             MicroBlock_1.transform.localPosition = new Vector3(-0.531f, -0.00999999f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.1300354f, 0.1252388f, 0.1252388f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.629f, 0.058f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.1320065f, 0.1320065f, 0.1320065f);
+            MicroBlock_1.transform.localScale = new Vector3(0.08680774f, 0.08680774f, 0.08680774f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.585f, 0.048f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1174858f, 0.1174858f, 0.1174858f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.678f, -0.08499998f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.595f, -0.117f, 0.9093139f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.595f, -0.249f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
             MicroBlock_Model.SetActive(true);
 
-            OnDoorOpenCloseClicked(true);
+            OnDoorOpenCloseClicked_Top(true);
 
             yield return new WaitForSeconds(1f);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
-                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.2f, -1.85f), t);
+                _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.2f, -1.73f), t);
                 yield return null;
 
-                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, -0.2f, -1.85f))
+                if (_Virtual_Camera.transform.localPosition == new Vector3(-0.32f, -0.2f, -1.73f))
                     break;
             }
 
@@ -2866,7 +2866,7 @@ public class UIHandler : MonoBehaviour
             // _BackPanel_Portrait.SetActive(true);
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-20f, -155f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-60f, -130f, 0);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(25f, -265f, 0);
         _BackPanel_Portrait.SetActive(true);
