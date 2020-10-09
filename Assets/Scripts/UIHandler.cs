@@ -556,13 +556,13 @@ public class UIHandler : MonoBehaviour
                 }
 
                 _AITechnology_Gold_Button_Portrait.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _variableTemperature_Gold_Button_Portrait.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _3DAir_Gold_Button_Portrait.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _PortableIce_Gold_Button_Portrait.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _MicroBlock_Gold_Button_Portrait.SetActive(true);
             }
             else
@@ -570,13 +570,13 @@ public class UIHandler : MonoBehaviour
                 _MenuPanel_LandScape.SetActive(true);
 
                 _AITechnology_Gold_Button_LandScape.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _variableTemperature_Gold_Button_LandScape.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _3DAir_Gold_Button_LandScape.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _PortableIce_Gold_Button_LandScape.SetActive(true);
-                yield return new WaitForSeconds(0.3f);
+                // yield return new WaitForSeconds(0.3f);
                 _MicroBlock_Gold_Button_LandScape.SetActive(true);
             }
        
