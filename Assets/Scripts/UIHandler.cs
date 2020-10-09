@@ -1368,10 +1368,10 @@ public class UIHandler : MonoBehaviour
             AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.163f, 1.370314f);
             AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
 
-            AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
-            AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
-            AIWeatherSensor_Icon_2.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
-            AIWeatherSensor_Icon_2.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
+            AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(-0.04f, 1.24f, 1.370314f);
+            AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.09509016f, 0.09509016f, 0.09509016f);
+            AIWeatherSensor_Icon_2.transform.localPosition = new Vector3(-0.04f, 1.24f, 1.370314f);
+            AIWeatherSensor_Icon_2.transform.localScale = new Vector3(0.09509016f, 0.09509016f, 0.09509016f);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
@@ -1703,13 +1703,16 @@ public class UIHandler : MonoBehaviour
                     AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
                     yield return null;
                 }
+
+                yield return new WaitForSeconds(1f);
+
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                 {
                     Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
                     AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
                     yield return null;
                 }
-                AIWeatherSensor_Icon_1.SetActive(true);
+                AIWeatherSensor_Icon_1.SetActive(false);
                 AIWeatherSensor_Icon_2.SetActive(true);
                 AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -1718,6 +1721,9 @@ public class UIHandler : MonoBehaviour
                     AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = newColor;
                     yield return null;
                 }
+
+                yield return new WaitForSeconds(1f);
+
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                 {
                     Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
@@ -1751,6 +1757,9 @@ public class UIHandler : MonoBehaviour
                     AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
                     yield return null;
                 }
+
+                yield return new WaitForSeconds(1f);
+
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                 {
                     Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
@@ -1766,6 +1775,9 @@ public class UIHandler : MonoBehaviour
                     AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = newColor;
                     yield return null;
                 }
+
+                yield return new WaitForSeconds(1f);
+
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                 {
                     Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
