@@ -21,10 +21,14 @@ public class ObjectRotate : MonoBehaviour
 
     public int AllowRotation = 1;
 
+    [SerializeField]
+    GameObject UIHandlerObject;
+    UIHandler UIHandlerScript;
+
     // Start is called before the first frame update
     void Start()
     {
-
+        UIHandlerScript = UIHandlerObject.GetComponent<UIHandler>();
     }
 
     // Update is called once per frame
@@ -57,19 +61,19 @@ public class ObjectRotate : MonoBehaviour
             }
         }
 
-        if (dimensionClick == true && !(transform.eulerAngles.y % 360 >= 0f && transform.eulerAngles.y % 360 < 270f))
+        if (dimensionClick == true && !(transform.eulerAngles.y % 360 >= 0f && transform.eulerAngles.y % 360 < 270f) && !UIHandlerScript.delayStart_CMButton)
         {
             Arrow_B.SetActive(true);
             Arrow_H.SetActive(true);
             Arrow_L.SetActive(true);
         }
-        else if (dimensionClick == true && (transform.eulerAngles.y % 360 == 0f ))
+        else if (dimensionClick == true && (transform.eulerAngles.y % 360 == 0f) && !UIHandlerScript.delayStart_CMButton)
         {
             Arrow_B.SetActive(false);
             Arrow_H.SetActive(true);
             Arrow_L.SetActive(true);
         }
-        else if(dimensionClick == true)
+        else if(dimensionClick == true && !UIHandlerScript.delayStart_CMButton)
         {
             Arrow_B.SetActive(false);
             Arrow_H.SetActive(false);
@@ -90,6 +94,19 @@ public class ObjectRotate : MonoBehaviour
         }
     }
 
+    IEnumerator DimensionClickedTransition()
+    {
+        if (UIHandlerScript.delayStart_CMButton)
+        {
+            yield return new WaitForSeconds(1f);
+            UIHandlerScript.delayStart_CMButton = false;
+        }
+        dimensionsRotate = true;
+        Arrow_B.SetActive(true);
+        Arrow_H.SetActive(true);
+        Arrow_L.SetActive(true);
+    }
+
     public void OnDimensionClicked()
     {
         dimensionClick = !dimensionClick;
@@ -97,10 +114,7 @@ public class ObjectRotate : MonoBehaviour
         if (dimensionClick == true)
         {
             resetRotation = true;
-            dimensionsRotate = true;
-            Arrow_B.SetActive(true);
-            Arrow_H.SetActive(true);
-            Arrow_L.SetActive(true);
+            StartCoroutine(DimensionClickedTransition());
         }
         else
         {

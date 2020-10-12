@@ -44,8 +44,8 @@ public class SceneZoom : MonoBehaviour
         }
         else
         {
-            ScaleRange = new Vector2(0.75f, 3.5f);
-            TouchScrollSensitivity = 3;
+            ScaleRange = new Vector2(0.75f, 5f);
+            TouchScrollSensitivity = 4;
         }
         checkInput();
     }

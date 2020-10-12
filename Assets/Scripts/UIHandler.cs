@@ -217,7 +217,7 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
 
             _InfoImage_LandScape.SetActive(false);
         }
@@ -239,7 +239,7 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(1f);
 
             _InfoImage_Portrait.SetActive(false);
         }
@@ -250,10 +250,11 @@ public class UIHandler : MonoBehaviour
 
     public void ResetActions(bool DoorFunction = true)
     {
-        animatorStartFridge.Play("Still");
-        animatorFridgeDoor.Play("Still");
+        // animatorStartFridge.Play("Still");
+        // animatorFridgeDoor.Play("Still");
         _SceneObject.transform.localScale = defaultScale;
 
+        /*
         if (DoorFunction == true)
         {
             doorOpen = false;
@@ -261,7 +262,8 @@ public class UIHandler : MonoBehaviour
             doorOpen_Top = false;
             doorOpen_Bottom = false;
         }
-
+        */
+            
         _BackPanel_LandScape.SetActive(false);
         _InfoImage_LandScape.SetActive(false);
         _MenuPanel_LandScape.SetActive(false);
@@ -530,7 +532,12 @@ public class UIHandler : MonoBehaviour
     public bool plusClicked = false;
 
     IEnumerator PlusButtonTransition(bool doorClickResetBool)
-    {   
+    {
+        if(delayStart_PlusButton)
+        {
+            yield return new WaitForSeconds(1f);
+            delayStart_PlusButton = false;
+        }
 
         if (plusClicked)
         {
@@ -628,12 +635,15 @@ public class UIHandler : MonoBehaviour
         }
     }
 
+    public bool delayStart_PlusButton = false;
+
     public void OnPlusButtonClicked(bool doorClickReset = false)
     {
         ResetActions();
         plusClicked = !plusClicked;
         ObjectRotateScript.resetRotation = true;
 
+        delayStart_PlusButton = false;
         if (dimensionClick && plusClicked)
         {
             CMButtonClicked();
@@ -641,7 +651,18 @@ public class UIHandler : MonoBehaviour
         }
         if (doorOpen && plusClicked)
         {
-            // OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked();
+            delayStart_PlusButton = true;
+        }
+        if (doorOpen_Top && plusClicked)
+        {
+            OnDoorOpenCloseClicked_Top();
+            delayStart_PlusButton = true;
+        }
+        if (doorOpen_Bottom && plusClicked)
+        {
+            OnDoorOpenCloseClicked_Bottom();
+            delayStart_PlusButton = true;
         }
 
         if (plusClicked)
@@ -691,6 +712,8 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject Arrow_L, Arrow_B, Arrow_H;
 
+    public bool delayStart_CMButton = false;
+
     bool dimensionClick = false;
 
     public void CMButtonClicked()
@@ -699,13 +722,25 @@ public class UIHandler : MonoBehaviour
         dimensionClick = !dimensionClick;
         ObjectRotateScript.resetRotation = true;
 
+        delayStart_CMButton = false;
         if (plusClicked && dimensionClick)
         {
             OnPlusButtonClicked();
         }
         if (doorOpen && dimensionClick)
         {
-            // OnDoorOpenCloseClicked();
+            OnDoorOpenCloseClicked();
+            delayStart_CMButton = true;
+        }
+        if (doorOpen_Top && dimensionClick)
+        {
+            OnDoorOpenCloseClicked_Top();
+            delayStart_CMButton = true;
+        }
+        if (doorOpen_Bottom && dimensionClick)
+        {
+            OnDoorOpenCloseClicked_Bottom();
+            delayStart_CMButton = true;
         }
 
         if (dimensionClick)
@@ -1301,19 +1336,19 @@ public class UIHandler : MonoBehaviour
 
         if (Screen.width > Screen.height)
         {            
-            _AICallout_1.transform.localPosition = new Vector3(-0.981f, 0.697f, 1.370314f);
-            _AICallout_1.transform.localScale = new Vector3(0.1695995f, 0.1695995f, 0.1695995f);
+            _AICallout_1.transform.localPosition = new Vector3(-0.981f, 0.729f, 1.370314f);
+            _AICallout_1.transform.localScale = new Vector3(0.1937504f, 0.1937504f, 0.1937504f);
             _AICallout_2.transform.localPosition = new Vector3(-0.97f, 0.299f, 1.370314f);
-            _AICallout_2.transform.localScale = new Vector3(0.1514963f, 0.1514963f, 0.1514963f);
-            _AICallout_3.transform.localPosition = new Vector3(-0.959f, -0.16f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.2060089f, 0.2060089f, 0.2060089f);
+            _AICallout_2.transform.localScale = new Vector3(0.1679856f, 0.1679856f, 0.1679856f);
+            _AICallout_3.transform.localPosition = new Vector3(-0.9700001f, -0.242f, 1.370314f);
+            _AICallout_3.transform.localScale = new Vector3(0.2641534f, 0.2641534f, 0.2641534f);
 
-            AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.96f, -0.152f, 1.370314f);
-            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
-            AIWeatherSensor_Callout_1.transform.localPosition = new Vector3(-0.96f, -0.169f, 1.370314f);
-            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
-            AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.96f, -0.163f, 1.370314f);
-            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.9710001f, -0.234f, 1.370314f);
+            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2743446f, 0.2743446f, 0.2743446f);
+            AIWeatherSensor_Callout_1.transform.localPosition = new Vector3(-0.9710001f, -0.251f, 1.370314f);
+            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2743446f, 0.2743446f, 0.2743446f);
+            AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.9710001f, -0.245f, 1.370314f);
+            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2743446f, 0.2743446f, 0.2743446f);
 
             AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
             AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
@@ -1359,14 +1394,14 @@ public class UIHandler : MonoBehaviour
             _AICallout_2.transform.localPosition = new Vector3(-0.84f, 0.299f, 1.370314f);
             _AICallout_2.transform.localScale = new Vector3(0.1514963f, 0.1514963f, 0.1514963f);
             _AICallout_3.transform.localPosition = new Vector3(-0.84f, -0.16f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.2060089f, 0.2060089f, 0.2060089f);
+            _AICallout_3.transform.localScale = new Vector3(0.2377549f, 0.2377549f, 0.2377549f);
 
             AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.152f, 1.370314f);
-            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2569577f, 0.2569577f, 0.2569577f);
             AIWeatherSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.169f, 1.370314f);
-            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2569577f, 0.2569577f, 0.2569577f);
             AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.163f, 1.370314f);
-            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2226477f, 0.2226477f, 0.2226477f);
+            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2569577f, 0.2569577f, 0.2569577f);
 
             AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(-0.04f, 1.24f, 1.370314f);
             AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.09509016f, 0.09509016f, 0.09509016f);
@@ -1500,39 +1535,40 @@ public class UIHandler : MonoBehaviour
         AIWeatherSensor_Icon_1.SetActive(false);
         AIWeatherSensor_Icon_2.SetActive(false);
 
-        animatorFridgeDoor.Play("Still");
-        animatorStartFridge.Play("Still");
+        // animatorFridgeDoor.Play("Still");
+        // animatorStartFridge.Play("Still");
 
-        InsideObject_1.SetActive(false);
-        InsideObject_2.SetActive(false);
-        InsideObject_3.SetActive(false);
-        InsideObject_4.SetActive(false);
-        InsideObject_5.SetActive(false);
-        InsideObject_6.SetActive(false);
-        InsideObject_7.SetActive(false);
-        InsideObject_8.SetActive(false);
-        InsideObject_9.SetActive(false);
-        InsideObject_10.SetActive(false);
-        InsideObject_11.SetActive(false);
-        InsideObject_12.SetActive(false);
-        InsideObject_13.SetActive(false);
-        InsideObject_14.SetActive(false);
-        InsideObject_15.SetActive(false);
-        InsideObject_16.SetActive(false);
-        InsideObject_17.SetActive(false);
-        InsideObject_18.SetActive(false);
-        InsideObject_19.SetActive(false);
-        InsideObject_20.SetActive(false);
-        InsideObject_21.SetActive(false);
-        InsideObject_22.SetActive(false);
-        InsideObject_23.SetActive(false);
-        InsideDoorObject_Top.SetActive(false);
-        InsideDoorObject_Bottom.SetActive(false);
+        InsideObject_1.SetActive(true);
+        InsideObject_2.SetActive(true);
+        InsideObject_3.SetActive(true);
+        InsideObject_4.SetActive(true);
+        InsideObject_5.SetActive(true);
+        InsideObject_6.SetActive(true);
+        InsideObject_7.SetActive(true);
+        InsideObject_8.SetActive(true);
+        InsideObject_9.SetActive(true);
+        InsideObject_10.SetActive(true);
+        InsideObject_11.SetActive(true);
+        InsideObject_12.SetActive(true);
+        InsideObject_13.SetActive(true);
+        InsideObject_14.SetActive(true);
+        InsideObject_15.SetActive(true);
+        InsideObject_16.SetActive(true);
+        InsideObject_17.SetActive(true);
+        InsideObject_18.SetActive(true);
+        InsideObject_19.SetActive(true);
+        InsideObject_20.SetActive(true);
+        InsideObject_21.SetActive(true);
+        InsideObject_22.SetActive(true);
+        InsideObject_23.SetActive(true);
+        InsideDoorObject_Top.SetActive(true);
+        InsideDoorObject_Bottom.SetActive(true);
     }
 
 
 
     public bool usageSensorClicked = false;
+    Coroutine UsageSensorCoroutine;
 
     IEnumerator UsageSensorButtonTransition()
     {
@@ -1640,6 +1676,7 @@ public class UIHandler : MonoBehaviour
             OnLoadSensorButtonClicked();
         }
 
+
         if (usageSensorClicked)
         {
             AIUsageSensor_Silver_Button.SetActive(true);
@@ -1656,7 +1693,7 @@ public class UIHandler : MonoBehaviour
             AILoadSensor_Silver_Button_Portrait.SetActive(false);
             AILoadSensor_Gold_Button_Portrait.SetActive(true);
 
-            StartCoroutine(UsageSensorButtonTransition());
+            UsageSensorCoroutine = StartCoroutine(UsageSensorButtonTransition());
         }
         else
         {
@@ -1673,12 +1710,25 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
             AILoadSensor_Silver_Button_Portrait.SetActive(false);
             AILoadSensor_Gold_Button_Portrait.SetActive(true);
+
+            StopCoroutine(UsageSensorCoroutine);
+            
+            if (doorOpen_Top)
+            {
+                OnDoorOpenCloseClicked_Top(true);
+            }
+            if (doorOpen_Bottom)
+            {
+                OnDoorOpenCloseClicked_Bottom(true);
+            }
+
         }
     }
 
 
 
     public bool weatherSensorClicked = false;
+    Coroutine WeatherSensorCoroutine;
 
     IEnumerator WeatherSensorButtonTransition()
     {
@@ -1695,6 +1745,7 @@ public class UIHandler : MonoBehaviour
 
             for(int i = 0; i < 2; i++)
             {
+              
                 AIWeatherSensor_Icon_1.SetActive(true);
                 AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -1713,6 +1764,7 @@ public class UIHandler : MonoBehaviour
                     yield return null;
                 }
                 AIWeatherSensor_Icon_1.SetActive(false);
+
                 AIWeatherSensor_Icon_2.SetActive(true);
                 AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -1731,7 +1783,6 @@ public class UIHandler : MonoBehaviour
                     yield return null;
                 }
 
-                yield return null;
             }
             
 
@@ -1749,6 +1800,7 @@ public class UIHandler : MonoBehaviour
 
             for (int i = 0; i < 2; i++)
             {
+
                 AIWeatherSensor_Icon_1.SetActive(true);
                 AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -1766,7 +1818,8 @@ public class UIHandler : MonoBehaviour
                     AIWeatherSensor_Icon_1.GetComponent<SpriteRenderer>().color = newColor;
                     yield return null;
                 }
-                AIWeatherSensor_Icon_1.SetActive(true);
+                AIWeatherSensor_Icon_1.SetActive(false);
+
                 AIWeatherSensor_Icon_2.SetActive(true);
                 AIWeatherSensor_Icon_2.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
                 for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
@@ -1785,7 +1838,6 @@ public class UIHandler : MonoBehaviour
                     yield return null;
                 }
 
-                yield return null;
             }
         }
 
@@ -1806,6 +1858,8 @@ public class UIHandler : MonoBehaviour
             OnLoadSensorButtonClicked();
         }
 
+
+
         if (weatherSensorClicked)
         {
             AIUsageSensor_Silver_Button.SetActive(false);
@@ -1823,7 +1877,7 @@ public class UIHandler : MonoBehaviour
             AILoadSensor_Silver_Button_Portrait.SetActive(false);
             AILoadSensor_Gold_Button_Portrait.SetActive(true);
 
-            StartCoroutine(WeatherSensorButtonTransition());
+            WeatherSensorCoroutine = StartCoroutine(WeatherSensorButtonTransition());
         }
         else
         {
@@ -1840,6 +1894,8 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
             AILoadSensor_Silver_Button_Portrait.SetActive(false);
             AILoadSensor_Gold_Button_Portrait.SetActive(true);
+
+            StopCoroutine(WeatherSensorCoroutine);
         }
     }
 
@@ -1847,9 +1903,36 @@ public class UIHandler : MonoBehaviour
 
 
     public bool loadSensorClicked = false;
+    Coroutine LoadSensorCoroutine;
 
     IEnumerator LoadSensorButtonTransition()
     {
+        InsideObject_1.SetActive(false);
+        InsideObject_2.SetActive(false);
+        InsideObject_3.SetActive(false);
+        InsideObject_4.SetActive(false);
+        InsideObject_5.SetActive(false);
+        InsideObject_6.SetActive(false);
+        InsideObject_7.SetActive(false);
+        InsideObject_8.SetActive(false);
+        InsideObject_9.SetActive(false);
+        InsideObject_10.SetActive(false);
+        InsideObject_11.SetActive(false);
+        InsideObject_12.SetActive(false);
+        InsideObject_13.SetActive(false);
+        InsideObject_14.SetActive(false);
+        InsideObject_15.SetActive(false);
+        InsideObject_16.SetActive(false);
+        InsideObject_17.SetActive(false);
+        InsideObject_18.SetActive(false);
+        InsideObject_19.SetActive(false);
+        InsideObject_20.SetActive(false);
+        InsideObject_21.SetActive(false);
+        InsideObject_22.SetActive(false);
+        InsideObject_23.SetActive(false);
+        InsideDoorObject_Top.SetActive(false);
+        InsideDoorObject_Bottom.SetActive(false);
+
         if (Screen.width > Screen.height)
         {
             _AICallout_3.SetActive(false);
@@ -1860,7 +1943,6 @@ public class UIHandler : MonoBehaviour
                 AILoadSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
-
 
             OnDoorOpenCloseClicked(true);
 
@@ -1907,7 +1989,6 @@ public class UIHandler : MonoBehaviour
                 AILoadSensor_Callout_1.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
-
 
             OnDoorOpenCloseClicked(true);
 
@@ -1978,7 +2059,7 @@ public class UIHandler : MonoBehaviour
             AILoadSensor_Silver_Button_Portrait.SetActive(true);
             AILoadSensor_Gold_Button_Portrait.SetActive(false);
 
-            StartCoroutine(LoadSensorButtonTransition());
+            LoadSensorCoroutine = StartCoroutine(LoadSensorButtonTransition());
         }
         else
         {
@@ -1995,6 +2076,12 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Gold_Button_Portrait.SetActive(true);
             AILoadSensor_Silver_Button_Portrait.SetActive(false);
             AILoadSensor_Gold_Button_Portrait.SetActive(true);
+
+            StopCoroutine(LoadSensorCoroutine);
+            if (doorOpen)
+            {
+                OnDoorOpenCloseClicked(true);
+            }
         }
     }
 
@@ -2149,38 +2236,13 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
 
             VariableTemperatureModel.SetActive(true);
             animatorVariableTemperature.Play("VariableTemperature_Animation");
-            toggleSwitchEnabled = true;    
+            toggleSwitchEnabled = true;
 
-            yield return new WaitForSeconds(1.5f);
-            VariableTemperatureCallout_4.SetActive(true);
-            // VariableTemperatureArrow.SetActive(true);
-            // VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            // VariableTemperatureArrow.transform.localPosition = new Vector3(0.013f, 3.07f, -0.022f);
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-            {
-                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-                VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
-                // VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(1f);
             VariableTemperature_Fruits.SetActive(true);
-            VariableTemperature_Sprite_2.SetActive(true);
-
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-            {
-                Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
-                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
-                yield return null;
-            }
-            VariableTemperatureArrow.SetActive(false);
-
-            
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
@@ -2190,6 +2252,33 @@ public class UIHandler : MonoBehaviour
                     break;
             }
 
+            yield return new WaitForSeconds(0.75f);
+            VariableTemperature_Sprite_2.SetActive(true);
+            
+            VariableTemperatureCallout_4.SetActive(true);
+            VariableTemperatureArrow.SetActive(true);
+            VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            VariableTemperatureArrow.transform.localPosition = new Vector3(-4.2f, 73.3f, 5.375757f);
+            VariableTemperatureArrow.transform.localScale = new Vector3(2.858226f, 2.858226f, 2.858226f);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+            VariableTemperatureArrow.SetActive(false);
+            
             
 
             // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-65f, -165f, 0);
@@ -2198,12 +2287,12 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.505f, 0.184f, 0.861f);
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.505f, 0.206f, 0.861f);
             VariableTemperatureCallout_1.transform.localScale = new Vector3(0.07861494f, 0.07291988f, 0.07291988f);
-            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.587f, 0.247f, 0.861f);
-            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.09941178f, 0.09941178f, 0.09941178f);
-            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.599f, -0.026f, 0.861f);
-            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1027854f, 0.1027854f, 0.1027854f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.575f, 0.269f, 0.861f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1057841f, 0.1057841f, 0.1057841f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.587f, -0.046f, 0.861f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.126313f, 0.126313f, 0.126313f);
             VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.629f, 0.132f, 0.861f);
             VariableTemperatureCallout_4.transform.localScale = new Vector3(0.003453031f, 0.003453031f, 0.003453031f);
 
@@ -2246,38 +2335,13 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.5f);
 
             VariableTemperatureModel.SetActive(true);
             animatorVariableTemperature.Play("VariableTemperature_Animation");
             toggleSwitchEnabled = true;
 
-            yield return new WaitForSeconds(1.5f);
-            VariableTemperatureCallout_4.SetActive(true);
-            // VariableTemperatureArrow.SetActive(true);
-            // VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-            // VariableTemperatureArrow.transform.localPosition = new Vector3(0.013f, 3.07f, -0.022f);
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-            {
-                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
-                VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
-                // VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
-                yield return null;
-            }
-
-            yield return new WaitForSeconds(1f);
             VariableTemperature_Fruits.SetActive(true);
-            VariableTemperature_Sprite_2.SetActive(true);
-
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
-            {
-                Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
-                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
-                yield return null;
-            }
-            VariableTemperatureArrow.SetActive(false);
-
-
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
                 VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
@@ -2287,6 +2351,33 @@ public class UIHandler : MonoBehaviour
                     break;
             }
 
+            yield return new WaitForSeconds(0.75f);
+            VariableTemperature_Sprite_2.SetActive(true);
+
+            VariableTemperatureCallout_4.SetActive(true);
+            VariableTemperatureArrow.SetActive(true);
+            VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
+            VariableTemperatureArrow.transform.localPosition = new Vector3(-4.2f, 73.3f, 5.375757f);
+            VariableTemperatureArrow.transform.localScale = new Vector3(2.858226f, 2.858226f, 2.858226f);
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(0, 1, t));
+                VariableTemperatureCallout_4.GetComponent<SpriteRenderer>().color = newColor;
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+
+            yield return new WaitForSeconds(1f);
+
+            
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            {
+                Color newColor = new Color(1, 1, 1, Mathf.Lerp(1, 0, t));
+                VariableTemperatureArrow.GetComponent<SpriteRenderer>().color = newColor;
+                yield return null;
+            }
+            VariableTemperatureArrow.SetActive(false);
+            
 
             //_BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-10f, -190f, 0);
             //_BackPanel_Portrait.SetActive(true);
@@ -2405,7 +2496,7 @@ public class UIHandler : MonoBehaviour
             _3DFlowCallout_3.transform.localPosition = new Vector3(-0.775f, 0.283f, 1.125f);
             _3DFlowCallout_3.transform.localScale = new Vector3(0.1104171f, 0.1104171f, 0.1104171f);
             _3DFlowCallout_4.transform.localPosition = new Vector3(-0.581f, 0.171f, 1.125f);
-            _3DFlowCallout_4.transform.localScale = new Vector3(0.1061287f, 0.1061287f, 0.1061287f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.118238f, 0.118238f, 0.118238f);
 
             _3DFlow_BowlModel.SetActive(true);
             _3DFlow_Sprite.SetActive(true);
@@ -2471,11 +2562,11 @@ public class UIHandler : MonoBehaviour
             _3DFlowCallout_1.transform.localPosition = new Vector3(-0.515f, 0.282f, 1.124f);
             _3DFlowCallout_1.transform.localScale = new Vector3(0.09489027f, 0.09489027f, 0.09489027f);
             _3DFlowCallout_2.transform.localPosition = new Vector3(-0.616f, 0.353f, 1.124f);
-            _3DFlowCallout_2.transform.localScale = new Vector3(0.1241742f, 0.1241742f, 0.1241742f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1383425f, 0.1383425f, 0.1383425f);
             _3DFlowCallout_3.transform.localPosition = new Vector3(-0.779f, 0.154f, 1.124f);
             _3DFlowCallout_3.transform.localScale = new Vector3(0.1212172f, 0.1212172f, 0.1212172f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.62f, 0.013f, 1.124f);
-            _3DFlowCallout_4.transform.localScale = new Vector3(0.1272708f, 0.1272708f, 0.1272708f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.62f, -0.017f, 1.124f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.1387252f, 0.1387252f, 0.1387252f);
 
             _MenuPanel_Portrait.SetActive(false);
 
@@ -2738,12 +2829,12 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.548f, -0.3845918f, 0.9473139f);
-            PortableIce_1.transform.localScale = new Vector3(0.09052505f, 0.09052505f, 0.09052505f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.565f, -0.3845918f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.09850936f, 0.09850936f, 0.09850936f);
             PortableIce_2.transform.localPosition = new Vector3(-0.643f, -0.336f, 0.9473139f);
-            PortableIce_2.transform.localScale = new Vector3(0.1636263f, 0.1636263f, 0.1636263f);
-            PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, -0.635f, 0.9473139f);
-            PortableIce_3.transform.localScale = new Vector3(0.1260312f, 0.1260312f, 0.1260312f);            
+            PortableIce_2.transform.localScale = new Vector3(0.1882684f, 0.1882684f, 0.1882684f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.6480324f, -0.697f, 0.9473139f);
+            PortableIce_3.transform.localScale = new Vector3(0.1558497f, 0.1558497f, 0.1558497f);            
 
 
             PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
@@ -2944,8 +3035,8 @@ public class UIHandler : MonoBehaviour
             MicroBlock_2.transform.localScale = new Vector3(0.1014693f, 0.1014693f, 0.1014693f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.699f, -0.06099993f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.5649999f, -0.195f, 0.9093139f);
-            MicroBlock_4.transform.localScale = new Vector3(0.09745589f, 0.09745589f, 0.09745589f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.559f, -0.195f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.1062269f, 0.1062269f, 0.1062269f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
@@ -3049,14 +3140,14 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.514f, -0.00999999f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.07756271f, 0.07756271f, 0.07756271f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.585f, 0.048f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.1174858f, 0.1174858f, 0.1174858f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.523f, -0.00999999f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.08518712f, 0.08518712f, 0.08518712f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.585f, 0.053f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1327589f, 0.1327589f, 0.1327589f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.678f, -0.08499998f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.595f, -0.249f, 0.9093139f);
-            MicroBlock_4.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.595f, -0.287f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.1362951f, 0.1362951f, 0.1362951f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
