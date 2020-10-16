@@ -438,6 +438,10 @@ public class UIHandler : MonoBehaviour
             ARInstructions_2.SetActive(false);
             StopCoroutine(ARInstructionTransition());
 
+            if (GoogleAnalyticsAdapter.Instance != null)
+            {
+                GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("ARClose_Button", "Clicked");
+            }
         }
         else
         {
@@ -453,6 +457,11 @@ public class UIHandler : MonoBehaviour
             VariableTemperatureModel.GetComponent<BoxCollider>().size = new Vector3(0.56f, 0.76f, 0.4f);
 
             StartCoroutine(ARInstructionTransition());
+
+            if (GoogleAnalyticsAdapter.Instance != null)
+            {
+                GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("AR_Button", "Clicked");
+            }
         }
 
         _AR_Button_Icon_LandScape.SetActive(VirtualView);
@@ -465,6 +474,7 @@ public class UIHandler : MonoBehaviour
         _BottomPanel_LandScape.SetActive(true);
         _BottomPanel_Portrait.SetActive(true);
         //remove later
+
     }
 
 
@@ -515,6 +525,11 @@ public class UIHandler : MonoBehaviour
     {
         InfoClicked = !InfoClicked;
         StartCoroutine(InfoButtonTransition());
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("Info_Button", "Clicked");
+        }
     }
 
 
@@ -706,6 +721,11 @@ public class UIHandler : MonoBehaviour
             _Door_Bottom_White_Portrait.SetActive(true);
         }
         StartCoroutine(PlusButtonTransition(doorClickReset));
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("FeatureShowCase_Button", "Clicked");
+        }
     }
 
 
@@ -803,6 +823,10 @@ public class UIHandler : MonoBehaviour
             // Arrow_L.SetActive(false);
         }
 
+        if(GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("Dimension_Button", "Clicked");
+        }
     }
 
 
@@ -1019,6 +1043,12 @@ public class UIHandler : MonoBehaviour
             }
 
         }
+
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("TopDoor_Button", "Clicked");
+        }
     }
 
 
@@ -1110,6 +1140,12 @@ public class UIHandler : MonoBehaviour
 
             }
 
+        }
+
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("BottomDoor_Button", "Clicked");
         }
     }
 
@@ -1312,6 +1348,11 @@ public class UIHandler : MonoBehaviour
         InsideDoorObject_Bottom.SetActive(true);
 
 
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("Back_Button", "Clicked");
+        }
     }
 
     [SerializeField]
@@ -1516,6 +1557,11 @@ public class UIHandler : MonoBehaviour
         
 
         StartCoroutine(AITechnologyTransition());
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("AITechnology_Button", "Clicked");
+        }
     }
 
 
@@ -1723,6 +1769,11 @@ public class UIHandler : MonoBehaviour
             }
 
         }
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("UsageSensor_Button", "Clicked");
+        }
     }
 
 
@@ -1896,6 +1947,11 @@ public class UIHandler : MonoBehaviour
             AILoadSensor_Gold_Button_Portrait.SetActive(true);
 
             StopCoroutine(WeatherSensorCoroutine);
+        }
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("WeatherSensor_Button", "Clicked");
         }
     }
 
@@ -2082,6 +2138,11 @@ public class UIHandler : MonoBehaviour
             {
                 OnDoorOpenCloseClicked(true);
             }
+        }
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("LoadSensor_Button", "Clicked");
         }
     }
 
@@ -2445,6 +2506,12 @@ public class UIHandler : MonoBehaviour
 
 
         StartCoroutine(VariableTemperatureTransition());
+
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("VariableTemperature_Button", "Clicked");
+        }
     }
 
 
@@ -2693,6 +2760,11 @@ public class UIHandler : MonoBehaviour
 
 
         StartCoroutine(_3DFlowTransition());
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("3DFlow_Button", "Clicked");
+        }
     }
 
 
@@ -2983,6 +3055,12 @@ public class UIHandler : MonoBehaviour
         }
 
         StartCoroutine(PortableIceTransition());
+
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("PortableTray_Button", "Clicked");
+        }
     }
 
 
@@ -3313,7 +3391,11 @@ public class UIHandler : MonoBehaviour
         }
 
         StartCoroutine(MicroBlockTransition());
-        
+
+        if (GoogleAnalyticsAdapter.Instance != null)
+        {
+            GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("MicroBlock_Button", "Clicked");
+        }
     }
 
 
