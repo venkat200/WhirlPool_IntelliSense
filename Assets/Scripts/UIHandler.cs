@@ -122,7 +122,7 @@ public class UIHandler : MonoBehaviour
           
             initialPosition = new Vector3(0, 0, -2.2f);
 
-            _CameraContainer.transform.localPosition = new Vector3(0f, -0.05f, -0.55f);
+            _CameraContainer.transform.localPosition = new Vector3(0f, -0.05f, -0.95f);
         }
         else
         {
