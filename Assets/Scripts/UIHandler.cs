@@ -463,7 +463,7 @@ public class UIHandler : MonoBehaviour
             _Zappar_Camera.SetActive(ARView);
             _InstantTracker.SetActive(ARView);
             _Virtual_Camera.SetActive(VirtualView);
-            _SceneObject.transform.localScale = new Vector3(3f, 3f, 3f);
+            _SceneObject.transform.localScale = new Vector3(4f, 4f, 4f);
 
             ARInstruction_Panel.SetActive(false);
             ARInstructions_1.SetActive(false);
