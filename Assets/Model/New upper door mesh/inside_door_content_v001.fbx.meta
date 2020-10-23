@@ -1,0 +1,317 @@
+fileFormatVersion: 2
+guid: 97767561821984343baf3aa85c522bed
+ModelImporter:
+  serializedVersion: 19301
+  internalIDToNameTable: []
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Orange_juice_liquid_texture
+    second: {fileID: 2100000, guid: 5117a0259cff6bb4698bcfd165d5f92d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bottle_cap
+    second: {fileID: 2100000, guid: 3a088fd4094878c46b88a34a1697f6b2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bottle_cap1
+    second: {fileID: 2100000, guid: a317cb7f38a66884a822ccd505f90e81, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: bottle_liquid
+    second: {fileID: 2100000, guid: 34d2411a905303e49a448f0a0aa310fa, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: coco_can
+    second: {fileID: 2100000, guid: 1a10e9434e0143540a9dc649065dca4d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: coco_can_lid
+    second: {fileID: 2100000, guid: 7a3a0ae1b9565984494e3e9cdf6432ec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: drinkCan_texture
+    second: {fileID: 2100000, guid: f7809ae64de6b2c459a512cdd53a72c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: drinkCan_texture_png
+    second: {fileID: 2100000, guid: dbf4b47db75d6b442ba9dd6f7b7bcf53, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: egg_tray_color
+    second: {fileID: 2100000, guid: 58ba74e74ebb05d49beeff6d7709356e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: eggs1
+    second: {fileID: 2100000, guid: 0c87337c37c8d174abfbb345cbc32426, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: honey_bottle
+    second: {fileID: 2100000, guid: 301e00ef0f0ff5341a523d70e0266972, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: honey_cap
+    second: {fileID: 2100000, guid: 21f8c3a173ea8be42a41ccf78836004c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: honey_texture
+    second: {fileID: 2100000, guid: 34fd3827c72aa294aafa8473efd8db1c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: juice_bottle_textues
+    second: {fileID: 2100000, guid: 8cbc32b3bb3cacc4593f55b4dda30f6a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: juice_bottle_textues_png
+    second: {fileID: 2100000, guid: e5423cecd9e83604ba9cf92aa4857294, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: juice_bttleCaps
+    second: {fileID: 2100000, guid: 69be9decb382c3043a164b0318c8d3f8, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: juice_liquidA_texture
+    second: {fileID: 2100000, guid: 3fb2ad21ba4c67241abad8293d3be1d7, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: mild_cap
+    second: {fileID: 2100000, guid: b104c29954f16054c9c651b3d5032e33, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: milk
+    second: {fileID: 2100000, guid: a512643889e6974459ec986b7e8a44a3, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleA_bottle
+    second: {fileID: 2100000, guid: ad873dbc27808a44b949758fec8e4f37, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleA_cap
+    second: {fileID: 2100000, guid: d9e9eee267949884998f4aa2a2753599, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleA_texture
+    second: {fileID: 2100000, guid: 61139909299e5ec4695615f410e5f5d0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleB_bottle
+    second: {fileID: 2100000, guid: 4e242ff9ae8bd254e8092444c1cf308e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleB_cap
+    second: {fileID: 2100000, guid: 77dcdbea254f398409a0a6275c97306c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleB_texture
+    second: {fileID: 2100000, guid: 6ac221f78ff3dda4f8e79d4657c018cd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleC_bottle
+    second: {fileID: 2100000, guid: 97b2a4a2441e21343a9a5c289eb25c5a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleC_cap
+    second: {fileID: 2100000, guid: ad5c2804952bdaf498849f60bb2981c2, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleC_texture
+    second: {fileID: 2100000, guid: 6167b8bc1fcdd614bb90298145f3445a, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleD_bottle
+    second: {fileID: 2100000, guid: 2c576607ce1d3db4f915b550c47bed0e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleD_cap
+    second: {fileID: 2100000, guid: d452dafa14f01e74f912722f2ebc10b9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleD_texture
+    second: {fileID: 2100000, guid: 518783971153da8479601e0cd0d8145e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleE_bottle
+    second: {fileID: 2100000, guid: 54201afc6ae2b70449e0fe778c05d637, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleE_cap
+    second: {fileID: 2100000, guid: 9a677b1f7a275df4b888b96fbad9b034, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleE_texture
+    second: {fileID: 2100000, guid: 825432e060d424a43af30f3e0d203fbd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleF_cap
+    second: {fileID: 2100000, guid: d5b9138a439a03342b87ff0c560b94f9, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleF_texture
+    second: {fileID: 2100000, guid: 3f9298307b00667429542e7d4bb0029e, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleF_texture_png
+    second: {fileID: 2100000, guid: 624b0eb9ac72f1d4a87ad0cc2f2dfe64, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleG_bottle
+    second: {fileID: 2100000, guid: c94f9de98de3c454d9f96187c342917d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleG_cap
+    second: {fileID: 2100000, guid: e19cbee9d346fb4428aab3325dc49756, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleG_texture
+    second: {fileID: 2100000, guid: e84a89a121fd9fb49bf91967a70f65c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleH_bottle
+    second: {fileID: 2100000, guid: a89676205a04e74448ff8786e83de8c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleH_cap
+    second: {fileID: 2100000, guid: 2f6fdaa72c07e6946998426999b326ab, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: small_bottleH_texture
+    second: {fileID: 2100000, guid: 1c6241687a407174fa99dad94fbe2197, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: waterBottles_glass
+    second: {fileID: 2100000, guid: e7ce9f80cb275d343ad10341a4866ed6, type: 2}
+  materials:
+    materialImportMode: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    importConstraints: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 0
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    useSRGBMaterialColor: 1
+    sortHierarchyByName: 1
+    importVisibility: 1
+    importBlendShapes: 1
+    importCameras: 1
+    importLights: 1
+    fileIdsGeneration: 2
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    skinWeightsMode: 0
+    maxBonesPerVertex: 4
+    minBoneWeight: 0.001
+    meshOptimizationFlags: -1
+    indexFormat: 0
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+    normalCalculationMode: 4
+    legacyComputeAllNormalsFromSmoothingGroupsWhenMeshHasBlendShapes: 0
+    blendShapeNormalImportMode: 1
+    normalSmoothingSource: 0
+  referencedClips: []
+  importAnimation: 1
+  humanDescription:
+    serializedVersion: 3
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    globalScale: 1
+    rootMotionBoneName: 
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  autoGenerateAvatarMappingIfUnspecified: 1
+  animationType: 2
+  humanoidOversampling: 1
+  avatarSetup: 0
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
