@@ -149,7 +149,7 @@ public class UIHandler : MonoBehaviour
 
         if (ARView)
         {
-            defaultScale = new Vector3(3f, 3f, 3f);
+            defaultScale = new Vector3(4f, 4f, 4f);
         }
         else
         {
@@ -573,7 +573,7 @@ public class UIHandler : MonoBehaviour
         {
             if (Screen.width < Screen.height )
             {
-                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                 {
                     _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0.25f, 0f, -2.2f), t);
                     yield return null;
@@ -653,7 +653,7 @@ public class UIHandler : MonoBehaviour
             {
                 if (Screen.width < Screen.height)
                 {
-                    for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
+                    for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
                     {
                         _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0f, 0f, -2.2f), t);
                         yield return null;
@@ -1441,14 +1441,14 @@ public class UIHandler : MonoBehaviour
             _AICallout_2.transform.localPosition = new Vector3(-0.97f, 0.299f, 1.370314f);
             _AICallout_2.transform.localScale = new Vector3(0.1679856f, 0.1679856f, 0.1679856f);
             _AICallout_3.transform.localPosition = new Vector3(-0.9700001f, -0.242f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.2641534f, 0.2641534f, 0.2641534f);
+            _AICallout_3.transform.localScale = new Vector3(0.2403796f, 0.2403796f, 0.2403796f);
 
             AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.9710001f, -0.234f, 1.370314f);
-            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2743446f, 0.2743446f, 0.2743446f);
+            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2403796f, 0.2403796f, 0.2403796f);
             AIWeatherSensor_Callout_1.transform.localPosition = new Vector3(-0.9710001f, -0.251f, 1.370314f);
-            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2743446f, 0.2743446f, 0.2743446f);
+            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2403796f, 0.2403796f, 0.2403796f);
             AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.9710001f, -0.245f, 1.370314f);
-            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2743446f, 0.2743446f, 0.2743446f);
+            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2403796f, 0.2403796f, 0.2403796f);
 
             AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(1.06f, 0.04f, 1.370314f);
             AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.173635f, 0.173635f, 0.173635f);
@@ -1508,7 +1508,7 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Icon_2.transform.localPosition = new Vector3(-0.04f, 1.24f, 1.370314f);
             AIWeatherSensor_Icon_2.transform.localScale = new Vector3(0.09509016f, 0.09509016f, 0.09509016f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.34f, 0f, -2.2f), t);
                 yield return null;
@@ -2311,12 +2311,12 @@ public class UIHandler : MonoBehaviour
 
         if (Screen.width > Screen.height)
         {
-            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.499f, 0.177f, 0.853f);
-            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.07164655f, 0.07164655f, 0.07164655f);
-            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.584f, 0.235f, 0.853f);
-            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.09804618f, 0.09804618f, 0.09804618f);
-            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.593f, -0.01f, 0.853f);
-            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.09959625f, 0.09959625f, 0.09959625f);
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.499f, 0.165f, 0.853f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.07480616f, 0.07480616f, 0.07480616f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.584f, 0.219f, 0.853f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.10138968f, 0.1013896f, 0.1013896f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.593f, -0.039f, 0.853f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1069763f, 0.1069763f, 0.1069763f);
             VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.629f, 0.132f, 0.861f);
             VariableTemperatureCallout_4.transform.localScale = new Vector3(0.003453031f, 0.003453031f, 0.003453031f);
 
@@ -2325,7 +2325,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.31f, 0.29f, -0.91f), t);
                 yield return null;
@@ -2424,7 +2424,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.31f, 0.23f, -1.63f), t);
                 yield return null;
@@ -2464,7 +2464,7 @@ public class UIHandler : MonoBehaviour
             toggleSwitchEnabled = true;
 
             VariableTemperature_Fruits.SetActive(true);
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 VariableTemperature_Tray.transform.localPosition = Vector3.MoveTowards(VariableTemperature_Tray.transform.localPosition, new Vector3(0.0f, 0.0f, 0.25f), t);
                 yield return null;
@@ -2505,7 +2505,7 @@ public class UIHandler : MonoBehaviour
             //_BackPanel_Portrait.SetActive(true);
         }
 
-        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-70f, -185f, 0);
+        _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(-50f, -150f, 0);
         _BackPanel_LandScape.SetActive(true);
         // _BackPanel_Portrait.GetComponent<RectTransform>().localPosition = new Vector3(-35f, -215f, 0);
         _BackPanel_Portrait.SetActive(true);
@@ -2633,17 +2633,17 @@ public class UIHandler : MonoBehaviour
             GameObject.Find("3D Air Flow Sequence Updated1").transform.localPosition = new Vector3(-3f, GameObject.Find("3D Air Flow Sequence Updated1").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated1").transform.localPosition.z);
             GameObject.Find("3D Air Flow Sequence Updated2").transform.localPosition = new Vector3(-3f, GameObject.Find("3D Air Flow Sequence Updated2").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated2").transform.localPosition.z);
             GameObject.Find("3D Air Flow Sequence Updated3").transform.localPosition = new Vector3(-3f, GameObject.Find("3D Air Flow Sequence Updated3").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated3").transform.localPosition.z);
-            GameObject.Find("3D Air Flow Sequence Updated4").transform.localPosition = new Vector3(2.039572f, GameObject.Find("3D Air Flow Sequence Updated4").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated4").transform.localPosition.z);
-            GameObject.Find("3D Air Flow Sequence Updated5").transform.localPosition = new Vector3(2.039572f, GameObject.Find("3D Air Flow Sequence Updated5").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated5").transform.localPosition.z);
-            GameObject.Find("3D Air Flow Sequence Updated6").transform.localPosition = new Vector3(2.039572f, GameObject.Find("3D Air Flow Sequence Updated6").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated6").transform.localPosition.z);
-            GameObject.Find("3D Air Flow Sequence Updated7").transform.localPosition = new Vector3(2.039572f, GameObject.Find("3D Air Flow Sequence Updated7").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated7").transform.localPosition.z);
+            GameObject.Find("3D Air Flow Sequence Updated4").transform.localPosition = new Vector3(2.29f, GameObject.Find("3D Air Flow Sequence Updated4").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated4").transform.localPosition.z);
+            GameObject.Find("3D Air Flow Sequence Updated5").transform.localPosition = new Vector3(2.29f, GameObject.Find("3D Air Flow Sequence Updated5").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated5").transform.localPosition.z);
+            GameObject.Find("3D Air Flow Sequence Updated6").transform.localPosition = new Vector3(2.29f, GameObject.Find("3D Air Flow Sequence Updated6").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated6").transform.localPosition.z);
+            GameObject.Find("3D Air Flow Sequence Updated7").transform.localPosition = new Vector3(2.29f, GameObject.Find("3D Air Flow Sequence Updated7").transform.localPosition.y, GameObject.Find("3D Air Flow Sequence Updated7").transform.localPosition.z);
 
 
             OnDoorOpenCloseClicked_Top(true);
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.14f, 0.39f, -0.89f), t);
                 yield return null;
@@ -2708,7 +2708,7 @@ public class UIHandler : MonoBehaviour
             _MenuPanel_Portrait.SetActive(false);
 
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, 0.12f, -1.58f), t);
                 yield return null;
@@ -2905,7 +2905,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, -0.4f, -0.99f), t);
                 yield return null;
@@ -3008,7 +3008,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.35f, -0.19f, -1.86f), t);
                 yield return null;
@@ -3034,7 +3034,7 @@ public class UIHandler : MonoBehaviour
             }
 
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(0.0f, 0f, 0.295f), t);
                 yield return null;
@@ -3043,7 +3043,7 @@ public class UIHandler : MonoBehaviour
                     break;
             }
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.295f), t);
                 yield return null;
@@ -3052,7 +3052,7 @@ public class UIHandler : MonoBehaviour
                     break;
             }
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 InsideObject_4.transform.localPosition = Vector3.MoveTowards(InsideObject_4.transform.localPosition, new Vector3(0.089f, -0.5090525f, 0.09480139f), t);
                 InsideObject_5.transform.localPosition = Vector3.MoveTowards(InsideObject_5.transform.localPosition, new Vector3(0.148f, -0.506731f, -0.01076187f), t);
@@ -3063,7 +3063,7 @@ public class UIHandler : MonoBehaviour
                         break;
             }
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 PortableIce_Model.transform.localPosition = Vector3.MoveTowards(PortableIce_Model.transform.localPosition, new Vector3(-0.211f, 0f, 0.0f), t);
                 yield return null;
@@ -3225,7 +3225,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 50)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.3f, 0.17f, -1.01f), t);
                 yield return null;
@@ -3336,7 +3336,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, 0.1f, -1.73f), t);
                 yield return null;
@@ -3361,7 +3361,7 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0f, 0.7986788f, 0.222f), t);
                 yield return null;
@@ -3412,7 +3412,7 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 MicroBlock_Model.transform.localPosition = Vector3.MoveTowards(MicroBlock_Model.transform.localPosition, new Vector3(0, 0.7986788f, -0.144f), t);
                 yield return null;
