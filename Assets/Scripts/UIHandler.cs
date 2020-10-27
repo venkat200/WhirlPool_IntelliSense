@@ -860,7 +860,7 @@ public class UIHandler : MonoBehaviour
         {
             if (Screen.width < Screen.height)
             {
-                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+                for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
                 {
                     _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(0.28f, 0.0f, -2.2f), t);
                     yield return null;
@@ -1508,7 +1508,7 @@ public class UIHandler : MonoBehaviour
             AIWeatherSensor_Icon_2.transform.localPosition = new Vector3(-0.04f, 1.24f, 1.370314f);
             AIWeatherSensor_Icon_2.transform.localScale = new Vector3(0.09509016f, 0.09509016f, 0.09509016f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime/10)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.34f, 0f, -2.2f), t);
                 yield return null;
@@ -2424,7 +2424,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.31f, 0.23f, -1.63f), t);
                 yield return null;
@@ -2708,7 +2708,7 @@ public class UIHandler : MonoBehaviour
             _MenuPanel_Portrait.SetActive(false);
 
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, 0.12f, -1.58f), t);
                 yield return null;
@@ -3008,7 +3008,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.35f, -0.19f, -1.86f), t);
                 yield return null;
@@ -3311,7 +3311,7 @@ public class UIHandler : MonoBehaviour
 
             MicroBlock_Sprite.SetActive(true);
             animatorMicroBlock.Play("MicroBlock_Animation");
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             MicroBlock_Sprite.SetActive(false);
 
             // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
@@ -3336,7 +3336,7 @@ public class UIHandler : MonoBehaviour
 
             yield return new WaitForSeconds(1f);
 
-            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime)
+            for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
                 _Virtual_Camera.transform.localPosition = Vector3.MoveTowards(_Virtual_Camera.transform.localPosition, new Vector3(-0.32f, 0.1f, -1.73f), t);
                 yield return null;
@@ -3423,7 +3423,7 @@ public class UIHandler : MonoBehaviour
 
             MicroBlock_Sprite.SetActive(true);
             animatorMicroBlock.Play("MicroBlock_Animation");
-            yield return new WaitForSeconds(3f);
+            yield return new WaitForSeconds(2f);
             MicroBlock_Sprite.SetActive(false);
 
 
