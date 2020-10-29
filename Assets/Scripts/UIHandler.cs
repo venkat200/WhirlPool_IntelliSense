@@ -1489,19 +1489,19 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            _AICallout_1.transform.localPosition = new Vector3(-0.84f, 0.697f, 1.370314f);
-            _AICallout_1.transform.localScale = new Vector3(0.1944628f, 0.1944628f, 0.1944628f);
-            _AICallout_2.transform.localPosition = new Vector3(-0.84f, 0.299f, 1.370314f);
-            _AICallout_2.transform.localScale = new Vector3(0.1514963f, 0.1514963f, 0.1514963f);
+            _AICallout_1.transform.localPosition = new Vector3(-0.84f, 0.783f, 1.370314f);
+            _AICallout_1.transform.localScale = new Vector3(0.2041859f, 0.2041859f, 0.2041859f);
+            _AICallout_2.transform.localPosition = new Vector3(-0.84f, 0.366f, 1.370314f);
+            _AICallout_2.transform.localScale = new Vector3(0.1672822f, 0.1672822f, 0.1672822f);
             _AICallout_3.transform.localPosition = new Vector3(-0.84f, -0.16f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.2377549f, 0.2377549f, 0.2377549f);
+            _AICallout_3.transform.localScale = new Vector3(0.2775691f, 0.2775691f, 0.2775691f);
 
             AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.152f, 1.370314f);
-            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2569577f, 0.2569577f, 0.2569577f);
+            AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2999876f, 0.2999876f, 0.2999876f);
             AIWeatherSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.169f, 1.370314f);
-            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2569577f, 0.2569577f, 0.2569577f);
+            AIWeatherSensor_Callout_1.transform.localScale = new Vector3(0.2999876f, 0.2999876f, 0.2999876f);
             AILoadSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.163f, 1.370314f);
-            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2569577f, 0.2569577f, 0.2569577f);
+            AILoadSensor_Callout_1.transform.localScale = new Vector3(0.2999876f, 0.2999876f, 0.2999876f);
 
             AIWeatherSensor_Icon_1.transform.localPosition = new Vector3(-0.04f, 1.24f, 1.370314f);
             AIWeatherSensor_Icon_1.transform.localScale = new Vector3(0.09509016f, 0.09509016f, 0.09509016f);
@@ -2409,12 +2409,12 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.512f, 0.183f, 0.861f);
-            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.08490414f, 0.08490414f, 0.08490414f);
-            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.582f, 0.249f, 0.861f);
-            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1163625f, 0.1163625f, 0.1163625f);
-            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.587f, -0.122f, 0.861f);
-            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1488346f, 0.1488346f, 0.126313f);
+            VariableTemperatureCallout_1.transform.localPosition = new Vector3(-0.543f, 0.178f, 0.861f);
+            VariableTemperatureCallout_1.transform.localScale = new Vector3(0.08914935f, 0.08914935f, 0.08914935f);
+            VariableTemperatureCallout_2.transform.localPosition = new Vector3(-0.593f, 0.249f, 0.861f);
+            VariableTemperatureCallout_2.transform.localScale = new Vector3(0.1345849f, 0.1345849f, 0.1345849f);
+            VariableTemperatureCallout_3.transform.localPosition = new Vector3(-0.608f, -0.151f, 0.861f);
+            VariableTemperatureCallout_3.transform.localScale = new Vector3(0.1718593f, 0.1718593f, 0.1718593f);
             VariableTemperatureCallout_4.transform.localPosition = new Vector3(-0.629f, 0.132f, 0.861f);
             VariableTemperatureCallout_4.transform.localScale = new Vector3(0.003453031f, 0.003453031f, 0.003453031f);
 
@@ -2696,14 +2696,14 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.515f, 0.282f, 1.124f);
-            _3DFlowCallout_1.transform.localScale = new Vector3(0.1091238f, 0.1091238f, 0.1091238f);
-            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.616f, 0.353f, 1.124f);
-            _3DFlowCallout_2.transform.localScale = new Vector3(0.146643f, 0.146643f, 0.146643f);
+            _3DFlowCallout_1.transform.localPosition = new Vector3(-0.535f, 0.282f, 1.124f);
+            _3DFlowCallout_1.transform.localScale = new Vector3(0.1209419f, 0.1209419f, 0.1209419f);
+            _3DFlowCallout_2.transform.localPosition = new Vector3(-0.653f, 0.366f, 1.124f);
+            _3DFlowCallout_2.transform.localScale = new Vector3(0.1771887f, 0.1771887f, 0.1771887f);
             _3DFlowCallout_3.transform.localPosition = new Vector3(-0.779f, 0.154f, 1.124f);
             _3DFlowCallout_3.transform.localScale = new Vector3(0.1212172f, 0.1212172f, 0.1212172f);
-            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.62f, -0.064f, 1.124f);
-            _3DFlowCallout_4.transform.localScale = new Vector3(0.16149f, 0.16149f, 0.16149f);
+            _3DFlowCallout_4.transform.localPosition = new Vector3(-0.657f, -0.077f, 1.124f);
+            _3DFlowCallout_4.transform.localScale = new Vector3(0.183824f, 0.183824f, 0.183824f);
 
             _MenuPanel_Portrait.SetActive(false);
 
@@ -2991,14 +2991,14 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            PortableIce_1.transform.localPosition = new Vector3(-0.565f, -0.411f, 0.9473139f);
-            PortableIce_1.transform.localScale = new Vector3(0.1117195f, 0.1117195f, 0.1117195f);
-            PortableIce_2.transform.localPosition = new Vector3(-0.677f, -0.34f, 0.9473139f);
-            PortableIce_2.transform.localScale = new Vector3(0.195375f, 0.195375f, 0.195375f);
-            PortableIce_3.transform.localPosition = new Vector3(-0.683f, -0.761f, 0.9473139f);
-            PortableIce_3.transform.localScale = new Vector3(0.1676092f, 0.1676092f, 0.1676092f);
-            PortableIce_4.transform.localPosition = new Vector3(-0.454f, -0.415f, 0.9473139f);
-            PortableIce_4.transform.localScale = new Vector3(0.1395929f, 0.1395929f, 0.1395929f);
+            PortableIce_1.transform.localPosition = new Vector3(-0.6f, -0.411f, 0.9473139f);
+            PortableIce_1.transform.localScale = new Vector3(0.1188807f, 0.1188807f, 0.1188807f);
+            PortableIce_2.transform.localPosition = new Vector3(-0.693f, -0.358f, 0.9473139f);
+            PortableIce_2.transform.localScale = new Vector3(0.2244663f, 0.2244663f, 0.2244663f);
+            PortableIce_3.transform.localPosition = new Vector3(-0.699f, -0.81f, 0.9473139f);
+            PortableIce_3.transform.localScale = new Vector3(0.1948289f, 0.1948289f, 0.1948289f);
+            PortableIce_4.transform.localPosition = new Vector3(-0.489f, -0.415f, 0.9473139f);
+            PortableIce_4.transform.localScale = new Vector3(0.1485408f, 0.1485408f, 0.1485408f);
 
 
             PortableIce_Model.transform.localPosition = new Vector3(0, 0, 0);
@@ -3310,8 +3310,16 @@ public class UIHandler : MonoBehaviour
             }
 
             MicroBlock_Sprite.SetActive(true);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, -180, 0);
             animatorMicroBlock.Play("MicroBlock_Animation");
-            yield return new WaitForSeconds(2f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, -180, 0);
+            yield return new WaitForSeconds(1.083f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(1.083f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, -180, 0);
+            yield return new WaitForSeconds(1.083f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(1.083f);
             MicroBlock_Sprite.SetActive(false);
 
             // _BackPanel_LandScape.GetComponent<RectTransform>().localPosition = new Vector3(10f, -155f, 0);
@@ -3319,14 +3327,14 @@ public class UIHandler : MonoBehaviour
         }
         else
         {
-            MicroBlock_1.transform.localPosition = new Vector3(-0.534f, -0.00999999f, 0.9093139f);
-            MicroBlock_1.transform.localScale = new Vector3(0.09212007f, 0.09212007f, 0.09212007f);
-            MicroBlock_2.transform.localPosition = new Vector3(-0.608f, 0.064f, 0.9093139f);
-            MicroBlock_2.transform.localScale = new Vector3(0.1477341f, 0.1477341f, 0.1477341f);
+            MicroBlock_1.transform.localPosition = new Vector3(-0.548f, -0.00999999f, 0.9093139f);
+            MicroBlock_1.transform.localScale = new Vector3(0.1107652f, 0.1107652f, 0.1107652f);
+            MicroBlock_2.transform.localPosition = new Vector3(-0.6439999f, 0.067f, 0.9093139f);
+            MicroBlock_2.transform.localScale = new Vector3(0.1668694f, 0.1668694f, 0.1668694f);
             MicroBlock_3.transform.localPosition = new Vector3(-0.678f, -0.08499998f, 0.9093139f);
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
-            MicroBlock_4.transform.localPosition = new Vector3(-0.618f, -0.333f, 0.9093139f);
-            MicroBlock_4.transform.localScale = new Vector3(0.161387f, 0.161387f, 0.161387f);
+            MicroBlock_4.transform.localPosition = new Vector3(-0.654f, -0.382f, 0.9093139f);
+            MicroBlock_4.transform.localScale = new Vector3(0.1920505f, 0.1920505f, 0.1920505f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
@@ -3422,8 +3430,16 @@ public class UIHandler : MonoBehaviour
             }
 
             MicroBlock_Sprite.SetActive(true);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, -180, 0);
             animatorMicroBlock.Play("MicroBlock_Animation");
-            yield return new WaitForSeconds(2f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, -180, 0);
+            yield return new WaitForSeconds(1.083f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(1.083f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, -180, 0);
+            yield return new WaitForSeconds(1.083f);
+            MicroBlock_Sprite.transform.localEulerAngles = new Vector3(0, 0, 0);
+            yield return new WaitForSeconds(1.083f);
             MicroBlock_Sprite.SetActive(false);
 
 
