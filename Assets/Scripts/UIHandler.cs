@@ -1362,6 +1362,7 @@ public class UIHandler : MonoBehaviour
         MicroBlock_2.SetActive(false);
         MicroBlock_3.SetActive(false);
         MicroBlock_4.SetActive(false);
+        MicroBlock_Disclaimer.SetActive(false);
         MicroBlock_Sprite.SetActive(false);
         // MicroBlock_Model.SetActive(false);
         MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
@@ -1441,7 +1442,7 @@ public class UIHandler : MonoBehaviour
             _AICallout_2.transform.localPosition = new Vector3(-0.97f, 0.299f, 1.370314f);
             _AICallout_2.transform.localScale = new Vector3(0.1679856f, 0.1679856f, 0.1679856f);
             _AICallout_3.transform.localPosition = new Vector3(-0.9700001f, -0.242f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.2403796f, 0.2403796f, 0.2403796f);
+            _AICallout_3.transform.localScale = new Vector3(0.1890155f, 0.1890155f, 0.1890155f);
 
             AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.9710001f, -0.234f, 1.370314f);
             AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2403796f, 0.2403796f, 0.2403796f);
@@ -1494,7 +1495,7 @@ public class UIHandler : MonoBehaviour
             _AICallout_2.transform.localPosition = new Vector3(-0.84f, 0.366f, 1.370314f);
             _AICallout_2.transform.localScale = new Vector3(0.1672822f, 0.1672822f, 0.1672822f);
             _AICallout_3.transform.localPosition = new Vector3(-0.84f, -0.16f, 1.370314f);
-            _AICallout_3.transform.localScale = new Vector3(0.2775691f, 0.2775691f, 0.2775691f);
+            _AICallout_3.transform.localScale = new Vector3(0.2242467f, 0.2242467f, 0.2242467f);
 
             AIUsageSensor_Callout_1.transform.localPosition = new Vector3(-0.84f, -0.152f, 1.370314f);
             AIUsageSensor_Callout_1.transform.localScale = new Vector3(0.2999876f, 0.2999876f, 0.2999876f);
@@ -3169,7 +3170,7 @@ public class UIHandler : MonoBehaviour
 
 
     [SerializeField]
-    GameObject MicroBlock_1, MicroBlock_2, MicroBlock_3, MicroBlock_4, MicroBlock_Model, MicroBlock_Sprite;
+    GameObject MicroBlock_1, MicroBlock_2, MicroBlock_3, MicroBlock_4, MicroBlock_Disclaimer, MicroBlock_Model, MicroBlock_Sprite;
     [SerializeField]
     GameObject _TrayObject_1, _TrayObject_2, _TrayObject_3, _TrayObject_4, _TrayObject_5, _TrayObject_6, _TrayObject_7, _TrayObject_8;
     Animator animatorMicroBlock;
@@ -3216,6 +3217,8 @@ public class UIHandler : MonoBehaviour
             MicroBlock_3.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
             MicroBlock_4.transform.localPosition = new Vector3(-0.563f, -0.219f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1295968f, 0.1295968f, 0.1295968f);
+            MicroBlock_Disclaimer.transform.localPosition = new Vector3(-1.13f, -0.38f, 0.9093139f);
+            MicroBlock_Disclaimer.transform.localScale = new Vector3(0.1295968f, 0.1295968f, 0.1295968f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
@@ -3250,6 +3253,8 @@ public class UIHandler : MonoBehaviour
                 MicroBlock_2.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
+
+            MicroBlock_Disclaimer.SetActive(true);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 100)
             {
@@ -3335,7 +3340,9 @@ public class UIHandler : MonoBehaviour
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
             MicroBlock_4.transform.localPosition = new Vector3(-0.654f, -0.382f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1920505f, 0.1920505f, 0.1920505f);
-
+            MicroBlock_Disclaimer.transform.localPosition = new Vector3(-0.54f, -0.62f, 0.9093139f);
+            MicroBlock_Disclaimer.transform.localScale = new Vector3(0.1315773f, 0.1315773f, 0.1315773f);
+            
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
             MicroBlock_Model.SetActive(true);
@@ -3368,6 +3375,8 @@ public class UIHandler : MonoBehaviour
                 MicroBlock_2.GetComponent<SpriteRenderer>().color = newColor;
                 yield return null;
             }
+
+            MicroBlock_Disclaimer.SetActive(true);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
