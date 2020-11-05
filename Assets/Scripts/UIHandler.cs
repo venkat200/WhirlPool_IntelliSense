@@ -3217,8 +3217,8 @@ public class UIHandler : MonoBehaviour
             MicroBlock_3.transform.localScale = new Vector3(0.1092711f, 0.1092711f, 0.1092711f);
             MicroBlock_4.transform.localPosition = new Vector3(-0.563f, -0.219f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1295968f, 0.1295968f, 0.1295968f);
-            MicroBlock_Disclaimer.transform.localPosition = new Vector3(-1.13f, -0.38f, 0.9093139f);
-            MicroBlock_Disclaimer.transform.localScale = new Vector3(0.1295968f, 0.1295968f, 0.1295968f);
+            MicroBlock_Disclaimer.transform.localPosition = new Vector3(-1.13f, -0.335f, 0.9093139f);
+            MicroBlock_Disclaimer.transform.localScale = new Vector3(0.1153411f, 0.1153411f, 0.1153411f);
 
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);

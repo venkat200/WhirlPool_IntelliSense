@@ -2457,7 +2457,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: d284814f404aace49ba3b373e41c86c8, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 65fc002b0566f554b866c65c5720fc13, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -3947,7 +3947,7 @@ GameObject:
   - component: {fileID: 367840764}
   - component: {fileID: 367840765}
   m_Layer: 0
-  m_Name: Directional Light
+  m_Name: Directional Light Part 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -15615,7 +15615,7 @@ GameObject:
   - component: {fileID: 1580048357}
   - component: {fileID: 1580048358}
   m_Layer: 0
-  m_Name: Directional Light (3)
+  m_Name: Directional Light Part 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
