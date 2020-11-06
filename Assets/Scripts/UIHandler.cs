@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Runtime.InteropServices;
+
 
 public class UIHandler : MonoBehaviour
 {
@@ -77,6 +79,12 @@ public class UIHandler : MonoBehaviour
     [SerializeField]
     GameObject _CameraContainer;
 
+    bool doorOpen_Signal = false;
+    [SerializeField]
+    GameObject TopDoor, BottomDoor;
+
+    [SerializeField]
+    Light SceneLight;
 
     // Start is called before the first frame update
     void Start()
@@ -104,10 +112,15 @@ public class UIHandler : MonoBehaviour
         ObjectRotateScript = ObjectRotateGameObject.GetComponent<ObjectRotate>();
         SceneZoomScript = SceneZoomGameObject.GetComponent<SceneZoom>();
 
+        #if !UNITY_EDITOR
+                intialize();
+        #endif
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("Pageview", "Viewed");
         }
+        */
     }
 
     // Update is called once per frame
@@ -191,6 +204,32 @@ public class UIHandler : MonoBehaviour
         }
 
         PlayingFeature = onAITechnologyClickedBool || onVariableTemperatureClickedBool || on3DFlowClickedBool || onPortableIceClickedBool || onMicroBlockClickedBool;
+
+        if(TopDoor.transform.localEulerAngles.y != 0 || BottomDoor.transform.localEulerAngles.y != 0)
+        {
+            doorOpen_Signal = true;
+        }
+        else
+        {
+            doorOpen_Signal = false;
+        }
+
+        if(doorOpen_Signal)
+        {
+            SceneLight.transform.localPosition = new Vector3(-0.0006842911f, 0.3761919f, - 1.140375f);
+            SceneLight.transform.localEulerAngles = new Vector3(8.695001f, - 33.336f, 0f);
+
+            // SceneLight.GetComponent<Light>().intensity = 0.35f;
+            SceneLight.GetComponent<Light>().intensity = Mathf.Lerp(SceneLight.GetComponent<Light>().intensity, 0.35f, Time.deltaTime*5);
+        }
+        else
+        {
+            SceneLight.transform.localPosition = new Vector3(0.2624626f, - 0.007030487f, - 1.332283f);
+            SceneLight.transform.localEulerAngles = new Vector3(4.307f, 0.603f, 2.952f);
+
+            // SceneLight.GetComponent<Light>().intensity = 1.35f;
+            SceneLight.GetComponent<Light>().intensity = Mathf.Lerp(SceneLight.GetComponent<Light>().intensity, 1.35f, Time.deltaTime*5);
+        }
     }
 
     IEnumerator StartTransition()
@@ -453,10 +492,17 @@ public class UIHandler : MonoBehaviour
             ARInstructions_2.SetActive(false);
             StopCoroutine(ARInstructionTransition());
 
+
+            #if !UNITY_EDITOR
+                LogEvent("ARClose_Button");
+            #endif
+
+            /*
             if (GoogleAnalyticsAdapter.Instance != null)
             {
                 GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("ARClose_Button", "Clicked");
             }
+            */
         }
         else
         {
@@ -473,10 +519,16 @@ public class UIHandler : MonoBehaviour
 
             StartCoroutine(ARInstructionTransition());
 
+            #if !UNITY_EDITOR
+                LogEvent("AR_Button");
+            #endif
+
+            /*
             if (GoogleAnalyticsAdapter.Instance != null)
             {
                 GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("AR_Button", "Clicked");
             }
+            */
         }
 
         _AR_Button_Icon_LandScape.SetActive(VirtualView);
@@ -541,10 +593,16 @@ public class UIHandler : MonoBehaviour
         InfoClicked = !InfoClicked;
         StartCoroutine(InfoButtonTransition());
 
+        #if !UNITY_EDITOR
+            LogEvent("Info_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("Info_Button", "Clicked");
         }
+        */
     }
 
 
@@ -744,11 +802,16 @@ public class UIHandler : MonoBehaviour
             OnInfoButtonClicked();
         }
 
+        #if !UNITY_EDITOR
+            LogEvent("FeatureShowCase_Button");
+        #endif
 
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("FeatureShowCase_Button", "Clicked");
         }
+        */
     }
 
 
@@ -846,10 +909,16 @@ public class UIHandler : MonoBehaviour
             // Arrow_L.SetActive(false);
         }
 
+        #if !UNITY_EDITOR
+            LogEvent("Dimension_Button");
+        #endif
+
+        /*
         if(GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("Dimension_Button", "Clicked");
         }
+        */
     }
 
 
@@ -1097,11 +1166,16 @@ public class UIHandler : MonoBehaviour
             OnInfoButtonClicked();
         }
 
+        #if !UNITY_EDITOR
+            LogEvent("TopDoor_Button");
+        #endif
 
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("TopDoor_Button", "Clicked");
         }
+        */
     }
 
 
@@ -1200,10 +1274,16 @@ public class UIHandler : MonoBehaviour
             OnInfoButtonClicked();
         }
 
+        #if !UNITY_EDITOR
+            LogEvent("BottomDoor_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("BottomDoor_Button", "Clicked");
         }
+        */
     }
 
 
@@ -1363,6 +1443,7 @@ public class UIHandler : MonoBehaviour
         MicroBlock_3.SetActive(false);
         MicroBlock_4.SetActive(false);
         MicroBlock_Disclaimer.SetActive(false);
+        MicroBlock_Disclaimer_Portrait.SetActive(false);
         MicroBlock_Sprite.SetActive(false);
         // MicroBlock_Model.SetActive(false);
         MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
@@ -1407,12 +1488,16 @@ public class UIHandler : MonoBehaviour
         InsideDoorObject_Top.SetActive(true);
         InsideDoorObject_Bottom.SetActive(true);
 
+        #if !UNITY_EDITOR
+            LogEvent("Back_Button");
+        #endif
 
-
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("Back_Button", "Clicked");
         }
+        */
     }
 
     [SerializeField]
@@ -1618,10 +1703,16 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(AITechnologyTransition());
 
+        #if !UNITY_EDITOR
+            LogEvent("AITechnology_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("AITechnology_Button", "Clicked");
         }
+        */
     }
 
 
@@ -1832,10 +1923,16 @@ public class UIHandler : MonoBehaviour
 
         }
 
+        #if !UNITY_EDITOR
+            LogEvent("UsageSensor_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("UsageSensor_Button", "Clicked");
         }
+        */
     }
 
 
@@ -2011,10 +2108,16 @@ public class UIHandler : MonoBehaviour
             StopCoroutine(WeatherSensorCoroutine);
         }
 
+        #if !UNITY_EDITOR
+            LogEvent("WeatherSensor_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("WeatherSensor_Button", "Clicked");
         }
+        */
     }
 
 
@@ -2202,10 +2305,16 @@ public class UIHandler : MonoBehaviour
             }
         }
 
+        #if !UNITY_EDITOR
+            LogEvent("LoadSensor_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("LoadSensor_Button", "Clicked");
         }
+        */
     }
 
 
@@ -2569,6 +2678,9 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(VariableTemperatureTransition());
 
+        #if !UNITY_EDITOR
+            LogEvent("VariableTemperature_Button");
+        #endif
 
         if (GoogleAnalyticsAdapter.Instance != null)
         {
@@ -2841,10 +2953,16 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(_3DFlowTransition());
 
+        #if !UNITY_EDITOR
+            LogEvent("3DFlow_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("3DFlow_Button", "Clicked");
         }
+        */
     }
 
 
@@ -3158,11 +3276,16 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(PortableIceTransition());
 
+        #if !UNITY_EDITOR
+            LogEvent("PortableTray_Button");
+        #endif
 
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("PortableTray_Button", "Clicked");
         }
+        */
     }
 
 
@@ -3170,7 +3293,7 @@ public class UIHandler : MonoBehaviour
 
 
     [SerializeField]
-    GameObject MicroBlock_1, MicroBlock_2, MicroBlock_3, MicroBlock_4, MicroBlock_Disclaimer, MicroBlock_Model, MicroBlock_Sprite;
+    GameObject MicroBlock_1, MicroBlock_2, MicroBlock_3, MicroBlock_4, MicroBlock_Disclaimer, MicroBlock_Disclaimer_Portrait, MicroBlock_Model, MicroBlock_Sprite;
     [SerializeField]
     GameObject _TrayObject_1, _TrayObject_2, _TrayObject_3, _TrayObject_4, _TrayObject_5, _TrayObject_6, _TrayObject_7, _TrayObject_8;
     Animator animatorMicroBlock;
@@ -3340,8 +3463,8 @@ public class UIHandler : MonoBehaviour
             MicroBlock_3.transform.localScale = new Vector3(0.1174958f, 0.1174958f, 0.1174958f);
             MicroBlock_4.transform.localPosition = new Vector3(-0.654f, -0.382f, 0.9093139f);
             MicroBlock_4.transform.localScale = new Vector3(0.1920505f, 0.1920505f, 0.1920505f);
-            MicroBlock_Disclaimer.transform.localPosition = new Vector3(-0.54f, -0.62f, 0.9093139f);
-            MicroBlock_Disclaimer.transform.localScale = new Vector3(0.1315773f, 0.1315773f, 0.1315773f);
+            MicroBlock_Disclaimer_Portrait.transform.localPosition = new Vector3(-0.655f, -0.62f, 0.9093139f);
+            MicroBlock_Disclaimer_Portrait.transform.localScale = new Vector3(0.151497f, 0.151497f, 0.151497f);
             
 
             MicroBlock_Model.transform.localPosition = new Vector3(0, 0.7986788f, -0.144f);
@@ -3376,7 +3499,7 @@ public class UIHandler : MonoBehaviour
                 yield return null;
             }
 
-            MicroBlock_Disclaimer.SetActive(true);
+            MicroBlock_Disclaimer_Portrait.SetActive(true);
 
             for (float t = 0.0f; t < 1.0f; t += Time.deltaTime / 10)
             {
@@ -3518,13 +3641,23 @@ public class UIHandler : MonoBehaviour
 
         StartCoroutine(MicroBlockTransition());
 
+        #if !UNITY_EDITOR
+            LogEvent("MicroBlock_Button");
+        #endif
+
+        /*
         if (GoogleAnalyticsAdapter.Instance != null)
         {
             GoogleAnalyticsAdapter.Instance.googleAnalyticsLogEvent("MicroBlock_Button", "Clicked");
         }
+        */
     }
 
 
+    [DllImport("__Internal")]
+    private static extern void LogEvent(string str);
 
+    [DllImport("__Internal")]
+    private static extern void intialize();
 
 }
